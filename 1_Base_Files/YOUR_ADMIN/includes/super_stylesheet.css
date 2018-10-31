@@ -24,200 +24,194 @@
 */
 
 .invoiceHeading {
-font-family: Verdana, Arial, sans-serif; font-size: 14px;
-color:# #000; font-weight: bold;
+    font-family: Verdana, Arial, sans-serif; font-size: 14px;
+    color: #000; font-weight: bold;
 }
 .dataTableRowUnique{
-background-color:# #fffcc;
+    background-color: #fc;
 }
 .dataTableRowUniqueOver{
-background-color:# #fff;
+    background-color: #fff;
 }
 .dataTableContentUnique{
-font-weight:bold;
-border-top:1px solid #9a9a9a;
+    font-weight:bold;
+    border-top:1px solid #9a9a9a;
 }
 .paymentRow{
-background-color:#99ff99;
+    background-color:#99ff99;
 }
 .paymentContent{
-color:#000;
-font-size:9px;
+    color:#000;
+    font-size:9px;
 }
 .paymentRowOver{
-background-color:#fffede;
-border:1px solid #000;
-cursor:pointer;
-cursor:hand;
+    background-color:#fffede;
+    border:1px solid #000;
+    cursor:pointer;
 }
 .purchaseOrderRow{
-background-color:#9999ff;
+    background-color:#99f;
 }
 .purchaseOrderContent{
-color:#000;
-font-size:9px;
+    color:#000;
+    font-size:9px;
 }
 .purchaseOrderRowOver{
-background-color:#fffede;
-cursor:pointer;
-cursor:hand;
+    background-color:#fffede;
+    cursor:pointer;
 }
 .refundRow{
-background-color:#ffb3b5;
+    background-color:#ffb3b5;
 }
 .refundContent{
-color:#000;
-font-size:9px;
+    color:#000;
+    font-size:9px;
 }
 .refundRowOver{
-background-color:#fffede;
-border:1px solid #000;
-cursor:pointer;
-cursor:hand;
+    background-color:#fffede;
+    border:1px solid #000;
+    cursor:pointer;
 }
 .warningBox{
-background-color:#ff9999;
+    background-color:#f99;
 }
 .warningText{
-font-size:10px;
-font-weight:bold;
-border-color:#ff0000;
-border-style:solid;
-border-width:3px;
+    font-size:10px;
+    font-weight:bold;
+    border-color:#f00;
+    border-style:solid;
+    border-width:3px;
 }
 
 td.ot-custom-Amount {
 }
 
 td.ot-custom-Text {
-font-weight:bold;
+    font-weight:bold;
 }
 
 td.balanceDueNone,td.status-completed{
-font-weight:bold;
-color:#00cc00;
+    font-weight:bold;
+    color:#0c0;
 }
 td.balanceDueNeg,td.status-cancelled{
-font-weight:bold;
-color:#ff0000;
+    font-weight:bold;
+    color:#f00;
 }
 td.balanceDueRem{
-font-weight:bold;
-color:#0000ff;
+    font-weight:bold;
+    color:#00f;
 }
 td.balanceDueNull{
-font-weight:bold;
-text-decoration: line-through;
-color:#9f9f9f;
+    font-weight:bold;
+    text-decoration: line-through;
+    color:#9f9f9f;
 }
 .printHeaderRow{
-color:#666;
+    color:#666;
 }
 .printHeaderContent{
-color:#666;
-font-size:10px;
-font-weight:bold;
+    color:#666;
+    font-size:10px;
+    font-weight:bold;
 }
 .printMain{
-color:#666;
-font-size:10px;
+    color:#666;
+    font-size:10px;
 }
 .printTableHeadingContent{
-border-bottom:1px solid #000;
-color:#fff;
-font-size:10px;
-font-weight:bold;
+    border-bottom:1px solid #000;
+    color:#fff;
+    font-size:10px;
+    font-weight:bold;
 }
 .printTableContent{
-color:#666;
-font-size:10px;
+    color:#666;
+    font-size:10px;
 }
 td.ot-subtotal-AmountPrint,td.ot-cod-fee-AmountPrint,td.ot-group-pricing-AmountPrint,td.ot-gv-AmountPrint,td.ot-loworderfee-AmountPrint,td.ot-shipping-AmountPrint,td.ot-subtotal-AmountPrint,td.ot-tax-AmountPrint,td.ot-coupon-AmountPrint{
-color:#666;
-font-size:10px;
+    color:#666;
+    font-size:10px;
 }
 td.ot-subtotal-TextPrint,td.ot-cod-fee-TextPrint,td.ot-total-TextPrint,td.ot-group-pricing-TextPrint,td.ot-gv-TextPrint,td.ot-loworderfee-TextPrint,td.ot-shipping-TextPrint,td.ot-subtotal-TextPrint,td.ot-tax-TextPrint,td.ot-coupon-TextPrint{
-color:#666;
-font-weight:bold;
-font-size:10px;
+    color:#666;
+    font-weight:bold;
+    font-size:10px;
 }
 td.ot-total-AmountPrint{
-color:#666;
-border-top:1px solid #000;
-font-size:10px;
-font-weight:bold;
+    color:#666;
+    border-top:1px solid #000;
+    font-size:10px;
+    font-weight:bold;
 }
 
 span.status-completed{
-background-color:#00cc00;
-border-color:#000;
-border-style:solid;
-border-width:1px;
-padding: 0.2cm;
-color:#fff;
-font-size:12px;
-font-weight:bold;
+    background-color:#0c0;
+    border-color:#000;
+    border-style:solid;
+    border-width:1px;
+    padding: 0.2cm;
+    color:#fff;
+    font-size:12px;
+    font-weight:bold;
 }
 
 span.status-cancelled{
-background-color:#ff0000;
-border-color:#000;
-border-style:solid;
-border-width:1px;
-padding: 0.2cm;
-color:#fff;
-font-size:12px;
-font-weight:bold;
+    background-color:#f00;
+    border-color:#000;
+    border-style:solid;
+    border-width:1px;
+    padding: 0.2cm;
+    color:#fff;
+    font-size:12px;
+    font-weight:bold;
 }
 
 .smallText a{
-font-size:9px;
-text-decoration:underline;
+    font-size:9px;
+    text-decoration:underline;
 }
 
 .button, input.button, input.cssButtonHover {
-	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	box-shadow:inset 0px 1px 0px 0px #ffffff;
-	-moz-border-radius:30px;
-	-webkit-border-radius:30px;
-	border-radius:30px;
-	/*background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffd3f7), color-stop(1, #fe8cd2) );
-	background:-moz-linear-gradient( center top, #ffd3f7 5%, #fe8cd2 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#E8E8E8', endColorstr='#fe8cd2');*/
-	display:inline-block;
-	font-family:Verdana, Helvetica, Tahoma, Arial, sans-serif;
-	font-size:12px;
-	font-weight:bold;
-	margin: 0;
-	padding:2px 8px;
-	text-decoration:none;
+    -moz-box-shadow:inset 0px 1px 0px 0px #fff;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #fff;
+    box-shadow:inset 0px 1px 0px 0px #fff;
+    -moz-border-radius:30px;
+    -webkit-border-radius:30px;
+    border-radius:30px;
+    display:inline-block;
+    font-family:Verdana, Helvetica, Tahoma, Arial, sans-serif;
+    font-size:12px;
+    font-weight:bold;
+    margin: 0;
+    padding:2px 8px;
+    text-decoration:none;
 }
 input.submit_button {
-	background-color:#E8E8E8;  /* Submit button background color */
-	border: 1px solid #B7B7B7;  /* Submit button border color */
-	font-size: 12px;
-	font-weight: bold;
-	display: inline-block;
-	margin: 0;
-	padding:2px 8px;
-	color: #333;  /* Text color for submit buttons */
+    background-color:#E8E8E8;  /* Submit button background color */
+    border: 1px solid #B7B7B7;  /* Submit button border color */
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+    margin: 0;
+    padding:2px 8px;
+    color: #333;  /* Text color for submit buttons */
 }
 input.submit_button:hover, input.cssButtonHover {
-	background-color:#cdd1d4;  /* Hover color for the submit buttons */
-	border: 1px solid #E8E8E8;  /* Submit button border color */
-	color:#333;  /* Text color for the submit buttons */
-	cursor: pointer;
+    background-color:#cdd1d4;  /* Hover color for the submit buttons */
+    border: 1px solid #E8E8E8;  /* Submit button border color */
+    color:#333;  /* Text color for the submit buttons */
+    cursor: pointer;
 }
 input.normal_button {
-	background-color:#E8E8E8;  /* Link button background color */
-	border: 1px solid #B7B7B7;  /* Link button border color */
-	color:#333;  /* Text color for link-related buttons */
+    background-color:#E8E8E8;  /* Link button background color */
+    border: 1px solid #B7B7B7;  /* Link button border color */
+    color:#333;  /* Text color for link-related buttons */
 }
 input.normal_button:hover {
-	background-color:#cdd1d4;  /* Hover color for link-related buttons */
+    background-color:#cdd1d4;  /* Hover color for link-related buttons */
 }
 input.normal_button:active, span.submit_button:active, span.submit_button:active input {
-	position:relative;
-	top:1px;
+    position:relative;
+    top:1px;
 }
