@@ -1,26 +1,26 @@
 /*
-//////////////////////////////////////////////////////////////////////////
-//  SUPER ORDERS v3.0                                               	//
-//                                                                  	//
-//  Based on Super Order 2.0                                        	//
-//  By Frank Koehl - PM: BlindSide (original author)                	//
-//                                                                  	//
-//  Super Orders Updated by:						//
-//  ~ JT of GTICustom							//
-//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)	//
-//  ~ Loose Chicken Software Development, david@loosechicken.com	//
-//                                                      		//
-//  Powered by Zen-Cart (www.zen-cart.com)              		//
-//  Portions Copyright (c) 2005 The Zen-Cart Team       		//
-//                                                     			//
-//  Released under the GNU General Public License       		//
-//  available at www.zen-cart.com/license/2_0.txt       		//
-//  or see "license.txt" in the downloaded zip          		//
-//////////////////////////////////////////////////////////////////////////
-//  DESCRIPTION: Stylesheet used for custom CSS defines in Super Order	//
-//  files.								//
-//////////////////////////////////////////////////////////////////////////
-// $Id: super_stylesheet.css v 2010-10-24 $
+*
+* SUPER ORDERS v3.0
+*
+* Based on Super Order 2.0
+* By Frank Koehl - PM: BlindSide (original author)
+*
+* Super Orders Updated by:
+* ~ JT of GTICustom
+* ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)
+* ~ Loose Chicken Software Development, david@loosechicken.com	//
+*
+* Powered by Zen-Cart (www.zen-cart.com)
+* Portions Copyright (c) 2005 The Zen-Cart Team
+*
+* Released under the GNU General Public License
+* available at www.zen-cart.com/license/2_0.txt
+* or see "license.txt" in the downloaded zip
+*
+* DESCRIPTION: Stylesheet used for custom CSS defines in Super Order
+* files.
+*
+* $Id: super_stylesheet.css v 2010-10-24 $
 */
 
 .invoiceHeading {
@@ -28,7 +28,7 @@
     color: #000; font-weight: bold;
 }
 .dataTableRowUnique{
-    background-color: #fc;
+    background-color: #ffc;
 }
 .dataTableRowUniqueOver{
     background-color: #fff;
@@ -38,7 +38,7 @@
     border-top:1px solid #9a9a9a;
 }
 .paymentRow{
-    background-color:#99ff99;
+    background-color:#9f9;
 }
 .paymentContent{
     color:#000;
