@@ -1,69 +1,69 @@
 /*
-//////////////////////////////////////////////////////////////////////////
-//  SUPER ORDERS v3.0                                               	//
-//                                                                  	//
-//  Based on Super Order 2.0                                        	//
-//  By Frank Koehl - PM: BlindSide (original author)                	//
-//                                                                  	//
-//  Super Orders Updated by:						//
-//  ~ JT of GTICustom							//
-//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)	//
-//  ~ Loose Chicken Software Development, david@loosechicken.com	//
-//                                                      		//
-//  Powered by Zen-Cart (www.zen-cart.com)              		//
-//  Portions Copyright (c) 2005 The Zen-Cart Team       		//
-//                                                     			//
-//  Released under the GNU General Public License       		//
-//  available at www.zen-cart.com/license/2_0.txt       		//
-//  or see "license.txt" in the downloaded zip          		//
-//////////////////////////////////////////////////////////////////////////
-//  DESCRIPTION: Print CCS file for Super Report Await Payments		//
-//////////////////////////////////////////////////////////////////////////
-// $Id: srap_print.css v 2010-10-24 $
+*
+* SUPER ORDERS v3.0
+*
+* Based on Super Order 2.0
+* By Frank Koehl - PM: BlindSide (original author)
+*
+* Super Orders Updated by:
+* ~ JT of GTICustom
+* ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)
+* ~ Loose Chicken Software Development, david@loosechicken.com
+*
+* Powered by Zen-Cart (www.zen-cart.com)
+* Portions Copyright (c) 2005 The Zen-Cart Team
+*
+* Released under the GNU General Public License
+* available at www.zen-cart.com/license/2_0.txt
+* or see "license.txt" in the downloaded zip
+*
+* DESCRIPTION: Print CCS file for Super Report Await Payments
+*
+* $Id: srap_print.css v 2010-10-24 $
 */
 
 a,body,html,table{
-font:normal normal 11px Verdana,sans-serif;
+    font:normal normal 11px Verdana,sans-serif;
 }
 
 body	{
-	background-color:#fff;
-	color:#000;
-	margin:0;
+    background-color:#fff;
+    color:#000;
+    margin:0;
 }
 
 .clearBoth	{
-	clear: both;
+    clear: both;
 }
-	
+
 .pageHeading	{
-	background-color:#fff;
-	color:#000;
-	font-size:16px;
-	font-variant:small-caps;
-	font-weight:bold;
+    background-color:#fff;
+    color:#000;
+    font-size:16px;
+    font-variant:small-caps;
+    font-weight:bold;
 }	
 
 .dataTableContent	{
-	color:#000;
+    color:#000;
 }
 
 .dataTableRowUnique	{
-	background-color:#fff;
-	color:#000;
+    background-color:#fff;
+    color:#000;
 }
 
 .dataTableRow	{
-	background-color:#fff;
-	color:#000;
+    background-color:#fff;
+    color:#000;
 }
 
 .dataTableHeadingRow	{
-	background-color:#fff;
-	color:#000;
+    background-color:#fff;
+    color:#000;
 }
 
 .paymentRow	{
-	background-color:#fff;
-	color: #000;
+    background-color:#fff;
+    color: #000;
 }
