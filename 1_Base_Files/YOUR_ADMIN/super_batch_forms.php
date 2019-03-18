@@ -1,27 +1,27 @@
 <?php
 /*
 //////////////////////////////////////////////////////////////////////////
-//  SUPER ORDERS v3.0                                               	//
-//                                                                  	//
-//  Based on Super Order 2.0                                        	//
-//  By Frank Koehl - PM: BlindSide (original author)                	//
-//                                                                  	//
-//  Super Orders Updated by:						//
-//  ~ JT of GTICustom							//
-//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)	//
-//  ~ Loose Chicken Software Development, david@loosechicken.com	//
-//                                                   			//
-//  Powered by Zen-Cart (www.zen-cart.com)              		//
-//  Portions Copyright (c) 2005 The Zen-Cart Team       		//
-//                                                     			//
-//  Released under the GNU General Public License       		//
-//  available at www.zen-cart.com/license/2_0.txt       		//
-//  or see "license.txt" in the downloaded zip          		//
+//  SUPER ORDERS v3.0                                                 //
+//                                                                    //
+//  Based on Super Order 2.0                                          //
+//  By Frank Koehl - PM: BlindSide (original author)                  //
+//                                                                    //
+//  Super Orders Updated by:            //
+//  ~ JT of GTICustom             //
+//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)  //
+//  ~ Loose Chicken Software Development, david@loosechicken.com  //
+//                                                        //
+//  Powered by Zen-Cart (www.zen-cart.com)                  //
+//  Portions Copyright (c) 2005 The Zen-Cart Team           //
+//                                                          //
+//  Released under the GNU General Public License           //
+//  available at www.zen-cart.com/license/2_0.txt           //
+//  or see "license.txt" in the downloaded zip              //
 //////////////////////////////////////////////////////////////////////////
-//  DESCRIPTION:   Print invoices, packingslips, and labels en masse.	//
-//  Also includes support for PDF packingslips. Order search can be	//
-//  customized based on available filters (date range, current status,	//
-//  customer, and product)						//
+//  DESCRIPTION:   Print invoices, packingslips, and labels en masse. //
+//  Also includes support for PDF packingslips. Order search can be //
+//  customized based on available filters (date range, current status,  //
+//  customer, and product)            //
 //////////////////////////////////////////////////////////////////////////
 // $Id: super_batch_forms.php v 2010-10-24 $
 */
@@ -45,8 +45,8 @@
   $products = all_products_array(DROPDOWN_ALL_PRODUCTS, true, false, true);
   $payments = all_payments_array(DROPDOWN_ALL_PAYMENTS, true);
   $customers = all_customers_array(DROPDOWN_ALL_CUSTOMERS, true, false);
-  
-    /* BEGIN addition (Loose Chicken Software Development, david@loosechicken.com 07-13-2010) */ 
+
+    /* BEGIN addition (Loose Chicken Software Development, david@loosechicken.com 07-13-2010) */
     /* added seach by country */
     $countries = current_countries_array(DROPDOWN_ALL_COUNTRIES);
     /* END addition (Loose Chicken Software Development) */
@@ -62,22 +62,22 @@
 
     /* BEGIN modification updated action processing to include pdf forms */
     if (in_array($_GET['action'], array('batch_forms', 'merged_packingslips', 'merged_packingslips_master_list'))) {
-       $selected_oids = zen_db_prepare_input($_POST['batch_order_numbers']);  
+       $selected_oids = zen_db_prepare_input($_POST['batch_order_numbers']);
 
-        $merge_selected_oids = ($_POST['merge_order_numbers'] == 'true'); 
+        $merge_selected_oids = ($_POST['merge_order_numbers'] == 'true');
     }
     if ($_GET['action'] == 'batch_forms') {
-   $target_file = zen_db_prepare_input($_POST['target_file']);             
+   $target_file = zen_db_prepare_input($_POST['target_file']);
         $num_copies = zen_db_prepare_input($_POST['num_copies']);
 
         batch_forms($target_file, $selected_oids, $num_copies);
     }
     else if ($_GET['action'] == 'merged_packingslips') {
-        lcsd_merged_packingslips($selected_oids, $merge_selected_oids);     
-    }   
+        lcsd_merged_packingslips($selected_oids, $merge_selected_oids);
+    }
     else if($_GET['action'] == 'merged_packingslips_master_list') {
-        lcsd_merged_packingslips_master_list($selected_oids, $merge_selected_oids);    
-    } 
+        lcsd_merged_packingslips_master_list($selected_oids, $merge_selected_oids);
+    }
     /* END modification */
   else {
 ?>
@@ -152,7 +152,7 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "order_search", "end_date", "b
 <table border="0" width="100%" cellspacing="2" cellpadding="2">
 
     <tr>
-<!-- search --> 
+<!-- search -->
 <td width="100%" valign="top">
       <table border="0" width="100%" cellspacing="0" cellpadding="2">
           <tr>
@@ -220,8 +220,8 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "order_search", "end_date", "b
                       </tr>
                       <tr>
                         <td class="smallText"><?php echo HEADING_SEARCH_ORDER_TOTAL; ?></td>
-						<td class="smallText"><?php echo zen_draw_pull_down_menu('ot_sign', $ot_sign, $_GET['ot_sign'], ''); ?></td>
-						<td class="smallText"><?php echo zen_draw_input_field('order_total', '', 'size="8"'); ?></td>
+            <td class="smallText"><?php echo zen_draw_pull_down_menu('ot_sign', $ot_sign, $_GET['ot_sign'], ''); ?></td>
+            <td class="smallText"><?php echo zen_draw_input_field('order_total', '', 'size="8"'); ?></td>
                       </tr>
                       <tr>
                         <td class="smallText"><?php echo HEADING_SEARCH_TEXT; ?></td>
@@ -229,10 +229,10 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "order_search", "end_date", "b
                       </tr>
 <?php
     /* BEGIN addition added seach by OrderID Range */
-    // if you want to start above order 1, uncomment this block 
+    // if you want to start above order 1, uncomment this block
 /*
-    if (!isset($_GET['oid_range_first']) ||  (!zen_not_null($_GET['oid_range_first']))) { 
-       $_GET['oid_range_first'] = 12000; 
+    if (!isset($_GET['oid_range_first']) ||  (!zen_not_null($_GET['oid_range_first']))) {
+       $_GET['oid_range_first'] = 12000;
     }
 */
 ?>
@@ -249,7 +249,7 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "order_search", "end_date", "b
                 </tr>
                 <tr>
                   <td class="smallText" colspan="3" align="right" valign="bottom">
-	    	  <input class="submit_button button" type="submit" value="<?php echo BUTTON_SEARCH; ?>"></td>
+          <input class="submit_button button" type="submit" value="<?php echo BUTTON_SEARCH; ?>"></td>
           </tr></form>
             </table></td>
           </tr>
@@ -314,15 +314,15 @@ if (isset($_GET['start_date']) ) {
     if (isset($_GET['oid_range_first']) && zen_not_null($_GET['oid_range_first']) &&
             isset($_GET['oid_range_last']) && zen_not_null($_GET['oid_range_last'])){
         $orders_query_raw .= " AND o.orders_id BETWEEN " . (int)$_GET['oid_range_first'] . " AND " . (int)$_GET['oid_range_last'];
-    } else if (isset($_GET['oid_range_first']) && zen_not_null($_GET['oid_range_first'])) { 
-        $orders_query_raw .= " AND o.orders_id >= " . (int)$_GET['oid_range_first'] . " "; 
+    } else if (isset($_GET['oid_range_first']) && zen_not_null($_GET['oid_range_first'])) {
+        $orders_query_raw .= " AND o.orders_id >= " . (int)$_GET['oid_range_first'] . " ";
     } else if (isset($_GET['oid_range_last']) && zen_not_null($_GET['oid_range_last'])){
         $orders_query_raw .= " AND o.orders_id <= " . (int)$_GET['oid_range_last'] . " ";
     }
 
-    /* added seach by country */ 
+    /* added seach by country */
     if (isset($_GET['countries']) && zen_not_null($_GET['countries'])){
-        if($_GET['countries'] == 'International'){   
+        if($_GET['countries'] == 'International'){
             $orders_query_raw .= " AND o.customers_country <> '" . get_store_country_name() . "' ";
         }
         else{
@@ -337,13 +337,13 @@ if (isset($_GET['start_date']) ) {
   $orders = $db->Execute($orders_query_raw);
   if ($orders->RecordCount() > 0) {
     /* BEGIN modification updated form to include pdf forms */
- 
-    /* show forms based on configuration preference */ 
+
+    /* show forms based on configuration preference */
     /*  0 - standard form
-        1 - pdf form 
+        1 - pdf form
         2 - both forms
     */
-    echo zen_draw_form('batch_print', FILENAME_SUPER_BATCH_FORMS, 'action=batch_forms', 'post', 'target="_blank"'); 
+    echo zen_draw_form('batch_print', FILENAME_SUPER_BATCH_FORMS, 'action=batch_forms', 'post', 'target="_blank"');
     if(in_array(LCSD_PRINTING_MENU, array(0,2))){
 ?>
           <tr>
@@ -356,7 +356,7 @@ if (isset($_GET['start_date']) ) {
                 </tr>
                 <tr>
                   <td class="main" colspan="2"><?php echo zen_draw_radio_field('target_file', FILENAME_SUPER_INVOICE . '.php',true) . SELECT_INVOICE; ?></td>
-				  
+
                   <td class="main">
                   <select name="num_copies" size="1">
                   <option>1</option>
@@ -393,7 +393,7 @@ if (isset($_GET['start_date']) ) {
     }
     if(in_array(LCSD_PRINTING_MENU, array(1,2))){
 ?>
-    <tr>   
+    <tr>
         <td>
             <div style="float: left;">
                 <div><b><?php echo PACKING_SLIPS_PDF_FORMS; ?></b></div>
@@ -407,19 +407,19 @@ if (isset($_GET['start_date']) ) {
             <div style="clear: both"></div>
         </td>
     </tr>
-<?php    
-    }    
+<?php
+    }
 ?>
     <tr>
         <td colspan="2"><?php echo zen_draw_separator(); ?></td>
-    </tr> 
+    </tr>
 <?php /* END modification */ ?>
       <tr>
             <td>
-	<table border="0" width="100%" cellspacing="2" cellpadding="0">
+  <table border="0" width="100%" cellspacing="2" cellpadding="0">
                 <tr>
-                  <td class="main" valign="bottom"><?php 
-		  echo TEXT_TOTAL_ORDERS . '<strong>' . $orders->RecordCount() . '</strong>' . '&nbsp;&nbsp;';
+                  <td class="main" valign="bottom"><?php
+      echo TEXT_TOTAL_ORDERS . '<strong>' . $orders->RecordCount() . '</strong>' . '&nbsp;&nbsp;';
           echo '<INPUT class="normal_button button" TYPE="BUTTON" VALUE="' . BUTTON_CHECK_ALL . '" ONCLICK="checkByParent(\'ordersList\');">';
             ?></td>
                   <td class="smallText" align="right" valign="bottom"><?php echo zen_image(DIR_WS_IMAGES . 'icon_details.gif', ICON_ORDER_DETAILS) . '&nbsp;' . ICON_ORDER_DETAILS; ?></td>
@@ -430,25 +430,25 @@ if (isset($_GET['start_date']) ) {
         <td><table border="0" cellpadding="0" cellspacing="0" width="100%">
           <tr>
             <td>
-	    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
                   <td valign="top">
-				  <div id="ordersList">
-	    <table border="0" width="100%" cellspacing="0" cellpadding="2">
+          <div id="ordersList">
+      <table border="0" width="100%" cellspacing="0" cellpadding="2">
                       <tr class="dataTableHeadingRow">
-                	<td class="dataTableHeadingContent" align="left" colspan="2">&nbsp;&nbsp;<?php echo TABLE_HEADING_ORDERS_ID; ?></td>
+                  <td class="dataTableHeadingContent" align="left" colspan="2">&nbsp;&nbsp;<?php echo TABLE_HEADING_ORDERS_ID; ?></td>
                         <td class="dataTableHeadingContent" align="left"><?php echo TABLE_HEADING_CUSTOMERS; ?></td>
                         <td class="dataTableHeadingContent" align="right"><?php echo TABLE_HEADING_ORDER_TOTAL; ?></td>
                         <td class="dataTableHeadingContent" align="center"><?php echo TABLE_HEADING_DATE_PURCHASED; ?></td>
                         <td class="dataTableHeadingContent" align="left"><?php echo TABLE_HEADING_PAYMENT_METHOD; ?></td>
-                	<td class="dataTableHeadingContent" align="left" colspan="2"><?php echo TABLE_HEADING_ORDER_STATUS; ?></td>
+                  <td class="dataTableHeadingContent" align="left" colspan="2"><?php echo TABLE_HEADING_ORDER_STATUS; ?></td>
                       </tr>
 <?php
     while (!$orders->EOF) {
-?> 
-		<tr class="dataTableRow" onMouseOver="rowOverEffect(this);this.style.cursor='default'" onMouseOut="rowOutEffect(this)">
-                        <td class="dataTableContent" align="left"><?php 
-			echo zen_draw_checkbox_field('batch_order_numbers[' . $orders->fields['orders_id'] . ']', 'yes', FALSE);
+?>
+    <tr class="dataTableRow" onMouseOver="rowOverEffect(this);this.style.cursor='default'" onMouseOut="rowOutEffect(this)">
+                        <td class="dataTableContent" align="left"><?php
+      echo zen_draw_checkbox_field('batch_order_numbers[' . $orders->fields['orders_id'] . ']', 'yes', FALSE);
                   echo $orders->fields['orders_id'];
                 ?></td>
                         <td class="dataTableContent" align="right"><?php echo '[' . $orders->fields['customers_id'] . ']'; ?></td>
@@ -457,11 +457,11 @@ if (isset($_GET['start_date']) ) {
                         <td class="dataTableContent" align="center"><?php echo zen_datetime_short($orders->fields['date_purchased']); ?></td>
                         <td class="dataTableContent" align="left"><?php echo $orders->fields['payment_method']; ?></td>
                         <td class="dataTableContent" align="left"><?php echo $orders->fields['orders_status_name']; ?></td>
-						
+
                         <td class="dataTableContent" align="right"><?php echo '<a href="' . zen_href_link(FILENAME_ORDERS, 'oID=' . $orders->fields['orders_id'] . '&action=edit', 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_details.gif', ICON_ORDER_DETAILS) . '</a>&nbsp'; ?></td>
                       </tr>
-					  
-					  
+
+
 <?php
       $orders->MoveNext();
     }
@@ -469,8 +469,8 @@ if (isset($_GET['start_date']) ) {
 ?>
                 </form>
                   </table>
-				  </div>
-				  </td>
+          </div>
+          </td>
                 </tr>
                 <tr>
                   <td><?php echo zen_draw_separator('pixel_trans.gif', 1, 10); ?></td>
@@ -479,7 +479,7 @@ if (isset($_GET['start_date']) ) {
           </tr>
       </table></td>
     </tr>
-<?php } else { ?> 
+<?php } else { ?>
 <tr>
       <td colspan="2"><?php echo TEXT_ENTER_SEARCH; ?></td>
     </tr>
@@ -498,4 +498,3 @@ if (isset($_GET['start_date']) ) {
 <?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
 <?php }
 
- 

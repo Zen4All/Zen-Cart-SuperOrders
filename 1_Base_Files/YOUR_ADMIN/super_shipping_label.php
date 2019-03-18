@@ -1,24 +1,24 @@
 <?php
 /*
 //////////////////////////////////////////////////////////////////////////
-//  SUPER ORDERS v3.0                                               	//
-//                                                                  	//
-//  Based on Super Order 2.0                                        	//
-//  By Frank Koehl - PM: BlindSide (original author)                	//
-//                                                                  	//
-//  Super Orders Updated by:						//
-//  ~ JT of GTICustom							//
-//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)	//
-//  ~ Loose Chicken Software Development, david@loosechicken.com	//
-//                                                      		//
-//  Powered by Zen-Cart (www.zen-cart.com)              		//
-//  Portions Copyright (c) 2005 The Zen-Cart Team       		//
-//                                                     			//
-//  Released under the GNU General Public License       		//
-//  available at www.zen-cart.com/license/2_0.txt       		//
-//  or see "license.txt" in the downloaded zip          		//
+//  SUPER ORDERS v3.0                                                 //
+//                                                                    //
+//  Based on Super Order 2.0                                          //
+//  By Frank Koehl - PM: BlindSide (original author)                  //
+//                                                                    //
+//  Super Orders Updated by:            //
+//  ~ JT of GTICustom             //
+//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)  //
+//  ~ Loose Chicken Software Development, david@loosechicken.com  //
+//                                                          //
+//  Powered by Zen-Cart (www.zen-cart.com)                  //
+//  Portions Copyright (c) 2005 The Zen-Cart Team           //
+//                                                          //
+//  Released under the GNU General Public License           //
+//  available at www.zen-cart.com/license/2_0.txt           //
+//  or see "license.txt" in the downloaded zip              //
 //////////////////////////////////////////////////////////////////////////
-//  DESCRIPTION:   Generates an order shipping label			//
+//  DESCRIPTION:   Generates an order shipping label      //
 //////////////////////////////////////////////////////////////////////////
 // $Id: super_batch_forms.php v 2010-10-24 $
 */
@@ -32,11 +32,11 @@
 // $oID = zen_db_prepare_input($_GET['oID']);
 
 if(isset($_GET['oID'])) {
-	$oID = zen_db_prepare_input($_GET['oID']);
-	$batched = false;
-	$batch_item = 0;
+  $oID = zen_db_prepare_input($_GET['oID']);
+  $batched = false;
+  $batch_item = 0;
 } else {
-	$batched = true;
+  $batched = true;
 }
 
 // AJB 2012-05-31 - end (1)
@@ -47,9 +47,9 @@ if(isset($_GET['oID'])) {
 <?php // AJB 2012-05-31 - start (2) // ?>
 
 <?php if ($batched == false) {
-	$page_title = HEADER_SHIPPINGLABEL . (int)$oID;
+  $page_title = HEADER_SHIPPINGLABEL . (int)$oID;
 } else {
-	$page_title = HEADER_SHIPPINGLABELS;
+  $page_title = HEADER_SHIPPINGLABELS;
 }
 ?>
 
@@ -62,7 +62,7 @@ if(isset($_GET['oID'])) {
 <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 <style>
 @media screen {
-div.form-separator {border-style:none none solid none;	border-bottom:thick dotted #000000;;}
+div.form-separator {border-style:none none solid none;  border-bottom:thick dotted #000000;;}
 }
 @media print {
 div.form-separator {display: none;}
@@ -86,7 +86,7 @@ div.form-separator {display: none;}
 <?php // AJB 2012-05-31 - end (3) // ?>
 
 <!-- body_text //-->
-	<div>
+  <div>
     <table border="0" width="100%" cellspacing="4" cellpadding="4">
       <tr>
         <td>
@@ -113,7 +113,7 @@ div.form-separator {display: none;}
         </td>
       </tr>
     </table>
-	</div>
+  </div>
 
 <?php // AJB 2012-05-31 - start (4) // ?>
 

@@ -29,7 +29,7 @@ class super_order {
   var $oID, $cID, $order_total, $amount_applied, $balance_due, $status, $status_date;
 
   // instantiates the class and gathers existing data
-  function super_order($orders_id) {
+  function __construct($orders_id) {
     $this->payment = array();
     $this->purchase_order = array();
     $this->po_payment = array();

@@ -1,27 +1,27 @@
 <?php
 /*
 //////////////////////////////////////////////////////////////////////////
-//  SUPER ORDERS v3.0                                               	//
-//                                                                  	//
-//  Based on Super Order 2.0                                        	//
-//  By Frank Koehl - PM: BlindSide (original author)                	//
-//                                                                  	//
-//  Super Orders Updated by:						//
-//  ~ JT of GTICustom							//
-//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)	//
-//  ~ Loose Chicken Software Development, david@loosechicken.com	//
-//                                                      		//
-//  Powered by Zen-Cart (www.zen-cart.com)              		//
-//  Portions Copyright (c) 2005 The Zen-Cart Team       		//
-//                                                     			//
-//  Released under the GNU General Public License       		//
-//  available at www.zen-cart.com/license/2_0.txt       		//
-//  or see "license.txt" in the downloaded zip          		//
+//  SUPER ORDERS v3.0                                                 //
+//                                                                    //
+//  Based on Super Order 2.0                                          //
+//  By Frank Koehl - PM: BlindSide (original author)                  //
+//                                                                    //
+//  Super Orders Updated by:            //
+//  ~ JT of GTICustom             //
+//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)  //
+//  ~ Loose Chicken Software Development, david@loosechicken.com  //
+//                                                          //
+//  Powered by Zen-Cart (www.zen-cart.com)                  //
+//  Portions Copyright (c) 2005 The Zen-Cart Team           //
+//                                                          //
+//  Released under the GNU General Public License           //
+//  available at www.zen-cart.com/license/2_0.txt           //
+//  or see "license.txt" in the downloaded zip              //
 //////////////////////////////////////////////////////////////////////////
-//  DESCRIPTION:   Contains all the general defines necessary for the	//
-//  Super Orders system to operate properly.				//
-//									//
-//  You should not have to edit anything in this file.			//
+//  DESCRIPTION:   Contains all the general defines necessary for the //
+//  Super Orders system to operate properly.        //
+//                  //
+//  You should not have to edit anything in this file.      //
 //////////////////////////////////////////////////////////////////////////
 // $Id: super_batch_forms.php v 2010-10-24 $
 */
@@ -56,7 +56,7 @@ define('TABLE_SO_PAYMENT_TYPES', DB_PREFIX . 'so_payment_types');
 define('TABLE_SO_REFUNDS', DB_PREFIX . 'so_refunds');
 
 // Other labels
-define('HEADING_TITLE_SEARCH_DETAIL_ORDERS_PRODUCTS', 'Search by Product Name or <strong>ID:XX</strong> or Model '); 
+define('HEADING_TITLE_SEARCH_DETAIL_ORDERS_PRODUCTS', 'Search by Product Name or <strong>ID:XX</strong> or Model ');
 define('TEXT_INFO_SEARCH_DETAIL_FILTER_ORDERS_PRODUCTS', 'Search Filter: ');
 
 // Admin Menu Boxes

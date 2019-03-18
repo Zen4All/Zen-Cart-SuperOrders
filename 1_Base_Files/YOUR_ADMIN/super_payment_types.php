@@ -1,26 +1,26 @@
 <?php
 /*
 //////////////////////////////////////////////////////////////////////////
-//  SUPER ORDERS v3.0                                               	//
-//                                                                  	//
-//  Based on Super Order 2.0                                        	//
-//  By Frank Koehl - PM: BlindSide (original author)                	//
-//                                                                  	//
-//  Super Orders Updated by:						//
-//  ~ JT of GTICustom							//
-//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)	//
-//  ~ Loose Chicken Software Development, david@loosechicken.com	//
-//                                                      		//
-//  Powered by Zen-Cart (www.zen-cart.com)              		//
-//  Portions Copyright (c) 2005 The Zen-Cart Team       		//
-//                                                     			//
-//  Released under the GNU General Public License       		//
-//  available at www.zen-cart.com/license/2_0.txt       		//
-//  or see "license.txt" in the downloaded zip          		//
+//  SUPER ORDERS v3.0                                                 //
+//                                                                    //
+//  Based on Super Order 2.0                                          //
+//  By Frank Koehl - PM: BlindSide (original author)                  //
+//                                                                    //
+//  Super Orders Updated by:            //
+//  ~ JT of GTICustom             //
+//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)  //
+//  ~ Loose Chicken Software Development, david@loosechicken.com  //
+//                                                          //
+//  Powered by Zen-Cart (www.zen-cart.com)                  //
+//  Portions Copyright (c) 2005 The Zen-Cart Team           //
+//                                                          //
+//  Released under the GNU General Public License           //
+//  available at www.zen-cart.com/license/2_0.txt           //
+//  or see "license.txt" in the downloaded zip              //
 //////////////////////////////////////////////////////////////////////////
-//  DESCRIPTION:   Manages the payment types for the Super Orders	// 
-//  payment system.  Similar in form to the order status management	// 
-//  page.								//
+//  DESCRIPTION:   Manages the payment types for the Super Orders //
+//  payment system.  Similar in form to the order status management //
+//  page.               //
 //////////////////////////////////////////////////////////////////////////
 // $Id: super_batch_forms.php v 2010-10-24 $
 */
@@ -66,7 +66,7 @@ LOGIC HOLES
             $pt_data = $db->Execute("select * from " . TABLE_SO_PAYMENT_TYPES . " where payment_type_id = '" . $payment_type_id . "'");
 
             $sql_array = array();
-            
+
             if ($pt_data->fields['payment_type_full'] != $payment_type_full) {
               $sql_array['payment_type_full'] = $payment_type_full;
             }
@@ -276,7 +276,7 @@ LOGIC HOLES
 
       if ($remove_status) {
       $contents = array('form' => zen_draw_form('status', FILENAME_SUPER_PAYMENT_TYPES, 'page=' . $_GET['page'] . '&payment_type_id=' . $payment->payment_type_id  . '&action=deleteconfirm'));
-      $contents[] = array('text' => BOX_DELETE_INTRO);      
+      $contents[] = array('text' => BOX_DELETE_INTRO);
         $contents[] = array('align' => 'center', 'text' => '<br />' . zen_image_submit('button_delete.gif', IMAGE_DELETE) . ' <a href="' . zen_href_link(FILENAME_SUPER_PAYMENT_TYPES, 'page=' . $_GET['page'] . '&payment_type_code=' . $payment->payment_type_code) . '">' . zen_image_button('button_cancel.gif', IMAGE_CANCEL) . '</a>');
       }
       elseif (!$remove_status) {

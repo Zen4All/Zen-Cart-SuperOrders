@@ -1,33 +1,33 @@
 <?php
 /*
 //////////////////////////////////////////////////////////////////////////
-//  SUPER ORDERS v3.0                                               	//
-//                                                                  	//
-//  Based on Super Order 2.0                                        	//
-//  By Frank Koehl - PM: BlindSide (original author)                	//
-//                                                                  	//
-//  Super Orders Updated by:						//
-//  ~ JT of GTICustom							//
-//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)	//
-//  ~ Loose Chicken Software Development, david@loosechicken.com	//
-//                                                      		//
-//  Powered by Zen-Cart (www.zen-cart.com)              		//
-//  Portions Copyright (c) 2005 The Zen-Cart Team       		//
-//                                                     			//
-//  Released under the GNU General Public License       		//
-//  available at www.zen-cart.com/license/2_0.txt       		//
-//  or see "license.txt" in the downloaded zip          		//
+//  SUPER ORDERS v3.0                                                 //
+//                                                                    //
+//  Based on Super Order 2.0                                          //
+//  By Frank Koehl - PM: BlindSide (original author)                  //
+//                                                                    //
+//  Super Orders Updated by:            //
+//  ~ JT of GTICustom             //
+//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)  //
+//  ~ Loose Chicken Software Development, david@loosechicken.com  //
+//                                                          //
+//  Powered by Zen-Cart (www.zen-cart.com)                  //
+//  Portions Copyright (c) 2005 The Zen-Cart Team           //
+//                                                          //
+//  Released under the GNU General Public License           //
+//  available at www.zen-cart.com/license/2_0.txt           //
+//  or see "license.txt" in the downloaded zip              //
 //////////////////////////////////////////////////////////////////////////
-//  DESCRIPTION:   Generates a pop-up window to edit the selected order	// 
-//  information, broken into sections: contact, product, history, and	// 
-//  total.								//
+//  DESCRIPTION:   Generates a pop-up window to edit the selected order //
+//  information, broken into sections: contact, product, history, and //
+//  total.                //
 //////////////////////////////////////////////////////////////////////////
 // $Id: super_edit.php v 2010-10-24 $
 */
 
   require('includes/application_top.php');
   require(DIR_WS_CLASSES . 'order.php');
-  global $db;  
+  global $db;
 
   $target = $_REQUEST['target'];  // 'contact', 'product', 'history', or 'total'
   $oID = (int)$_REQUEST['oID'];
@@ -65,30 +65,30 @@
     }
 
     $order->products[$index] = array('qty' => $new_qty,
-									'name' => $orders_products->fields['products_name'],
-									'products_id' => $orders_products->fields['products_id'],
-									'model' => $orders_products->fields['products_model'],
-									'tax' => $orders_products->fields['products_tax'],
-									'price' => $orders_products->fields['products_price'],
-									'onetime_charges' => $orders_products->fields['onetime_charges'],
-									'final_price' => $orders_products->fields['final_price'],
-									'product_is_free' => $orders_products->fields['product_is_free'],
-									'orders_products_id' => $orders_products->fields['orders_products_id']);
+                  'name' => $orders_products->fields['products_name'],
+                  'products_id' => $orders_products->fields['products_id'],
+                  'model' => $orders_products->fields['products_model'],
+                  'tax' => $orders_products->fields['products_tax'],
+                  'price' => $orders_products->fields['products_price'],
+                  'onetime_charges' => $orders_products->fields['onetime_charges'],
+                  'final_price' => $orders_products->fields['final_price'],
+                  'product_is_free' => $orders_products->fields['product_is_free'],
+                  'orders_products_id' => $orders_products->fields['orders_products_id']);
 
     $subindex = 0;
     $attributes = $db->Execute("select products_options, products_options_values, options_values_price,
                                     price_prefix,
-									product_attribute_is_free
-									from " . TABLE_ORDERS_PRODUCTS_ATTRIBUTES . "
-									where orders_id = '" . $oID . "'
-									and orders_products_id = '" . (int)$orders_products->fields['orders_products_id'] . "'");
+                  product_attribute_is_free
+                  from " . TABLE_ORDERS_PRODUCTS_ATTRIBUTES . "
+                  where orders_id = '" . $oID . "'
+                  and orders_products_id = '" . (int)$orders_products->fields['orders_products_id'] . "'");
     if ($attributes->RecordCount()>0) {
-		while (!$attributes->EOF) {
-			$order->products[$index]['attributes'][$subindex] = array('option' => $attributes->fields['products_options'],
-																'value' => $attributes->fields['products_options_values'],
-																'prefix' => $attributes->fields['price_prefix'],
-																'price' => $attributes->fields['options_values_price'],
-																'product_attribute_is_free' => $attributes->fields['product_attribute_is_free']);
+    while (!$attributes->EOF) {
+      $order->products[$index]['attributes'][$subindex] = array('option' => $attributes->fields['products_options'],
+                                'value' => $attributes->fields['products_options_values'],
+                                'prefix' => $attributes->fields['price_prefix'],
+                                'price' => $attributes->fields['options_values_price'],
+                                'product_attribute_is_free' => $attributes->fields['product_attribute_is_free']);
         $subindex++;
         $attributes->MoveNext();
       }
@@ -252,20 +252,20 @@
                              'cc_cvv' => $old_order->fields['cc_cvv'],
                              'last_modified' => 'now()',
                              'date_purchased' => $old_order->fields['date_purchased'],
-                             'orders_status' => $old_order->fields['orders_status'],                             
+                             'orders_status' => $old_order->fields['orders_status'],
                              'currency' => $old_order->fields['currency'],
                              'currency_value' => $old_order->fields['currency_value'],
                              'order_total' => $old_order->fields['order_total'],
                              'order_tax' => $old_order->fields['order_tax'],
                              'split_from_order' => $oID,
-							 'is_parent' => 0,
-							 );
+               'is_parent' => 0,
+               );
           zen_db_perform(TABLE_ORDERS, $new_order);
 
           // get new order ID to use with other split actions
           $new_order_id = $db->Insert_ID(); // Change for ZenCart 1.5.3 and beyond.
-		  $messageStack->add_session(SUCCESS_ORDER_SPLIT . ' ' . $new_order_id, 'success');
-		  $db->Execute("UPDATE " . TABLE_ORDERS . " SET
+      $messageStack->add_session(SUCCESS_ORDER_SPLIT . ' ' . $new_order_id, 'success');
+      $db->Execute("UPDATE " . TABLE_ORDERS . " SET
                           split_from_order = '" . $new_order_id . "', is_parent= '1'
                           WHERE orders_id = '" . $oID . "'");
 
@@ -284,8 +284,8 @@
           // update "orders_total" table
           $old_order_total = $db->Execute("SELECT * FROM " . TABLE_ORDERS_TOTAL . " WHERE orders_id = '" . $oID . "'");
           while (!$old_order_total->EOF) {
-		  	if($old_order_total->fields['class']=='ot_total' || $old_order_total->fields['class']=='ot_subtotal')
-			{
+        if($old_order_total->fields['class']=='ot_total' || $old_order_total->fields['class']=='ot_subtotal')
+      {
             $new_order_total = array('orders_id' => $new_order_id,
                                      'title' => $old_order_total->fields['title'],
                                      'text' => $old_order_total->fields['text'],
@@ -296,7 +296,7 @@
           }
             $old_order_total->MoveNext();
               }
-          
+
          // Reassign affected products to new order
           $split_products = zen_db_prepare_input($_POST['split_products']);
           foreach($split_products as $orders_products_id) {
@@ -338,53 +338,53 @@
                        '" . $notify_split . "',
                        '" . COMMENTS_SPLIT_NEW . $oID . "')");
 
-		// duplicate an existing Super Order payment data (if requested)
+    // duplicate an existing Super Order payment data (if requested)
           //if (isset($_POST['copy_payments'])) {
-		  $old_new_order_total = $db->Execute("SELECT * FROM " . TABLE_ORDERS_TOTAL . " WHERE orders_id = '" . $oID . "'");
+      $old_new_order_total = $db->Execute("SELECT * FROM " . TABLE_ORDERS_TOTAL . " WHERE orders_id = '" . $oID . "'");
           while (!$old_new_order_total->EOF) {
-           	if($old_new_order_total->fields['title']=='Total:')
-			$old_order_total_value = $old_new_order_total->fields['value'];
+            if($old_new_order_total->fields['title']=='Total:')
+      $old_order_total_value = $old_new_order_total->fields['value'];
             $old_new_order_total->MoveNext();
           }
-		// die('<br>'.$old_order_total_value);
+    // die('<br>'.$old_order_total_value);
             $so = new super_order($oID);
-			$reach_old_payment =0;
+      $reach_old_payment =0;
             if ($so->payment) {
               for ($i = 0; $i < sizeof($so->payment); $i++) {
-			    unset($old_payment, $new_payment, $old_new_payment);
+          unset($old_payment, $new_payment, $old_new_payment);
                 $old_payment = $so->payment[$i];
                 $new_payment = array();
-				$old_new_payment['orders_id'] = $oID;
+        $old_new_payment['orders_id'] = $oID;
                 $old_new_payment['payment_number'] = $old_payment['number'];
                 $old_new_payment['payment_name'] = $old_payment['name'];
                 $old_new_payment['payment_type'] = $old_payment['type'];
                 $old_new_payment['date_posted'] = $old_payment['posted'];
                 $old_new_payment['last_modified'] = $old_payment['modified'];
-				if($old_payment['amount'] > ($old_order_total_value-$reach_old_payment) )
-				{
-					$old_new_payment['payment_amount'] = $old_order_total_value-$reach_old_payment;
-					$old_payment['amount'] = ($reach_old_payment + $old_payment['amount'])- $old_order_total_value;
-					$reach_old_payment =  $old_order_total_value;
-				}	
-				else if($reach_old_payment < $old_order_total_value)
-				{
-					$old_new_payment['payment_amount'] = $old_payment['amount'];
-                	$reach_old_payment =  $reach_old_payment + $old_payment['amount'];
-					$old_payment['amount'] = 0;
-				 }
-				zen_db_perform(TABLE_SO_PAYMENTS, $old_new_payment);
-				if(($reach_old_payment == $old_order_total_value) && $old_payment['amount']> 0)
-				{
-             	  	 $new_payment['orders_id'] = $new_order_id;
-              	  $new_payment['payment_number'] = $old_payment['number'];
-              	  $new_payment['payment_name'] = $old_payment['name'];
-             	   $new_payment['payment_amount'] = $old_payment['amount'];
-             	   $new_payment['payment_type'] = $old_payment['type'];
-            	    $new_payment['date_posted'] = $old_payment['posted'];
-           	     $new_payment['last_modified'] = $old_payment['modified'];
-				zen_db_perform(TABLE_SO_PAYMENTS, $new_payment);
-				}
-				$so->delete_payment($old_payment['index']); 
+        if($old_payment['amount'] > ($old_order_total_value-$reach_old_payment) )
+        {
+          $old_new_payment['payment_amount'] = $old_order_total_value-$reach_old_payment;
+          $old_payment['amount'] = ($reach_old_payment + $old_payment['amount'])- $old_order_total_value;
+          $reach_old_payment =  $old_order_total_value;
+        }
+        else if($reach_old_payment < $old_order_total_value)
+        {
+          $old_new_payment['payment_amount'] = $old_payment['amount'];
+                  $reach_old_payment =  $reach_old_payment + $old_payment['amount'];
+          $old_payment['amount'] = 0;
+         }
+        zen_db_perform(TABLE_SO_PAYMENTS, $old_new_payment);
+        if(($reach_old_payment == $old_order_total_value) && $old_payment['amount']> 0)
+        {
+                   $new_payment['orders_id'] = $new_order_id;
+                  $new_payment['payment_number'] = $old_payment['number'];
+                  $new_payment['payment_name'] = $old_payment['name'];
+                 $new_payment['payment_amount'] = $old_payment['amount'];
+                 $new_payment['payment_type'] = $old_payment['type'];
+                  $new_payment['date_posted'] = $old_payment['posted'];
+                 $new_payment['last_modified'] = $old_payment['modified'];
+        zen_db_perform(TABLE_SO_PAYMENTS, $new_payment);
+        }
+        $so->delete_payment($old_payment['index']);
               }
             }
             if ($so->purchase_order) {
@@ -433,13 +433,13 @@
         while (!$update_status_history->EOF) {
 if ($update_status_history->fields['customer_notified'] == -1) {
 
-	$this_history_id = $update_status_history->fields['orders_status_history_id'];
+  $this_history_id = $update_status_history->fields['orders_status_history_id'];
     $this_status = zen_db_prepare_input($_POST['status_' . $this_history_id]);
-	$this_comments = zen_db_prepare_input(stripslashes($_POST['comments_' . $this_history_id]));
-	$this_comments= $_POST['comments' . $this_history_id]=str_replace("\\r\\n","\n",$this_comments);
-	$this_comments= $_POST['comments' . $this_history_id]=str_replace("\\","",$this_comments);
-	$this_delete = zen_db_prepare_input($_POST['delete_' . $this_history_id]);
-	$change_exists = false;
+  $this_comments = zen_db_prepare_input(stripslashes($_POST['comments_' . $this_history_id]));
+  $this_comments= $_POST['comments' . $this_history_id]=str_replace("\\r\\n","\n",$this_comments);
+  $this_comments= $_POST['comments' . $this_history_id]=str_replace("\\","",$this_comments);
+  $this_delete = zen_db_prepare_input($_POST['delete_' . $this_history_id]);
+  $change_exists = false;
 
           if ($this_delete == 1) {
             zen_db_delete(TABLE_ORDERS_STATUS_HISTORY, "orders_status_history_id = '" . $this_history_id . "'");
@@ -453,7 +453,7 @@ if ($update_status_history->fields['customer_notified'] == -1) {
           if ($change_exists) {
             zen_db_perform(TABLE_ORDERS_STATUS_HISTORY, $update_history, 'update', "orders_status_history_id  = '" . $this_history_id . "'");
           }
-} 
+}
           $update_status_history->MoveNext();
         }
 
@@ -463,8 +463,8 @@ if ($update_status_history->fields['customer_notified'] == -1) {
                                                WHERE orders_id = '" . $oID . "'
                                                ORDER BY orders_status_history_id DESC limit 1");
 
-	$tbl_orders_history['last_modified'] = $update_status_history->fields['date_added'];
-	zen_db_perform(TABLE_ORDERS, $tbl_orders_history, 'update', "orders_id = '" . $oID . "'");
+  $tbl_orders_history['last_modified'] = $update_status_history->fields['date_added'];
+  zen_db_perform(TABLE_ORDERS, $tbl_orders_history, 'update', "orders_id = '" . $oID . "'");
       break;
 
 
@@ -492,7 +492,7 @@ if ($update_status_history->fields['customer_notified'] == -1) {
             }
 
             // modified per http://thecartblog.com/2009/12/21/zen-cart-edit-orders-and-my-discounting-mods
-            elseif(is_discount_module($ot_class)) { 
+            elseif(is_discount_module($ot_class)) {
               $running_total -= $ot_value;
             }
 
@@ -508,7 +508,7 @@ if ($update_status_history->fields['customer_notified'] == -1) {
             }
 
             // format the text version of the amount modified per http://thecartblog.com/2009/12/21/zen-cart-edit-orders-and-my-discounting-mods
-            if (is_discount_module($ot_class)) { 
+            if (is_discount_module($ot_class)) {
               $ot_text = "-" . $currencies->format($ot_value);
             }
 
@@ -537,7 +537,7 @@ if ($update_status_history->fields['customer_notified'] == -1) {
             }
 
           }
-          
+
           // an empty line means the value should be deleted
           elseif($ot_total_id > 0) {
             zen_db_delete(TABLE_ORDERS_TOTAL, "orders_total_id = '" . $ot_total_id . "'");
@@ -590,12 +590,12 @@ if ($update_status_history->fields['customer_notified'] == -1) {
 <!-- body //-->
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 
-  
+
     <tr>
-<!-- body_text //--> 
+<!-- body_text //-->
 <td align="center">
       <table border="0" cellpadding="2" cellspacing="0" width="100%">
-<?php 
+<?php
   echo '    ' . zen_draw_form('edit', FILENAME_SUPER_EDIT, '', 'post', '', true) . NL;
   echo '      ' . zen_draw_hidden_field('target', $target) . NL;
   echo '      ' . zen_draw_hidden_field('process', 1) . NL;
@@ -628,21 +628,21 @@ if ($update_status_history->fields['customer_notified'] == -1) {
       $nextID = $nextID->fields['nextID'];
 ?>
 <!-- Begin Products Listing Block -->
-		  <tr>
-			<td class="pageHeading" align="center"><strong><?php echo HEADER_SPLIT_ORDER . $oID; ?></strong></td>
-		  </tr>
+      <tr>
+      <td class="pageHeading" align="center"><strong><?php echo HEADER_SPLIT_ORDER . $oID; ?></strong></td>
+      </tr>
           <tr>
             <td><?php echo zen_draw_separator('pixel_trans.gif', '1', '5'); ?></td>
           </tr>
           <tr>
             <td>
             <table border="0" cellpadding="2" cellspacing="0" width="100%">
-              
+
                 <tr class="dataTableHeadingRow">
-<?php if (sizeof($order->products) > 1) { ?> 
-				  <td class="dataTableHeadingContent smalltext" width="4%">&nbsp;</td>
-				<?php } ?> 
-				  <td class="dataTableHeadingContent smalltext" width="25%"><?php echo TABLE_HEADING_PRODUCTS; ?></td>
+<?php if (sizeof($order->products) > 1) { ?>
+          <td class="dataTableHeadingContent smalltext" width="4%">&nbsp;</td>
+        <?php } ?>
+          <td class="dataTableHeadingContent smalltext" width="25%"><?php echo TABLE_HEADING_PRODUCTS; ?></td>
                   <td class="dataTableHeadingContent smalltext" width="25%"><?php echo TABLE_HEADING_PRODUCTS_MODEL; ?></td>
                   <td class="dataTableHeadingContent smalltext" align="right" width="6%"><?php echo TABLE_HEADING_TAX; ?></td>
                   <td class="dataTableHeadingContent smalltext" align="right" width="10%"><?php echo TABLE_HEADING_PRICE_EXCLUDING_TAX; ?></td>
@@ -692,15 +692,15 @@ if ($update_status_history->fields['customer_notified'] == -1) {
                 <tr>
                   <td class="smalltext" valign="top" align="center"><?php echo zen_draw_checkbox_field('notify_split', 1); ?></td>
                   <td class="smalltext" valign="top" colspan="6"><?php echo ENTRY_NOTIFY_CUSTOMER . '<br>';?>
-													 (<?php echo TEXT_SPLIT_EXPLAIN . '<strong>' . $nextID . '</strong>';?>)</td>
-                  <td class="smalltext" valign="top">&nbsp;&nbsp;</td> 
+                           (<?php echo TEXT_SPLIT_EXPLAIN . '<strong>' . $nextID . '</strong>';?>)</td>
+                  <td class="smalltext" valign="top">&nbsp;&nbsp;</td>
                </tr>
                 <tr>
                   <td class="smalltext" valign="top" align="center"><?php echo zen_draw_checkbox_field('notify_comments', on); ?></td>
                   <td class="smalltext" valign="top" colspan="6"><?php echo ENTRY_NOTIFY_COMMENTS . '<br>';?></td>
-                  <td class="smalltext" valign="top">&nbsp;&nbsp;</td> 
+                  <td class="smalltext" valign="top">&nbsp;&nbsp;</td>
                </tr>
-              
+
             </table>
             </td>
           </tr>
@@ -725,7 +725,7 @@ if ($update_status_history->fields['customer_notified'] == -1) {
           <tr>
             <td><?php echo zen_draw_separator('pixel_trans.gif', '1', '5'); ?></td>
           </tr>
-		  <tr>
+      <tr>
             <td align="center">
             <table border="1" cellpadding="5" cellspacing="0" width="100%">
                 <tr class="dataTableHeadingRow">
@@ -739,8 +739,8 @@ if ($update_status_history->fields['customer_notified'] == -1) {
                                     order by orders_status_history_id asc");
     if ($orders_history->RecordCount() > 0) {
       while (!$orders_history->EOF){
-          if ($orders_history->fields['customer_notified'] == -1) {  
-          
+          if ($orders_history->fields['customer_notified'] == -1) {
+
         echo '        <tr>' . NL .
              '          <td class="smallText" valign="top">' . zen_datetime_short($orders_history->fields['date_added']) . '</td>' . NL;
 
@@ -755,7 +755,7 @@ if ($update_status_history->fields['customer_notified'] == -1) {
         echo '        </tr>' . NL;
           }
         $orders_history->MoveNext();
-          
+
       }
     } else {
         echo '          <tr>' . NL .
@@ -763,7 +763,7 @@ if ($update_status_history->fields['customer_notified'] == -1) {
              '          </tr>' . NL;
     }
 ?>
-              
+
             </table>
             </td>
           </tr>
@@ -779,16 +779,16 @@ if ($update_status_history->fields['customer_notified'] == -1) {
           </tr>
           <tr>
             <td class="main" colspan="3" align="right">
-	    <input class="normal_button button" value="<?php echo BUTTON_CANCEL; ?>" onclick="closePopup()" type="button">
-	    <input class="submit_button button" value="<?php echo BUTTON_SUBMIT; ?>" onclick="document.edit.submit();this.disabled=true" type="submit">
-	    </td>
+      <input class="normal_button button" value="<?php echo BUTTON_CANCEL; ?>" onclick="closePopup()" type="button">
+      <input class="submit_button button" value="<?php echo BUTTON_SUBMIT; ?>" onclick="document.edit.submit();this.disabled=true" type="submit">
+      </td>
           </tr>
-        
+
       </form>
       </table></td>
 <!-- body_text_eof //-->
    </tr>
-  
+
 </table>
 
 <!-- body_eof //-->

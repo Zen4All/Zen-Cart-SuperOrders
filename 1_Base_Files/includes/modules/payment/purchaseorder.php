@@ -26,7 +26,7 @@
     var $code, $title, $description, $enabled;
 
 // class constructor
-    function purchaseorder() {
+    function __construct() {
       global $order;
 
       $this->code = 'purchaseorder';

@@ -1,26 +1,26 @@
 <?php
 /*
 //////////////////////////////////////////////////////////////////////////
-//  SUPER ORDERS v3.0                                               	//
-//                                                                  	//
-//  Based on Super Order 2.0                                        	//
-//  By Frank Koehl - PM: BlindSide (original author)                	//
-//                                                                  	//
-//  Super Orders Updated by:						//
-//  ~ JT of GTICustom							//
-//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)	//
-//  ~ Loose Chicken Software Development, david@loosechicken.com	//
-//                                                    			//
-//  Powered by Zen-Cart (www.zen-cart.com)             			//
-//  Portions Copyright (c) 2005 The Zen-Cart Team      			//
-//                                                     			//
-//  Released under the GNU General Public License       		//
-//  available at www.zen-cart.com/license/2_0.txt       		//
-//  or see "license.txt" in the downloaded zip          		//
+//  SUPER ORDERS v3.0                                                 //
+//                                                                    //
+//  Based on Super Order 2.0                                          //
+//  By Frank Koehl - PM: BlindSide (original author)                  //
+//                                                                    //
+//  Super Orders Updated by:            //
+//  ~ JT of GTICustom             //
+//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)  //
+//  ~ Loose Chicken Software Development, david@loosechicken.com  //
+//                                                          //
+//  Powered by Zen-Cart (www.zen-cart.com)                  //
+//  Portions Copyright (c) 2005 The Zen-Cart Team           //
+//                                                          //
+//  Released under the GNU General Public License           //
+//  available at www.zen-cart.com/license/2_0.txt           //
+//  or see "license.txt" in the downloaded zip              //
 //////////////////////////////////////////////////////////////////////////
-//  DESCRIPTION:   Report that displays all income for the given date	//
-//  range.  Report results come solely from the Super Orders payment	//
-//  system.								//
+//  DESCRIPTION:   Report that displays all income for the given date //
+//  range.  Report results come solely from the Super Orders payment  //
+//  system.               //
 //////////////////////////////////////////////////////////////////////////
 // $Id: super_batch_forms.php v 2010-10-24 $
 */
@@ -47,7 +47,7 @@
 <title><?php echo TITLE; ?></title>
 <link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
 <link rel="stylesheet" type="text/css" href="includes/super_stylesheet.css">
-<link rel="stylesheet" type="text/css" href="includes/srap_print.css" media="print" />  
+<link rel="stylesheet" type="text/css" href="includes/srap_print.css" media="print" />
 <?php if ($is_for_display) { ?>
 <link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
 <link rel="stylesheet" type="text/css" href="includes/javascript/spiffyCal/spiffyCal_v2_1.css">
@@ -368,7 +368,7 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "search", "end_date", "btnDate
 <!-- body_eof //-->
 <?php if (!$is_for_display) {
   ?><div align="left"><?php
-   echo '<a href="javascript:history.back()">' . zen_image_button('button_back.gif', IMAGE_BACK) . '</a>';  
+   echo '<a href="javascript:history.back()">' . zen_image_button('button_back.gif', IMAGE_BACK) . '</a>';
 ?>
    <input type="button" value="Print This Page" onClick="window.print()">
 <?php }  ?>

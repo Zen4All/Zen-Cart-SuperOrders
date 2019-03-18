@@ -1,26 +1,26 @@
 <?php
 /*
 //////////////////////////////////////////////////////////////////////////
-//  SUPER ORDERS v3.0                                               	//
-//                                                                  	//
-//  Based on Super Order 2.0                                        	//
-//  By Frank Koehl - PM: BlindSide (original author)                	//
-//                                                                  	//
-//  Super Orders Updated by:						//
-//  ~ JT of GTICustom							//
-//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)	//
-//  ~ Loose Chicken Software Development, david@loosechicken.com	//
-//                                                      		//
-//  Powered by Zen-Cart (www.zen-cart.com)              		//
-//  Portions Copyright (c) 2005 The Zen-Cart Team       		//
-//                                                     			//
-//  Released under the GNU General Public License       		//
-//  available at www.zen-cart.com/license/2_0.txt       		//
-//  or see "license.txt" in the downloaded zip          		//
+//  SUPER ORDERS v3.0                                                 //
+//                                                                    //
+//  Based on Super Order 2.0                                          //
+//  By Frank Koehl - PM: BlindSide (original author)                  //
+//                                                                    //
+//  Super Orders Updated by:            //
+//  ~ JT of GTICustom             //
+//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)  //
+//  ~ Loose Chicken Software Development, david@loosechicken.com  //
+//                                                          //
+//  Powered by Zen-Cart (www.zen-cart.com)                  //
+//  Portions Copyright (c) 2005 The Zen-Cart Team           //
+//                                                          //
+//  Released under the GNU General Public License           //
+//  available at www.zen-cart.com/license/2_0.txt           //
+//  or see "license.txt" in the downloaded zip              //
 //////////////////////////////////////////////////////////////////////////
-//  DESCRIPTION: A collection of functions utilized throughout the	//
-//  Super Orders files. Handy for developers, normal users won't need	//
-//  to even look in here. See each funtion for a brief description.	//
+//  DESCRIPTION: A collection of functions utilized throughout the  //
+//  Super Orders files. Handy for developers, normal users won't need //
+//  to even look in here. See each funtion for a brief description. //
 //////////////////////////////////////////////////////////////////////////
 // $Id: super_batch_forms.php v 2010-10-24 $
 */
@@ -36,9 +36,9 @@ function update_status($oID, $new_status, $notified = 0, $comments = '') {
    if($notified== -1){
    $cust_notified = -1;
    }
-  elseif ($notified==1) 
+  elseif ($notified==1)
        $cust_notified = 1;
-  else  
+  else
        $cust_notified = 0;
   $db->Execute("INSERT INTO " . TABLE_ORDERS_STATUS_HISTORY . "
                 (orders_id, orders_status_id, date_added, customer_notified, comments)
@@ -51,7 +51,7 @@ function update_status($oID, $new_status, $notified = 0, $comments = '') {
   $db->Execute("UPDATE " . TABLE_ORDERS . " SET
                 orders_status = '" . $new_status . "', last_modified = now()
                 WHERE orders_id = '" . (int)$oID . "'");
-}  
+}
 
 
 /////////////////
@@ -103,13 +103,13 @@ function email_latest_status($oID) {
   $html_msg['EMAIL_TEXT_STATUS_LABEL'] = str_replace('\n','', sprintf(EMAIL_TEXT_STATUS_LABEL, $orders_status_array[$status] ));
   $html_msg['EMAIL_TEXT_NEW_STATUS'] = $orders_status_array[$status];
   $html_msg['EMAIL_TEXT_STATUS_PLEASE_REPLY'] = str_replace('\n','', EMAIL_TEXT_STATUS_PLEASE_REPLY);
-  
+
   $html_msg['EMAIL_PAYPAL_TRANSID'] = '';
   // End Zen Cart v1.5 Modified Core Code
 
   zen_mail($customer_info->fields['customers_name'], $customer_info->fields['customers_email_address'], EMAIL_TEXT_SUBJECT . ' #' . $oID, $message, STORE_NAME, EMAIL_FROM, $html_msg, 'order_status');
 
-  
+
             // PayPal Trans ID, if any
             $sql = "select txn_id, parent_txn_id from " . TABLE_PAYPAL . " where order_id = :orderID order by last_modified DESC, date_added DESC, parent_txn_id DESC, paypal_ipn_id DESC ";
             $sql = $db->bindVars($sql, ':orderID', $oID, 'integer');
@@ -390,7 +390,7 @@ function recalc_total($target_oID) {
     $orders_total_id = $all_totals->fields['orders_total_id'];
 
     if ($all_totals->fields['class'] != 'ot_total') {
-      if (is_discount_module($all_totals->fields['class'])) { 
+      if (is_discount_module($all_totals->fields['class'])) {
         $ot_total -= $all_totals->fields['value'];
       }
       else {
@@ -421,24 +421,24 @@ function recalc_total($target_oID) {
 // Function    : current_countries_array
 // Arguments   : first_option
 // Return      : countries array
-// Description : builds an array of all countries (used in at least one order) for a dropdown menu. 
-/////////////////    
+// Description : builds an array of all countries (used in at least one order) for a dropdown menu.
+/////////////////
     function current_countries_array($first_option = false) {
         global $db;
-        
+
         $countries_array = array();
         if ($first_option) {
             $countries_array[] = array('id' => '', 'text' => $first_option);
-        }  
+        }
         $countries_array[] = array('id' => get_store_country_name(), 'text' => get_store_country_name());
-        $countries_array[] = array('id' => 'International', 'text' => 'International');   
-        
-        
+        $countries_array[] = array('id' => 'International', 'text' => 'International');
+
+
         $countries = $db->Execute("SELECT DISTINCT customers_country
             FROM " . TABLE_ORDERS . "
             WHERE customers_country <> '" . get_store_country_name() . "'
             ORDER BY customers_country");
-        while (!$countries->EOF) {                                                             
+        while (!$countries->EOF) {
             $countries_array[] = array('id' => $countries->fields['customers_country'],
                 'text' => $countries->fields['customers_country']);
             $countries->MoveNext();
@@ -446,34 +446,34 @@ function recalc_total($target_oID) {
         return $countries_array;
     }
 
-    
+
 /////////////////
 // Function    : get_store_country_name
 // Arguments   : NONE
 // Return      : store country's name
-// Description : gets store country's name from id 
-/////////////////   
+// Description : gets store country's name from id
+/////////////////
     function get_store_country_name(){
         $lcsd_store_country_name = '';
         if (defined(LCSD_STORE_COUNTRY_NAME)){
-            $lcsd_store_country_name = LCSD_STORE_COUNTRY_NAME;    
-        }   
+            $lcsd_store_country_name = LCSD_STORE_COUNTRY_NAME;
+        }
         else{
             global $db;
             $lcsd_db_country = $db->Execute("SELECT countries_name
                 FROM " . TABLE_COUNTRIES . "
                 WHERE countries_id = '" . STORE_COUNTRY . "'");
-            if (!$lcsd_db_country->EOF) {                                                             
+            if (!$lcsd_db_country->EOF) {
                 $lcsd_store_country_name = $lcsd_db_country->fields['countries_name'];
                 define(LCSD_STORE_COUNTRY_NAME, $lcsd_store_country_name);
-            }    
-        } 
+            }
+        }
         return $lcsd_store_country_name;
     }
 
- function is_discount_module($ot_class) { 
-     if ($ot_class == "ot_gv" || 
-                $ot_class == "ot_coupon" || 
+ function is_discount_module($ot_class) {
+     if ($ot_class == "ot_gv" ||
+                $ot_class == "ot_coupon" ||
                 $ot_class == "ot_group_pricing" ||
                 $ot_class == "ot_quantity_discount" ||
                 $ot_class == "ot_better_together" ||
@@ -483,15 +483,15 @@ function recalc_total($target_oID) {
                 $ot_class == "ot_frequency_discount" ||
                 $ot_class == "ot_quantity_discount" ||
                 $ot_class == "ot_newsletter_discount" ||
-                $ot_class == "ot_military_discount" || 
-                $ot_class == "ot_table_discounts" || 
-                $ot_class == "ot_case_discounts" || 
-                $ot_class == "ot_freegift_chooser" || 
-                $ot_class == "ot_manufacturer_discount" || 
-                $ot_class == "ot_bogo_discount" || 
-                $ot_class == 'ot_sc') { 
+                $ot_class == "ot_military_discount" ||
+                $ot_class == "ot_table_discounts" ||
+                $ot_class == "ot_case_discounts" ||
+                $ot_class == "ot_freegift_chooser" ||
+                $ot_class == "ot_manufacturer_discount" ||
+                $ot_class == "ot_bogo_discount" ||
+                $ot_class == 'ot_sc') {
             return true;
        }
-       return false; 
+       return false;
  }
 ?>

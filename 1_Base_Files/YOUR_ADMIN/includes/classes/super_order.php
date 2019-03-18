@@ -1,25 +1,25 @@
 <?php
 /*
 //////////////////////////////////////////////////////////////////////////
-//  SUPER ORDERS v3.0                                               	//
-//                                                      		//
-//  Based on Super Order 2.0                                        	//
-//  By Frank Koehl - PM: BlindSide (original author)                	//
-//                                                                  	//
-//  Super Orders Updated by:						//
-//  ~ JT of GTICustom							//
-//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)	//
-//  ~ Loose Chicken Software Development, david@loosechicken.com	//
-//                                                      		//
-//  Powered by Zen-Cart (www.zen-cart.com)              		//
-//  Portions Copyright (c) 2005 The Zen-Cart Team       		//
-//                                                      		//
-//  Released under the GNU General Public License       		//
-//  available at www.zen-cart.com/license/2_0.txt       		//
-//  or see "license.txt" in the downloaded zip          		//
+//  SUPER ORDERS v3.0                                                 //
+//                                                          //
+//  Based on Super Order 2.0                                          //
+//  By Frank Koehl - PM: BlindSide (original author)                  //
+//                                                                    //
+//  Super Orders Updated by:            //
+//  ~ JT of GTICustom             //
+//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)  //
+//  ~ Loose Chicken Software Development, david@loosechicken.com  //
+//                                                          //
+//  Powered by Zen-Cart (www.zen-cart.com)                  //
+//  Portions Copyright (c) 2005 The Zen-Cart Team           //
+//                                                          //
+//  Released under the GNU General Public License           //
+//  available at www.zen-cart.com/license/2_0.txt           //
+//  or see "license.txt" in the downloaded zip              //
 //////////////////////////////////////////////////////////////////////////
-// DESCRIPTION: Class file that manages inserting, modifying, removing,	//
-// and displaying payment data.						//
+// DESCRIPTION: Class file that manages inserting, modifying, removing, //
+// and displaying payment data.           //
 //////////////////////////////////////////////////////////////////////////
 // $Id: super_order.php 27 2006-02-03 20:06:12Z BlindSide $
 */
@@ -29,7 +29,7 @@ class super_order {
   var $oID, $cID, $order_total, $amount_applied, $balance_due, $status, $status_date;
 
   // instantiates the class and gathers existing data
-  function super_order($orders_id) {
+  function __construct($orders_id) {
     $this->payment = array();
     $this->purchase_order = array();
     $this->po_payment = array();
@@ -381,7 +381,7 @@ class super_order {
 
   function add_payment($payment_number, $payment_name, $payment_amount, $payment_type, $purchase_order_id = false) {
     global $db;
-    
+
     $new_payment = array('orders_id' => $this->oID,
                          'payment_number' => zen_db_prepare_input($payment_number),
                          'payment_name' => zen_db_prepare_input($payment_name),
@@ -614,7 +614,7 @@ class super_order {
 //                $so_data = $db->Execute("select * from " . TABLE_SO_REFUNDS . " where refund_number = '" . $pp_data->fields['paypal_ipn_id'] . ":" . $pp_data->fields['txn_id'] . "'");
 //TODO: make this more robust - retrieve all SO_REFUNDS tied to this order and look for lines that might have changed status with a diff ipn_id
 // if not yet recorded, enter into the table
-//                if ($so_data->EOF) { 		// really should check if there are > 1 already
+//                if ($so_data->EOF) {    // really should check if there are > 1 already
 //                    zen_db_perform(TABLE_SO_REFUNDS, $auto_refund);
 //                }
 //            } // payment_status check
@@ -633,7 +633,7 @@ class super_order {
                 $so_data = $db->Execute("select * from " . TABLE_SO_PAYMENTS . " where orders_id = '" . $this->oID . "'");
                 // if not yet recorded, enter into the table
                 if ($so_data->EOF) {
-				zen_db_perform(TABLE_SO_PAYMENTS, $auto_payment);
+        zen_db_perform(TABLE_SO_PAYMENTS, $auto_payment);
                 }
             } // payment_status check
 //       } // if refund or payment
@@ -669,7 +669,7 @@ class super_order {
                 $so_data = $db->Execute("select * from " . TABLE_SO_PAYMENTS . " where orders_id = '" . $this->oID . "'");
                 // if not yet recorded, enter into the table
                 if ($so_data->EOF) {
-				zen_db_perform(TABLE_SO_PAYMENTS, $auto_payment);
+        zen_db_perform(TABLE_SO_PAYMENTS, $auto_payment);
                 }
             } // payment_status check
        $ccpay_data->MoveNext();

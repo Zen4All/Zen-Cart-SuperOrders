@@ -1,26 +1,26 @@
 <?php
 /*
 //////////////////////////////////////////////////////////////////////////
-//  SUPER ORDERS v3.0                                               	//
-//                                                                  	//
-//  Based on Super Order 2.0                                        	//
-//  By Frank Koehl - PM: BlindSide (original author)                	//
-//                                                                  	//
-//  Super Orders Updated by:						//
-//  ~ JT of GTICustom							//
-//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)	//
-//  ~ Loose Chicken Software Development, david@loosechicken.com	//
-//                                                      		//
-//  Powered by Zen-Cart (www.zen-cart.com)              		//
-//  Portions Copyright (c) 2005 The Zen-Cart Team       		//
-//                                                     			//
-//  Released under the GNU General Public License       		//
-//  available at www.zen-cart.com/license/2_0.txt       		//
-//  or see "license.txt" in the downloaded zip          		//
+//  SUPER ORDERS v3.0                                                 //
+//                                                                    //
+//  Based on Super Order 2.0                                          //
+//  By Frank Koehl - PM: BlindSide (original author)                  //
+//                                                                    //
+//  Super Orders Updated by:            //
+//  ~ JT of GTICustom             //
+//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)  //
+//  ~ Loose Chicken Software Development, david@loosechicken.com  //
+//                                                          //
+//  Powered by Zen-Cart (www.zen-cart.com)                  //
+//  Portions Copyright (c) 2005 The Zen-Cart Team           //
+//                                                          //
+//  Released under the GNU General Public License           //
+//  available at www.zen-cart.com/license/2_0.txt           //
+//  or see "license.txt" in the downloaded zip              //
 //////////////////////////////////////////////////////////////////////////
-//  DESCRIPTION:   Updates order statuses en masse. Order search can	//
-//  be customized based on available filters (date range, current	// 
-//  status, customer, and product)					//
+//  DESCRIPTION:   Updates order statuses en masse. Order search can  //
+//  be customized based on available filters (date range, current //
+//  status, customer, and product)          //
 //////////////////////////////////////////////////////////////////////////
 // $Id: super_batch_forms.php v 2010-10-24 $
 */
@@ -46,7 +46,7 @@
   $payments = all_payments_array(DROPDOWN_ALL_PAYMENTS, true);
   $customers = all_customers_array(DROPDOWN_ALL_CUSTOMERS, true, false);
 
-    /* BEGIN addition (Loose Chicken Software Development, david@loosechicken.com 07-13-2010) */ 
+    /* BEGIN addition (Loose Chicken Software Development, david@loosechicken.com 07-13-2010) */
     /* added seach by country */
     $countries = current_countries_array(DROPDOWN_ALL_COUNTRIES);
     /* END addition (Loose Chicken Software Development) */
@@ -74,7 +74,7 @@
       batch_status($oID, $status, $comments, $notify, $notify_comments);
     }
       //zen_redirect(zen_href_link(FILENAME_SUPER_BATCH_STATUS, '', 'NONSSL'));
-	  zen_redirect($_REQUEST['redirect'], '', 'NONSSL') 	;
+    zen_redirect($_REQUEST['redirect'], '', 'NONSSL')   ;
   }
 
   else {
@@ -102,19 +102,19 @@
     }
   }
 
-	function checkByParent(aId) {
-		var collection = document.getElementById(aId).getElementsByTagName('INPUT');
-		for (var x=0; x<collection.length; x++) {
-			if (collection[x].type.toUpperCase()=='CHECKBOX') {
-				if (collection[x].checked == true)
+  function checkByParent(aId) {
+    var collection = document.getElementById(aId).getElementsByTagName('INPUT');
+    for (var x=0; x<collection.length; x++) {
+      if (collection[x].type.toUpperCase()=='CHECKBOX') {
+        if (collection[x].checked == true)
 
-				{
-					collection[x].checked = false;
-				}
-				else { collection[x].checked = true; }
-			}
-		}
-	}
+        {
+          collection[x].checked = false;
+        }
+        else { collection[x].checked = true; }
+      }
+    }
+  }
 // -->
 </script>
 </head>
@@ -146,18 +146,18 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "order_search", "end_date", "b
             <td class="main" colspan="3"><strong><?php echo HEADING_SEARCH_FILTER; ?></strong></td>
           </tr>
           <?php echo zen_draw_form('order_search', FILENAME_SUPER_BATCH_STATUS, '', 'get', '', true); ?>
-		  
+
           <tr>
             <td valign="top"><table border="0" cellpadding="0" cellspacing="3">
               <tr>
                 <td class="smallText" align="left"><?php echo HEADING_START_DATE; ?><br />
-		<script language="javascript">
+    <script language="javascript">
                   StartDate.writeControl(); StartDate.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script>
                 </td>
               </tr>
               <tr>
                 <td class="smallText" align="left"><?php echo HEADING_END_DATE; ?><br />
-		<script language="javascript">
+    <script language="javascript">
                   EndDate.writeControl(); EndDate.dateFormat="<?php echo DATE_FORMAT_SPIFFYCAL; ?>";</script>
                 </td>
               </tr>
@@ -174,7 +174,7 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "order_search", "end_date", "b
               <tr>
                 <td class="smallText"><?php echo HEADING_SEARCH_CUSTOMERS; ?></td>
                 <td class="smallText"><?php echo zen_draw_pull_down_menu('customers', $customers, $_GET['customers'], ''); ?></td>
-              </tr> 
+              </tr>
 
 <?php
     /* BEGIN addition added seach by country */
@@ -202,9 +202,9 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "order_search", "end_date", "b
 <?php
     /* BEGIN addition added seach by OrderID Range */
     // If you want to start above order 1, uncomment this block
-    /* 
-    if (!isset($_GET['oid_range_first']) ||  (!zen_not_null($_GET['oid_range_first']))) { 
-       $_GET['oid_range_first'] = 12000; 
+    /*
+    if (!isset($_GET['oid_range_first']) ||  (!zen_not_null($_GET['oid_range_first']))) {
+       $_GET['oid_range_first'] = 12000;
     }
     */
 ?>
@@ -213,7 +213,7 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "order_search", "end_date", "b
                 <td class="smallText" colspan="3"><?php echo zen_draw_input_field('oid_range_first', $_GET['oid_range_first'], 'size="8"'); ?>
                 &nbsp;&nbsp;<b>to</b>&nbsp;&nbsp; <?php echo zen_draw_input_field('oid_range_last', $_GET['oid_range_last'],'size="8"'); ?></td>
               </tr>
-<?php /* END addition */ ?> 
+<?php /* END addition */ ?>
             </table></td>
           </tr>
           <tr>
@@ -221,7 +221,7 @@ var EndDate = new ctlSpiffyCalendarBox("EndDate", "order_search", "end_date", "b
           </tr>
           <tr>
             <td class="smallText" colspan="3" align="right" valign="bottom">
-	    <input class="submit_button button" type="submit" value="<?php echo BUTTON_SEARCH; ?>"></td>
+      <input class="submit_button button" type="submit" value="<?php echo BUTTON_SEARCH; ?>"></td>
           </tr></form>
         </table></td>
       </tr>
@@ -281,20 +281,20 @@ if (isset($_GET['start_date']) ) {
       else { $sign_operator = '>='; }
       $orders_query_raw .= " AND o.order_total " . $sign_operator . " '" . (int)$_GET['order_total'] . "'";
   }
-  
+
     /* BEGIN addition added seach by OrderID Range */
     if (isset($_GET['oid_range_first']) && zen_not_null($_GET['oid_range_first']) &&
             isset($_GET['oid_range_last']) && zen_not_null($_GET['oid_range_last'])){
         $orders_query_raw .= " AND o.orders_id BETWEEN " . (int)$_GET['oid_range_first'] . " AND " . (int)$_GET['oid_range_last'];
-    } else if (isset($_GET['oid_range_first']) && zen_not_null($_GET['oid_range_first'])) { 
-        $orders_query_raw .= " AND o.orders_id >= " . (int)$_GET['oid_range_first'] . " "; 
+    } else if (isset($_GET['oid_range_first']) && zen_not_null($_GET['oid_range_first'])) {
+        $orders_query_raw .= " AND o.orders_id >= " . (int)$_GET['oid_range_first'] . " ";
     } else if (isset($_GET['oid_range_last']) && zen_not_null($_GET['oid_range_last'])){
         $orders_query_raw .= " AND o.orders_id <= " . (int)$_GET['oid_range_last'] . " ";
     }
 
-    /* added seach by country */ 
+    /* added seach by country */
     if (isset($_GET['countries']) && zen_not_null($_GET['countries'])){
-        if($_GET['countries'] == 'International'){   
+        if($_GET['countries'] == 'International'){
             $orders_query_raw .= " AND o.customers_country <> '" . get_store_country_name() . "' ";
         }
         else{
@@ -311,10 +311,10 @@ if (isset($_GET['start_date']) ) {
       <tr>
         <td><table border="0" cellpadding="0" cellspacing="0" width="100%">
           <?php echo zen_draw_form('batch_status', FILENAME_SUPER_BATCH_STATUS, 'action=batch_status', 'post', ''); ?>
-		  <input type="hidden" name="redirect" value="<?php echo $_SERVER['REQUEST_URI']?>">
+      <input type="hidden" name="redirect" value="<?php echo $_SERVER['REQUEST_URI']?>">
           <tr>
             <td colspan="2" align="left">
-	    <table border="0" cellpadding="0" cellspacing="2">
+      <table border="0" cellpadding="0" cellspacing="2">
               <tr>
                 <td class="main" colspan="2"><strong><?php echo HEADING_UPDATE_ORDERS; ?></strong></td>
               </tr>
@@ -328,21 +328,21 @@ if (isset($_GET['start_date']) ) {
               </tr>
                 <tr id="so_notify">
                 <td class="smallText" valign="top"><?php echo HEADING_NOTIFICATION; ?></td>
-                <td class="smallText" colspan="2"><?php 
-				echo zen_draw_radio_field('notify', '1', true) . '-' . TEXT_EMAIL . ' ' . zen_draw_radio_field('notify', '0', FALSE) . '-' . TEXT_NOEMAIL . ' ' . zen_draw_radio_field('notify', '-1', FALSE) . '-' . TEXT_HIDE . '<br />';
+                <td class="smallText" colspan="2"><?php
+        echo zen_draw_radio_field('notify', '1', true) . '-' . TEXT_EMAIL . ' ' . zen_draw_radio_field('notify', '0', FALSE) . '-' . TEXT_NOEMAIL . ' ' . zen_draw_radio_field('notify', '-1', FALSE) . '-' . TEXT_HIDE . '<br />';
                 echo zen_draw_checkbox_field('notify_comments', 'on', true); echo '&nbsp;' . ENTRY_NOTIFY_COMMENTS; ?><br /><br />
                   &nbsp;<input class="submit_button button" type="submit" value="<?php echo BUTTON_UPDATE_STATUS; ?>">
                 </td>
               </tr>
             </table>
-	    </td>
+      </td>
           </tr>
           <tr>
             <td colspan="2"><?php echo zen_draw_separator('pixel_trans.gif', 1, 5); ?></td>
           </tr>
           <tr>
-            <td class="main" valign="bottom"><?php 
-	    echo TEXT_TOTAL_ORDERS . '<strong>' . $orders->RecordCount() . '</strong>' . '&nbsp;&nbsp;';
+            <td class="main" valign="bottom"><?php
+      echo TEXT_TOTAL_ORDERS . '<strong>' . $orders->RecordCount() . '</strong>' . '&nbsp;&nbsp;';
             echo '<INPUT class="normal_button button" TYPE="BUTTON" VALUE="' . BUTTON_CHECK_ALL . '" ONCLICK="checkByParent(\'ordersList\');">';
 
             ?></td>
@@ -352,7 +352,7 @@ if (isset($_GET['start_date']) ) {
       </tr>
       <tr>
         <td> <div id="ordersList">
-		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
           <tr>
             <td><table border="0" cellpadding="0" cellspacing="0" width="100%">
               <tr>
@@ -369,8 +369,8 @@ if (isset($_GET['start_date']) ) {
     while (!$orders->EOF) {
 ?>
                   <tr class="dataTableRow" onMouseOver="rowOverEffect(this);this.style.cursor='default'" onMouseOut="rowOutEffect(this)">
-                    <td class="dataTableContent" align="left"><?php 
-		    echo zen_draw_checkbox_field('batch_order_numbers[' . $orders->fields['orders_id'] . ']', 'yes', FALSE);
+                    <td class="dataTableContent" align="left"><?php
+        echo zen_draw_checkbox_field('batch_order_numbers[' . $orders->fields['orders_id'] . ']', 'yes', FALSE);
                       echo $orders->fields['orders_id'];
                     ?></td>
                     <td class="dataTableContent" align="right"><?php echo '[' . $orders->fields['customers_id'] . ']'; ?></td>
@@ -392,8 +392,9 @@ if (isset($_GET['start_date']) ) {
               <tr>
                 <td><?php echo zen_draw_separator('pixel_trans.gif', 1, 10); ?></td>
               </tr>
-            </table></div>
-			</td>
+            </table>
+            </div>
+      </td>
           </tr>
         </table></td>
       </tr>
@@ -413,28 +414,28 @@ if (isset($_GET['start_date']) ) {
 <br />
 </body>
 </html>
-<?php  require(DIR_WS_INCLUDES . 'application_bottom.php');  
+<?php  require(DIR_WS_INCLUDES . 'application_bottom.php');
 
   }
-  
+
 function batch_status($oID, $status, $comments, $notify, $notify_comments) {
-  
+
   global $db, $messageStack;
   require(DIR_WS_LANGUAGES . 'english/orders.php');
 
   $order_updated = false;
-  $check_status = $db->Execute("select customers_name, customers_email_address, orders_status,
-                                date_purchased from " . TABLE_ORDERS . "
+  $check_status = $db->Execute("select customers_name, customers_email_address, orders_status, date_purchased
+                                from " . TABLE_ORDERS . "
                                 where orders_id = '" . (int)$oID . "'");
 
   if ( ($check_status->fields['orders_status'] != $status) || zen_not_null($comments)) {
     update_status($oID, $status, $notify, $comments);
- 
-	
-	
-	 
 
-    if ($notify == '1') { 
+
+
+
+
+    if ($notify == '1') {
          email_latest_status($oID);
     }
     $messageStack->add_session(SUCCESS_ORDER_UPDATED, 'success');

@@ -1,25 +1,25 @@
 <?php
 /*
 //////////////////////////////////////////////////////////////////////////
-//  SUPER ORDERS v3.0                                               	//
-//                                                                  	//
-//  Based on Super Order 2.0                                        	//
-//  By Frank Koehl - PM: BlindSide (original author)                	//
-//                                                                  	//
-//  Super Orders Updated by:						//
-//  ~ JT of GTICustom							//
-//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)	//
-//  ~ Loose Chicken Software Development, david@loosechicken.com	//
-//                                                      		//
-//  Powered by Zen-Cart (www.zen-cart.com)              		//
-//  Portions Copyright (c) 2005 The Zen-Cart Team       		//
-//                                                     			//
-//  Released under the GNU General Public License       		//
-//  available at www.zen-cart.com/license/2_0.txt       		//
-//  or see "license.txt" in the downloaded zip          		//
+//  SUPER ORDERS v3.0                                                 //
+//                                                                    //
+//  Based on Super Order 2.0                                          //
+//  By Frank Koehl - PM: BlindSide (original author)                  //
+//                                                                    //
+//  Super Orders Updated by:            //
+//  ~ JT of GTICustom             //
+//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)  //
+//  ~ Loose Chicken Software Development, david@loosechicken.com  //
+//                                                          //
+//  Powered by Zen-Cart (www.zen-cart.com)                  //
+//  Portions Copyright (c) 2005 The Zen-Cart Team           //
+//                                                          //
+//  Released under the GNU General Public License           //
+//  available at www.zen-cart.com/license/2_0.txt           //
+//  or see "license.txt" in the downloaded zip              //
 //////////////////////////////////////////////////////////////////////////
-//  DESCRIPTION:   Takes all the order data found on the details screen	//
-//  and formats it for printing on standard 8.5" x 11" paper.		//
+//  DESCRIPTION:   Takes all the order data found on the details screen //
+//  and formats it for printing on standard 8.5" x 11" paper.   //
 //////////////////////////////////////////////////////////////////////////
 // $Id: super_data_sheet.php v 2010-10-24 $
 */
@@ -64,14 +64,14 @@
 <table border="0" cellpadding="2" cellspacing="0" width="100%">
   <tr>
     <td>
-		<table border="0" cellpadding="0" cellspacing="0" width="100%">
-		  <tr>
-			<td class="pageHeading" align="left" valign="middle" width="15%"><?php echo '<a href="#" onclick="closePopup();">' . zen_image(DIR_WS_IMAGES . HEADER_LOGO_IMAGE, HEADER_ALT_TEXT) . '</a>'; ?></td>
-			<td class="pageHeading" align="left" valign="middle" width="35%"><?php echo $order->customer['name'] . '<br />' . HEADER_CUSTOMER_ID . $order->customer['id']; ?></td>
-			<td class="pageHeading" align="right" valign="middle" width="35%"><?php echo HEADER_ORDER_DATA . $oID . '<br />' . zen_date_short($order->info['date_purchased']); ?></td>
-		  </tr>
-		</table>
-	</td>
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+      <td class="pageHeading" align="left" valign="middle" width="15%"><?php echo '<a href="#" onclick="closePopup();">' . zen_image(DIR_WS_IMAGES . HEADER_LOGO_IMAGE, HEADER_ALT_TEXT) . '</a>'; ?></td>
+      <td class="pageHeading" align="left" valign="middle" width="35%"><?php echo $order->customer['name'] . '<br />' . HEADER_CUSTOMER_ID . $order->customer['id']; ?></td>
+      <td class="pageHeading" align="right" valign="middle" width="35%"><?php echo HEADER_ORDER_DATA . $oID . '<br />' . zen_date_short($order->info['date_purchased']); ?></td>
+      </tr>
+    </table>
+  </td>
   </tr>
   <tr>
     <td><?php echo zen_draw_separator(); ?></td>
@@ -179,48 +179,48 @@
       <tr>
         <td colspan="8" align="right"><table border="0" cellpadding="2" cellspacing="0">
 <?php
-	for ($i = 0, $n = sizeof($order->totals); $i < $n; $i++) {
-	$display_title = $order->totals[$i]['title'];
+  for ($i = 0, $n = sizeof($order->totals); $i < $n; $i++) {
+  $display_title = $order->totals[$i]['title'];
      echo '          <tr>' . "\n" .
            '            <td align="right" class="'. str_replace('_', '-', $order->totals[$i]['class']) . '-TextPrint">' . $display_title . '</td>' . "\n" .
            '            <td align="right" class="'. str_replace('_', '-', $order->totals[$i]['class']) . '-AmountPrint">' . $order->totals[$i]['text'] . '</td>' . "\n" .
            '          </tr>' . "\n";
     }
 ?>
-			<tr>
-				<td align="right">&nbsp;</td>
-				<td> 
+      <tr>
+        <td align="right">&nbsp;</td>
+        <td>
 <!-- BOF added to get currency type and value for totals (modified for ZenCart 1.5.3 and beyond by retched) -->
-                <?php 
-		$dbc=$db->Execute("select currency, currency_value from " . TABLE_ORDERS . " where orders_id ='" . $_GET['oID'] . "'");
+                <?php
+    $dbc=$db->Execute("select currency, currency_value from " . TABLE_ORDERS . " where orders_id ='" . $_GET['oID'] . "'");
                 $cu = $dbc->fields['currency'];
                 $cv = $dbc->fields['currency_value'];
                 ?>
 <!-- EOF added to get currency type and value for totals (modified for ZenCart 1.5.3 and beyond by retched) -->
-				</td>
-			</tr>
-			<tr>
-				<td align="right" class="ot-tax-TextPrint"><?php echo ENTRY_AMOUNT_APPLIED_CUST .' (' . $cu.')' ; ?></td>
-				<td align="right" class="printMain"><strong><?php echo $currencies->format($so->amount_applied, true, $order->info['currency'], $order->info['currency_value']); ?></strong></td>
-			</tr>
-			<tr>
-				<td align="right" class="ot-tax-TextPrint"><?php echo ENTRY_BALANCE_DUE_CUST .' (' . $cu.')'; ?></td>
-				<td align="right" class="printMain"><strong><?php echo $currencies->format($so->balance_due, true, $order->info['currency'], $order->info['currency_value']); ?></strong></td>
-			</tr>
+        </td>
+      </tr>
+      <tr>
+        <td align="right" class="ot-tax-TextPrint"><?php echo ENTRY_AMOUNT_APPLIED_CUST .' (' . $cu.')' ; ?></td>
+        <td align="right" class="printMain"><strong><?php echo $currencies->format($so->amount_applied, true, $order->info['currency'], $order->info['currency_value']); ?></strong></td>
+      </tr>
+      <tr>
+        <td align="right" class="ot-tax-TextPrint"><?php echo ENTRY_BALANCE_DUE_CUST .' (' . $cu.')'; ?></td>
+        <td align="right" class="printMain"><strong><?php echo $currencies->format($so->balance_due, true, $order->info['currency'], $order->info['currency_value']); ?></strong></td>
+      </tr>
 
-			<tr>
-				<td align="right">&nbsp;</td>
-				<td align="right">&nbsp;</td>
-			</tr>
+      <tr>
+        <td align="right">&nbsp;</td>
+        <td align="right">&nbsp;</td>
+      </tr>
 
-			<tr>
-				<td align="right" class="ot-tax-TextPrint"><?php echo ENTRY_AMOUNT_APPLIED_SHOP; ?></td>
-				<td align="right" class="printMain"><strong><?php echo $currencies->format($so->amount_applied); ?></strong></td>
-			</tr>
-			<tr>
-				<td align="right" class="ot-tax-TextPrint"><?php echo ENTRY_BALANCE_DUE_SHOP; ?></td>
-				<td align="right" class="printMain"><strong><?php echo $currencies->format($so->balance_due); ?></strong></td>
-			</tr>
+      <tr>
+        <td align="right" class="ot-tax-TextPrint"><?php echo ENTRY_AMOUNT_APPLIED_SHOP; ?></td>
+        <td align="right" class="printMain"><strong><?php echo $currencies->format($so->amount_applied); ?></strong></td>
+      </tr>
+      <tr>
+        <td align="right" class="ot-tax-TextPrint"><?php echo ENTRY_BALANCE_DUE_SHOP; ?></td>
+        <td align="right" class="printMain"><strong><?php echo $currencies->format($so->balance_due); ?></strong></td>
+      </tr>
 
 
         </table></td>
@@ -241,7 +241,7 @@
         <td class="dataTableHeadingContent smallText" align="center" valign="top" width="12%"><strong><?php echo TABLE_HEADING_CUSTOMER_NOTIFIED; ?></strong></td>
         <td class="dataTableHeadingContent smallText" align="left" valign="top" width="10%"><strong><?php echo TABLE_HEADING_STATUS; ?></strong></td>
 <!-- TY TRACKER 1 BEGIN, DISPLAY TRACKING ID IN COMMENTS TABLE------------------------------->
-	    <td class="dataTableHeadingContent smallText" align="left" valign="top" width="23%"><strong><?php echo TABLE_HEADING_TRACKING_ID; ?></strong></td>
+      <td class="dataTableHeadingContent smallText" align="left" valign="top" width="23%"><strong><?php echo TABLE_HEADING_TRACKING_ID; ?></strong></td>
 <!-- END TY TRACKER  1 ------------------------------------------------------------>
         <td class="dataTableHeadingContent smallText" align="left" valign="top" width="40%"><strong><?php echo TABLE_HEADING_COMMENTS; ?></strong></td>
       </tr>
@@ -266,11 +266,11 @@
         echo '        <td class="smallText" align="left" valign="top">' . $orders_status_array[$orders_history->fields['orders_status_id']] . '</td>' . "\n";
 // TY TRACKER 3 BEGIN, DEFINE TRACKING INFORMATION ON SUPER_DATA_SHEET.PHP FILE ----------------
         $display_track_id = '&nbsp;';
-	$display_track_id .= (empty($orders_history->fields['track_id1']) ? '' : CARRIER_NAME_1 . ": <a href=" . CARRIER_LINK_1 . nl2br(zen_output_string_protected($orders_history->fields['track_id1'])) . ' target="_blank">' . nl2br(zen_output_string_protected($orders_history->fields['track_id1'])) . "</a>&nbsp;" );
-	$display_track_id .= (empty($orders_history->fields['track_id2']) ? '' : CARRIER_NAME_2 . ": <a href=" . CARRIER_LINK_2 . nl2br(zen_output_string_protected($orders_history->fields['track_id2'])) . ' target="_blank">' . nl2br(zen_output_string_protected($orders_history->fields['track_id2'])) . "</a>&nbsp;" );
-	$display_track_id .= (empty($orders_history->fields['track_id3']) ? '' : CARRIER_NAME_3 . ": <a href=" . CARRIER_LINK_3 . nl2br(zen_output_string_protected($orders_history->fields['track_id3'])) . ' target="_blank">' . nl2br(zen_output_string_protected($orders_history->fields['track_id3'])) . "</a>&nbsp;" );
-	$display_track_id .= (empty($orders_history->fields['track_id4']) ? '' : CARRIER_NAME_4 . ": <a href=" . CARRIER_LINK_4 . nl2br(zen_output_string_protected($orders_history->fields['track_id4'])) . ' target="_blank">' . nl2br(zen_output_string_protected($orders_history->fields['track_id4'])) . "</a>&nbsp;" );
-	$display_track_id .= (empty($orders_history->fields['track_id5']) ? '' : CARRIER_NAME_5 . ": <a href=" . CARRIER_LINK_5 . nl2br(zen_output_string_protected($orders_history->fields['track_id5'])) . ' target="_blank">' . nl2br(zen_output_string_protected($orders_history->fields['track_id5'])) . "</a>&nbsp;" );
+  $display_track_id .= (empty($orders_history->fields['track_id1']) ? '' : CARRIER_NAME_1 . ": <a href=" . CARRIER_LINK_1 . nl2br(zen_output_string_protected($orders_history->fields['track_id1'])) . ' target="_blank">' . nl2br(zen_output_string_protected($orders_history->fields['track_id1'])) . "</a>&nbsp;" );
+  $display_track_id .= (empty($orders_history->fields['track_id2']) ? '' : CARRIER_NAME_2 . ": <a href=" . CARRIER_LINK_2 . nl2br(zen_output_string_protected($orders_history->fields['track_id2'])) . ' target="_blank">' . nl2br(zen_output_string_protected($orders_history->fields['track_id2'])) . "</a>&nbsp;" );
+  $display_track_id .= (empty($orders_history->fields['track_id3']) ? '' : CARRIER_NAME_3 . ": <a href=" . CARRIER_LINK_3 . nl2br(zen_output_string_protected($orders_history->fields['track_id3'])) . ' target="_blank">' . nl2br(zen_output_string_protected($orders_history->fields['track_id3'])) . "</a>&nbsp;" );
+  $display_track_id .= (empty($orders_history->fields['track_id4']) ? '' : CARRIER_NAME_4 . ": <a href=" . CARRIER_LINK_4 . nl2br(zen_output_string_protected($orders_history->fields['track_id4'])) . ' target="_blank">' . nl2br(zen_output_string_protected($orders_history->fields['track_id4'])) . "</a>&nbsp;" );
+  $display_track_id .= (empty($orders_history->fields['track_id5']) ? '' : CARRIER_NAME_5 . ": <a href=" . CARRIER_LINK_5 . nl2br(zen_output_string_protected($orders_history->fields['track_id5'])) . ' target="_blank">' . nl2br(zen_output_string_protected($orders_history->fields['track_id5'])) . "</a>&nbsp;" );
         echo '            <td class="smallText">' . $display_track_id . '</td>' . "\n";
 // END TY TRACKER 3 -------------------------------------------------------------------
         echo '        <td class="smallText" align="left" valign="top">' . nl2br(zen_db_output($orders_history->fields['comments'])) . '&nbsp;</td>' . "\n" .
@@ -328,7 +328,7 @@
   <tr>
     <td><?php echo zen_draw_separator('pixel_trans.gif', '1', '10'); ?></td>
   </tr>
-<?php 
+<?php
 ?>
 <?php
       if (!$so->payment && !$so->refund && !$so->purchase_order && !$so->po_payment) {
