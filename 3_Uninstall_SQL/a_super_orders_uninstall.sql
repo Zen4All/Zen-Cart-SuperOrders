@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS payment_check;
 DROP TABLE IF EXISTS payment_check_balance;
 
 -- Store Phone and Fax numbers
---comment out if you want to keep these values
+-- comment out if you want to keep these values
 DELETE FROM configuration WHERE configuration_key = 'STORE_FAX';
 DELETE FROM configuration WHERE configuration_key = 'STORE_PHONE';
 
