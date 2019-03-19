@@ -1,27 +1,28 @@
 <?php
+
 /*
-//////////////////////////////////////////////////////////////////////////
-//  SUPER ORDERS v3.0                                               	//
-//                                                                  	//
-//  Based on Super Order 2.0                                        	//
-//  By Frank Koehl - PM: BlindSide (original author)                	//
-//                                                                  	//
-//  Super Orders Updated by:						//
-//  ~ JT of GTICustom							//
-//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)	//
-//  ~ Loose Chicken Software Development, david@loosechicken.com	//
-//                                                      		//
-//  Powered by Zen-Cart (www.zen-cart.com)              		//
-//  Portions Copyright (c) 2005 The Zen-Cart Team       		//
-//                                                     			//
-//  Released under the GNU General Public License       		//
-//  available at www.zen-cart.com/license/2_0.txt       		//
-//  or see "license.txt" in the downloaded zip          		//
-//////////////////////////////////////////////////////////////////////////
-//  DESCRIPTION: Language file definitions for super_batch_forms.php	//
-//////////////////////////////////////////////////////////////////////////
-// $Id: super_batch_forms.php v 2010-10-24 $
-*/
+ *
+ *  SUPER ORDERS v3.0
+ *
+ *  Based on Super Order 2.0
+ *  By Frank Koehl - PM: BlindSide (original author)
+ *
+ *  Super Orders Updated by:
+ *  ~ JT of GTICustom
+ *  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)
+ *  ~ Loose Chicken Software Development, david@loosechicken.com
+ *
+ *  Powered by Zen-Cart (www.zen-cart.com)
+ *  Portions Copyright (c) 2005 The Zen-Cart Team
+ *
+ *  Released under the GNU General Public License
+ *  available at www.zen-cart.com/license/2_0.txt
+ *  or see "license.txt" in the downloaded zip
+ *
+ *  DESCRIPTION: Language file definitions for super_batch_forms.php
+ *
+ * $Id: super_batch_forms.php v 2010-10-24 $
+ */
 
 define('TITLE_BATCH_OUTPUT', 'Output Batch Print Job');
 
@@ -38,7 +39,7 @@ define('HEADING_SEARCH_CUSTOMERS', 'Customer:');
 define('HEADING_SEARCH_PAYMENT_METHOD', 'Payment Method:');
 define('HEADING_SEARCH_TEXT', 'Text Search:');
 
-define('HEADING_SEARCH_ORDERID_RANGE', 'Order No. Range:');          
+define('HEADING_SEARCH_ORDERID_RANGE', 'Order No. Range:');
 define('HEADING_SEARCH_COUNTRY', 'Country:');
 define('DROPDOWN_ALL_COUNTRIES', 'All Countries');
 
@@ -70,7 +71,7 @@ define('SELECT_INVOICE', 'Invoices');
 define('SELECT_PACKINGSLIP', 'Packing Slips');
 define('SELECT_SHIPPING_LABEL', 'Shipping Labels');
 
-define('TABLE_HEADING_ORDERS_ID','Order ID');
+define('TABLE_HEADING_ORDERS_ID', 'Order ID');
 define('TABLE_HEADING_CUSTOMERS', 'Customer');
 define('TABLE_HEADING_DATE_PURCHASED', 'Date Purchased');
 define('TABLE_HEADING_ORDER_STATUS', 'Order Status');
@@ -81,14 +82,14 @@ define('ERROR_NO_ORDERS', 'Error: No orders selected!');
 define('ERROR_NO_FILE', 'Error: Target file does not exist!');
 
 define('ENTRY_DATE_PURCHASED', 'Date Ordered:');
-define('ENTRY_ORDER_ID','Order #: ');
+define('ENTRY_ORDER_ID', 'Order #: ');
 define('ENTRY_PAYMENT_METHOD', 'Payment Method:');
 define('ENTRY_SHIPPING_METHOD', 'Shipping Method');
 define('ENTRY_CUSTOMER', 'CUSTOMER:');
 define('ENTRY_SOLD_TO', 'BILL TO:');
 define('ENTRY_SHIP_TO', 'SHIP TO:');
 define('TABLE_HEADING_PRODUCTS_MODEL', 'Model');
-define('TABLE_HEADING_QTY', 'Qty');    
+define('TABLE_HEADING_QTY', 'Qty');
 define('TABLE_HEADING_PRODUCTS', 'Products');
 define('TABLE_HEADING_TAX', 'Tax');
 define('TABLE_HEADING_TOTAL', 'Total');
@@ -100,7 +101,7 @@ define('TABLE_HEADING_PRICE_NO_TAX', 'Unit Price');
 define('TABLE_HEADING_TOTAL_NO_TAX', 'Total Price');
 define('TABLE_HEADING_CUSTOMER_NOTIFIED', 'Customer Notified');
 define('TABLE_HEADING_DATE_ADDED', 'Date');
-define('TABLE_HEADING_COMMENTS', 'Comments');                 
+define('TABLE_HEADING_COMMENTS', 'Comments');
 define('TABLE_HEADING_STATUS', 'Status');
 define('ENTRY_NO_TAX', 'Tax Exempt');
 define('HEADER_TAX_ID', 'Tax ID #');
