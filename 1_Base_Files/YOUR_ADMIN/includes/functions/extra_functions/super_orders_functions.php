@@ -1,29 +1,30 @@
 <?php
+
 /*
-//////////////////////////////////////////////////////////////////////////
-//  SUPER ORDERS v3.0                                                 //
-//                                                                    //
-//  Based on Super Order 2.0                                          //
-//  By Frank Koehl - PM: BlindSide (original author)                  //
-//                                                                    //
-//  Super Orders Updated by:            //
-//  ~ JT of GTICustom             //
-//  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)  //
-//  ~ Loose Chicken Software Development, david@loosechicken.com  //
-//                                                          //
-//  Powered by Zen-Cart (www.zen-cart.com)                  //
-//  Portions Copyright (c) 2005 The Zen-Cart Team           //
-//                                                          //
-//  Released under the GNU General Public License           //
-//  available at www.zen-cart.com/license/2_0.txt           //
-//  or see "license.txt" in the downloaded zip              //
-//////////////////////////////////////////////////////////////////////////
-//  DESCRIPTION: A collection of functions utilized throughout the  //
-//  Super Orders files. Handy for developers, normal users won't need //
-//  to even look in here. See each funtion for a brief description. //
-//////////////////////////////////////////////////////////////////////////
-// $Id: super_batch_forms.php v 2010-10-24 $
-*/
+  //////////////////////////////////////////////////////////////////////////
+  //  SUPER ORDERS v3.0                                                 //
+  //                                                                    //
+  //  Based on Super Order 2.0                                          //
+  //  By Frank Koehl - PM: BlindSide (original author)                  //
+  //                                                                    //
+  //  Super Orders Updated by:            //
+  //  ~ JT of GTICustom             //
+  //  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)  //
+  //  ~ Loose Chicken Software Development, david@loosechicken.com  //
+  //                                                          //
+  //  Powered by Zen-Cart (www.zen-cart.com)                  //
+  //  Portions Copyright (c) 2005 The Zen-Cart Team           //
+  //                                                          //
+  //  Released under the GNU General Public License           //
+  //  available at www.zen-cart.com/license/2_0.txt           //
+  //  or see "license.txt" in the downloaded zip              //
+  //////////////////////////////////////////////////////////////////////////
+  //  DESCRIPTION: A collection of functions utilized throughout the  //
+  //  Super Orders files. Handy for developers, normal users won't need //
+  //  to even look in here. See each funtion for a brief description. //
+  //////////////////////////////////////////////////////////////////////////
+  // $Id: super_batch_forms.php v 2010-10-24 $
+ */
 
 /////////////////
 // Function    : update_status
@@ -31,28 +32,24 @@
 // Return      : none
 // Description : Adds a new status entry to an order
 /////////////////
-function update_status($oID, $new_status, $notified = 0, $comments = '') {
+function update_status($oID, $new_status, $notified = 0, $comments = '')
+{
   global $db;
-   if($notified== -1){
-   $cust_notified = -1;
-   }
-  elseif ($notified==1)
-       $cust_notified = 1;
-  else
-       $cust_notified = 0;
-  $db->Execute("INSERT INTO " . TABLE_ORDERS_STATUS_HISTORY . "
-                (orders_id, orders_status_id, date_added, customer_notified, comments)
-                VALUES ('" . (int)$oID . "',
-                '" . $new_status . "',
-                now(),
-                '" . $cust_notified . "',
-                '" . zen_db_prepare_input($comments) . "')");
+  if ($notified == -1) {
+    $cust_notified = -1;
+  } elseif ($notified == 1) {
+    $cust_notified = 1;
+  } else {
+    $cust_notified = 0;
+  }
+  $db->Execute("INSERT INTO " . TABLE_ORDERS_STATUS_HISTORY . " (orders_id, orders_status_id, date_added, customer_notified, comments)
+                VALUES (" . (int)$oID . ", '" . $new_status . "', now(), '" . $cust_notified . "', '" . zen_db_prepare_input($comments) . "')");
 
-  $db->Execute("UPDATE " . TABLE_ORDERS . " SET
-                orders_status = '" . $new_status . "', last_modified = now()
-                WHERE orders_id = '" . (int)$oID . "'");
+  $db->Execute("UPDATE " . TABLE_ORDERS . "
+                SET orders_status = '" . $new_status . "',
+                    last_modified = now()
+                WHERE orders_id = " . (int)$oID);
 }
-
 
 /////////////////
 // Function    : email_latest_status
@@ -60,13 +57,15 @@ function update_status($oID, $new_status, $notified = 0, $comments = '') {
 // Return      : NONE
 // Description : Sends email to customer notifying of the latest status assigned to given order
 /////////////////
-function email_latest_status($oID) {
-  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'order_status_email.php');
+function email_latest_status($oID)
+{
   global $db;
+  require(DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'order_status_email.php');
+
   $orders_status_array = array();
-  $orders_status = $db->Execute("select orders_status_id, orders_status_name
-                                 from " . TABLE_ORDERS_STATUS . "
-                                 where language_id = '" . (int)$_SESSION['languages_id'] . "'");
+  $orders_status = $db->Execute("SELECT orders_status_id, orders_status_name
+                                 FROM " . TABLE_ORDERS_STATUS . "
+                                 WHERE language_id = " . (int)$_SESSION['languages_id']);
   while (!$orders_status->EOF) {
     $orders_status_array[$orders_status->fields['orders_status_id']] = $orders_status->fields['orders_status_name'];
     $orders_status->MoveNext();
@@ -88,21 +87,21 @@ function email_latest_status($oID) {
 
   // send email to customer
   $message = STORE_NAME . " " . EMAIL_TEXT_ORDER_NUMBER . ' ' . $oID . "\n\n" .
-  EMAIL_TEXT_INVOICE_URL . ' ' . zen_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $oID, 'SSL') . "\n\n" .
-  EMAIL_TEXT_DATE_ORDERED . ' ' . zen_date_long($customer_info->fields['date_purchased']) . "\n\n" .
-  strip_tags($notify_comments) .
-  EMAIL_TEXT_STATUS_UPDATED . sprintf(EMAIL_TEXT_STATUS_LABEL, $orders_status_array[$status] ) .
-  EMAIL_TEXT_STATUS_PLEASE_REPLY;
+      EMAIL_TEXT_INVOICE_URL . ' ' . zen_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $oID, 'SSL') . "\n\n" .
+      EMAIL_TEXT_DATE_ORDERED . ' ' . zen_date_long($customer_info->fields['date_purchased']) . "\n\n" .
+      strip_tags($notify_comments) .
+      EMAIL_TEXT_STATUS_UPDATED . sprintf(EMAIL_TEXT_STATUS_LABEL, $orders_status_array[$status]) .
+      EMAIL_TEXT_STATUS_PLEASE_REPLY;
 
-  $html_msg['EMAIL_CUSTOMERS_NAME']    = $customer_info->fields['customers_name'];
+  $html_msg['EMAIL_CUSTOMERS_NAME'] = $customer_info->fields['customers_name'];
   $html_msg['EMAIL_TEXT_ORDER_NUMBER'] = EMAIL_TEXT_ORDER_NUMBER . ' ' . $oID;
-  $html_msg['EMAIL_TEXT_INVOICE_URL']  = '<a href="' . zen_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $oID, 'SSL') .'">'.str_replace(':','',EMAIL_TEXT_INVOICE_URL).'</a>';
+  $html_msg['EMAIL_TEXT_INVOICE_URL'] = '<a href="' . zen_catalog_href_link(FILENAME_CATALOG_ACCOUNT_HISTORY_INFO, 'order_id=' . $oID, 'SSL') . '">' . str_replace(':', '', EMAIL_TEXT_INVOICE_URL) . '</a>';
   $html_msg['EMAIL_TEXT_DATE_ORDERED'] = EMAIL_TEXT_DATE_ORDERED . ' ' . zen_date_long($customer_info->fields['date_purchased']);
   $html_msg['EMAIL_TEXT_STATUS_COMMENTS'] = nl2br($notify_comments);
-  $html_msg['EMAIL_TEXT_STATUS_UPDATED'] = str_replace('\n','', EMAIL_TEXT_STATUS_UPDATED);
-  $html_msg['EMAIL_TEXT_STATUS_LABEL'] = str_replace('\n','', sprintf(EMAIL_TEXT_STATUS_LABEL, $orders_status_array[$status] ));
+  $html_msg['EMAIL_TEXT_STATUS_UPDATED'] = str_replace('\n', '', EMAIL_TEXT_STATUS_UPDATED);
+  $html_msg['EMAIL_TEXT_STATUS_LABEL'] = str_replace('\n', '', sprintf(EMAIL_TEXT_STATUS_LABEL, $orders_status_array[$status]));
   $html_msg['EMAIL_TEXT_NEW_STATUS'] = $orders_status_array[$status];
-  $html_msg['EMAIL_TEXT_STATUS_PLEASE_REPLY'] = str_replace('\n','', EMAIL_TEXT_STATUS_PLEASE_REPLY);
+  $html_msg['EMAIL_TEXT_STATUS_PLEASE_REPLY'] = str_replace('\n', '', EMAIL_TEXT_STATUS_PLEASE_REPLY);
 
   $html_msg['EMAIL_PAYPAL_TRANSID'] = '';
   // End Zen Cart v1.5 Modified Core Code
@@ -110,14 +109,14 @@ function email_latest_status($oID) {
   zen_mail($customer_info->fields['customers_name'], $customer_info->fields['customers_email_address'], EMAIL_TEXT_SUBJECT . ' #' . $oID, $message, STORE_NAME, EMAIL_FROM, $html_msg, 'order_status');
 
 
-            // PayPal Trans ID, if any
-            $sql = "select txn_id, parent_txn_id from " . TABLE_PAYPAL . " where order_id = :orderID order by last_modified DESC, date_added DESC, parent_txn_id DESC, paypal_ipn_id DESC ";
-            $sql = $db->bindVars($sql, ':orderID', $oID, 'integer');
-            $result = $db->Execute($sql);
-            if ($result->RecordCount() > 0) {
-              $message .= "\n\n" . ' PayPal Trans ID: ' . $result->fields['txn_id'];
-              $html_msg['EMAIL_PAYPAL_TRANSID'] = $result->fields['txn_id'];
-            }
+  // PayPal Trans ID, if any
+  $sql = "select txn_id, parent_txn_id from " . TABLE_PAYPAL . " where order_id = :orderID order by last_modified DESC, date_added DESC, parent_txn_id DESC, paypal_ipn_id DESC ";
+  $sql = $db->bindVars($sql, ':orderID', $oID, 'integer');
+  $result = $db->Execute($sql);
+  if ($result->RecordCount() > 0) {
+    $message .= "\n\n" . ' PayPal Trans ID: ' . $result->fields['txn_id'];
+    $html_msg['EMAIL_PAYPAL_TRANSID'] = $result->fields['txn_id'];
+  }
   // End Zen Cart v1.5 Modified Core Code
   // send extra emails
   if (SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO_STATUS == '1' and SEND_EXTRA_ORDERS_STATUS_ADMIN_EMAILS_TO != '') {
@@ -125,9 +124,7 @@ function email_latest_status($oID) {
   }
 
   //_TODO accept an optional array of additional recipients
-
 }
-
 
 /////////////////
 // Function    : zen_get_payment_type_name
@@ -136,10 +133,12 @@ function email_latest_status($oID) {
 // Description : Translate a payment type code into the full name (eg. "MC" -> "MasterCard")
 //               This function mimics the full_type() function of the super_order class
 /////////////////
-function zen_get_payment_type_name($payment_type_code, $language_id = '') {
+function zen_get_payment_type_name($payment_type_code, $language_id = '')
+{
   global $db;
 
-  if (!$language_id) $language_id = $_SESSION['languages_id'];
+  if (!$language_id)
+    $language_id = $_SESSION['languages_id'];
   $payment_type = $db->Execute("select payment_type_full from " . TABLE_SO_PAYMENT_TYPES . "
                                 where payment_type_code like '" . $payment_type_code . "'
                                 and language_id = '" . (int)$language_id . "' limit 1");
@@ -147,14 +146,14 @@ function zen_get_payment_type_name($payment_type_code, $language_id = '') {
   return $payment_type->fields['payment_type_full'];
 }
 
-
 /////////////////
 // Function    : zen_get_payment_types
 // Arguments   : none
 // Return      : array or payment types
 // Description : Builds array of payment types, following the format for a Zen dropdown
 /////////////////
-function zen_get_payment_types() {
+function zen_get_payment_types()
+{
   global $db;
 
   $payment_type_array = array();
@@ -164,13 +163,12 @@ function zen_get_payment_types() {
 
   while (!$payment_type->EOF) {
     $payment_type_array[] = array('id' => $payment_type->fields['payment_type_code'],
-                                  'text' => $payment_type->fields['payment_type_full']);
+      'text' => $payment_type->fields['payment_type_full']);
     $payment_type->MoveNext();
   }
 
   return $payment_type_array;
 }
-
 
 /////////////////
 // Function    : so_close_status
@@ -179,7 +177,8 @@ function zen_get_payment_types() {
 // Description : builds 2-value array: cancel/complete status and the timestamp
 //               Used when checking order status without using super_order class
 /////////////////
-function so_close_status($oID) {
+function so_close_status($oID)
+{
   global $db;
   $oID = (int)$oID;
   $status = $db->Execute("SELECT date_cancelled, date_completed FROM " . TABLE_ORDERS . "
@@ -187,18 +186,15 @@ function so_close_status($oID) {
                           AND (date_cancelled IS NOT NULL OR date_completed IS NOT NULL)");
   if ($status->RecordCount() == 0) {
     return false;
-  }
-  else {
+  } else {
     $close_status = array();
     if (zen_not_null($status->fields['date_cancelled'])) {
       $close_status['type'] = 'cancelled';
       $close_status['date'] = $status->fields['date_cancelled'];
-    }
-    elseif (zen_not_null($status->fields['date_completed'])) {
+    } elseif (zen_not_null($status->fields['date_completed'])) {
       $close_status['type'] = 'completed';
       $close_status['date'] = $status->fields['date_completed'];
-    }
-    else {
+    } else {
       $close_status['type'] = false;
       $close_status['date'] = false;
     }
@@ -207,14 +203,14 @@ function so_close_status($oID) {
   }
 }
 
-
 /////////////////
 // Function    : all_products_array
 // Arguments   : none
 // Return      : products array
 // Description : builds an array of all products (all languages, enabled or disabled) for a dropdown for searches
 /////////////////
-function all_products_array($first_option = false, $show_price = false, $show_model = false, $show_id = false) {
+function all_products_array($first_option = false, $show_price = false, $show_model = false, $show_id = false)
+{
   global $db, $currencies;
   if (!isset($currencies)) {
     require(DIR_WS_CLASSES . 'currencies.php');
@@ -223,21 +219,20 @@ function all_products_array($first_option = false, $show_price = false, $show_mo
   $products_array = array();
   if ($first_option) {
     $products_array[] = array('id' => '',
-                              'text' => $first_option);
+      'text' => $first_option);
   }
   $products = $db->Execute("select products_id, products_name from " . TABLE_PRODUCTS_DESCRIPTION . " order by products_name asc");
   while (!$products->EOF) {
     $display_price = zen_get_products_base_price($products->fields['products_id']);
     $products_array[] = array('id' => $products->fields['products_id'],
-                              'text' => $products->fields['products_name'] .
-                                        ($show_price ? ' (' . $currencies->format($display_price) . ')' : '') .
-                                        ($show_model ? ' [' . $products->fields['products_model'] . ']' : '') .
-                                        ($show_id ? ' [' . $products->fields['products_id'] . ']' : '') );
+      'text' => $products->fields['products_name'] .
+      ($show_price ? ' (' . $currencies->format($display_price) . ')' : '') .
+      ($show_model ? ' [' . $products->fields['products_model'] . ']' : '') .
+      ($show_id ? ' [' . $products->fields['products_id'] . ']' : ''));
     $products->MoveNext();
   }
   return $products_array;
 }
-
 
 /////////////////
 // Function    : all_payments_array
@@ -245,24 +240,24 @@ function all_products_array($first_option = false, $show_price = false, $show_mo
 // Return      : payments array
 // Description : builds an array of each payment method attached to an order
 /////////////////
-function all_payments_array($first_option = false, $show_code = false) {
+function all_payments_array($first_option = false, $show_code = false)
+{
   global $db;
   $payments_array = array();
   if ($first_option) {
     $payments_array[] = array('id' => '',
-                              'text' => $first_option);
+      'text' => $first_option);
   }
 
   $payments = $db->Execute("select distinct payment_method, payment_module_code from " . TABLE_ORDERS);
   while (!$payments->EOF) {
     $payments_array[] = array('id' => $payments->fields['payment_module_code'],
-                              'text' => $payments->fields['payment_method'] .
-                                        ($show_code ? ' [' . $payments->fields['payment_module_code'] . ']' : '') );
+      'text' => $payments->fields['payment_method'] .
+      ($show_code ? ' [' . $payments->fields['payment_module_code'] . ']' : ''));
     $payments->MoveNext();
   }
   return $payments_array;
 }
-
 
 /////////////////
 // Function    : all_customers_array
@@ -271,12 +266,13 @@ function all_payments_array($first_option = false, $show_code = false) {
 // Description : builds an array of *all* customers for a dropdown menu.
 //               WARNING: Should not be used for e-mails, as it ignores newsletter preferences!
 /////////////////
-function all_customers_array($first_option = false, $show_email = false, $show_id = false) {
+function all_customers_array($first_option = false, $show_email = false, $show_id = false)
+{
   global $db;
   $customers_array = array();
   if ($first_option) {
     $customers_array[] = array('id' => '',
-                               'text' => $first_option);
+      'text' => $first_option);
   }
   $customers_sql = "select distinct customers_id, customers_email_address,
                     customers_firstname, customers_lastname
@@ -285,14 +281,13 @@ function all_customers_array($first_option = false, $show_email = false, $show_i
   $customers = $db->Execute($customers_sql);
   while (!$customers->EOF) {
     $customers_array[] = array('id' => $customers->fields['customers_id'],
-                               'text' => $customers->fields['customers_lastname'] . ', ' . $customers->fields['customers_firstname'] .
-                               ($show_email ? ' (' . $customers->fields['customers_email_address'] . ')' : '') .
-                               ($show_id ? ' [' . $customers->fields['customers_id'] . ']' : '') );
+      'text' => $customers->fields['customers_lastname'] . ', ' . $customers->fields['customers_firstname'] .
+      ($show_email ? ' (' . $customers->fields['customers_email_address'] . ')' : '') .
+      ($show_id ? ' [' . $customers->fields['customers_id'] . ']' : ''));
     $customers->MoveNext();
   }
   return $customers_array;
 }
-
 
 /////////////////
 // Function    : zen_datetime_long
@@ -300,8 +295,10 @@ function all_customers_array($first_option = false, $show_email = false, $show_i
 // Return      : formatted date & time
 // Description : Outputs a fully expressed date string
 /////////////////
-function zen_datetime_long($raw_date = 'now') {
-  if ( ($raw_date == '0001-01-01 00:00:00') || ($raw_date == '') ) return false;
+function zen_datetime_long($raw_date = 'now')
+{
+  if (($raw_date == '0001-01-01 00:00:00') || ($raw_date == ''))
+    return false;
   elseif ($raw_date == 'now') {
     $raw_date = date('Y-m-d H:i:s');
   }
@@ -316,14 +313,14 @@ function zen_datetime_long($raw_date = 'now') {
   return strftime('%b %d, %Y %r', mktime($hour, $minute, $second, $month, $day, $year));
 }
 
-
 /////////////////
 // Function    : zen_db_delete
 // Arguments   : Zen DB table, SQL "where" parameters
 // Return      : none
 // Description : Deletes a row or rows from the specified $table based on the $parameters
 /////////////////
-function zen_db_delete($table, $parameters) {
+function zen_db_delete($table, $parameters)
+{
   global $db;
 
   $db->Execute('delete from ' . $table . ' where ' . $parameters);
@@ -331,14 +328,14 @@ function zen_db_delete($table, $parameters) {
   return;
 }
 
-
 /////////////////
 // Function    : recalc_total
 // Arguments   : target order
 // Return      : none
 // Description : Reprocesses totals stored in the orders_total table for the given order.
 /////////////////
-function recalc_total($target_oID) {
+function recalc_total($target_oID)
+{
   global $db;
   global $currencies;
 
@@ -392,8 +389,7 @@ function recalc_total($target_oID) {
     if ($all_totals->fields['class'] != 'ot_total') {
       if (is_discount_module($all_totals->fields['class'])) {
         $ot_total -= $all_totals->fields['value'];
-      }
-      else {
+      } else {
         $ot_total += $all_totals->fields['value'];
       }
     }
@@ -416,36 +412,46 @@ function recalc_total($target_oID) {
   //return $ot_total;
 }
 
-
 /////////////////
 // Function    : current_countries_array
 // Arguments   : first_option
 // Return      : countries array
 // Description : builds an array of all countries (used in at least one order) for a dropdown menu.
 /////////////////
-    function current_countries_array($first_option = false) {
-        global $db;
+function current_countries_array($first_option = false)
+{
+  global $db;
 
-        $countries_array = array();
-        if ($first_option) {
-            $countries_array[] = array('id' => '', 'text' => $first_option);
-        }
-        $countries_array[] = array('id' => get_store_country_name(), 'text' => get_store_country_name());
-        $countries_array[] = array('id' => 'International', 'text' => 'International');
+  $countries_array = array();
+  if ($first_option) {
+    $countries_array[] = array(
+      'id' => '',
+      'text' => $first_option
+    );
+  }
+  $countries_array[] = array(
+    'id' => get_store_country_name(),
+    'text' => get_store_country_name()
+  );
+  $countries_array[] = array(
+    'id' => 'International',
+    'text' => 'International'
+  );
 
 
-        $countries = $db->Execute("SELECT DISTINCT customers_country
+  $countries = $db->Execute("SELECT DISTINCT customers_country
             FROM " . TABLE_ORDERS . "
             WHERE customers_country <> '" . get_store_country_name() . "'
             ORDER BY customers_country");
-        while (!$countries->EOF) {
-            $countries_array[] = array('id' => $countries->fields['customers_country'],
-                'text' => $countries->fields['customers_country']);
-            $countries->MoveNext();
-        }
-        return $countries_array;
-    }
-
+  while (!$countries->EOF) {
+    $countries_array[] = array(
+      'id' => $countries->fields['customers_country'],
+      'text' => $countries->fields['customers_country']
+    );
+    $countries->MoveNext();
+  }
+  return $countries_array;
+}
 
 /////////////////
 // Function    : get_store_country_name
@@ -453,45 +459,45 @@ function recalc_total($target_oID) {
 // Return      : store country's name
 // Description : gets store country's name from id
 /////////////////
-    function get_store_country_name(){
-        $lcsd_store_country_name = '';
-        if (defined(LCSD_STORE_COUNTRY_NAME)){
-            $lcsd_store_country_name = LCSD_STORE_COUNTRY_NAME;
-        }
-        else{
-            global $db;
-            $lcsd_db_country = $db->Execute("SELECT countries_name
-                FROM " . TABLE_COUNTRIES . "
-                WHERE countries_id = '" . STORE_COUNTRY . "'");
-            if (!$lcsd_db_country->EOF) {
-                $lcsd_store_country_name = $lcsd_db_country->fields['countries_name'];
-                define(LCSD_STORE_COUNTRY_NAME, $lcsd_store_country_name);
-            }
-        }
-        return $lcsd_store_country_name;
+function get_store_country_name()
+{
+  $lcsd_store_country_name = '';
+  if (defined('LCSD_STORE_COUNTRY_NAME')) {
+    $lcsd_store_country_name = LCSD_STORE_COUNTRY_NAME;
+  } else {
+    global $db;
+    $lcsd_db_country = $db->Execute("SELECT countries_name
+                                     FROM " . TABLE_COUNTRIES . "
+                                     WHERE countries_id = " . STORE_COUNTRY);
+    if (!$lcsd_db_country->EOF) {
+      $lcsd_store_country_name = $lcsd_db_country->fields['countries_name'];
+      define('LCSD_STORE_COUNTRY_NAME', $lcsd_store_country_name);
     }
+  }
+  return $lcsd_store_country_name;
+}
 
- function is_discount_module($ot_class) {
-     if ($ot_class == "ot_gv" ||
-                $ot_class == "ot_coupon" ||
-                $ot_class == "ot_group_pricing" ||
-                $ot_class == "ot_quantity_discount" ||
-                $ot_class == "ot_better_together" ||
-                $ot_class == "ot_big_chooser" ||
-                $ot_class == "ot_bigspender_discount" ||
-                $ot_class == "ot_combination_discounts" ||
-                $ot_class == "ot_frequency_discount" ||
-                $ot_class == "ot_quantity_discount" ||
-                $ot_class == "ot_newsletter_discount" ||
-                $ot_class == "ot_military_discount" ||
-                $ot_class == "ot_table_discounts" ||
-                $ot_class == "ot_case_discounts" ||
-                $ot_class == "ot_freegift_chooser" ||
-                $ot_class == "ot_manufacturer_discount" ||
-                $ot_class == "ot_bogo_discount" ||
-                $ot_class == 'ot_sc') {
-            return true;
-       }
-       return false;
- }
-?>
+function is_discount_module($ot_class)
+{
+  if ($ot_class == "ot_gv" ||
+      $ot_class == "ot_coupon" ||
+      $ot_class == "ot_group_pricing" ||
+      $ot_class == "ot_quantity_discount" ||
+      $ot_class == "ot_better_together" ||
+      $ot_class == "ot_big_chooser" ||
+      $ot_class == "ot_bigspender_discount" ||
+      $ot_class == "ot_combination_discounts" ||
+      $ot_class == "ot_frequency_discount" ||
+      $ot_class == "ot_quantity_discount" ||
+      $ot_class == "ot_newsletter_discount" ||
+      $ot_class == "ot_military_discount" ||
+      $ot_class == "ot_table_discounts" ||
+      $ot_class == "ot_case_discounts" ||
+      $ot_class == "ot_freegift_chooser" ||
+      $ot_class == "ot_manufacturer_discount" ||
+      $ot_class == "ot_bogo_discount" ||
+      $ot_class == 'ot_sc') {
+    return true;
+  }
+  return false;
+}
