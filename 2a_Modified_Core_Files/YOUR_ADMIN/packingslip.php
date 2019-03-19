@@ -354,7 +354,7 @@ endif;
         echo '          <tr>' . "\n" .
              '            <td class="smallText" valign="top" align="left">' . zen_datetime_short($orders_history->fields['date_added']) . '</td>' . "\n";
         echo '            <td class="smallText" valign="top" align="left">' . $orders_status_array[$orders_history->fields['orders_status_id']] . '</td>' . "\n";
-        echo '            <td class="smallText" valign="top" align="left">' . ($orders_history->fields['comments'] == '' ? TEXT_NONE : nl2br(zen_db_output($orders_history->fields['comments']))) . '&nbsp;</td>' . "\n" .
+        echo '            <td class="smallText" valign="top" align="left">' . ($orders_history->fields['comments'] == '' ? TEXT_NONE : nl2br(zen_db_output(stripslashes($orders_history->fields['comments'])))) . '&nbsp;</td>' . "\n" .
              '          </tr>' . "\n";
         $orders_history->MoveNext();
 
