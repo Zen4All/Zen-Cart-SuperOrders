@@ -208,7 +208,6 @@ class super_order {
   }
 
 // END function start
-
   // input the current value of $this->balance_due into balance_due
   // field in the orders table
   function new_balance()
@@ -335,17 +334,21 @@ class super_order {
 
     // include a user-defined "empty" entry if requested
     if ($include_blank) {
-      $payment_array[] = array('id' => false,
-        'text' => $include_blank);
+      $payment_array[] = array(
+        'id' => false,
+        'text' => $include_blank
+      );
     }
 
-    $payment_query = $db->Execute("select payment_id, payment_number from " . TABLE_SO_PAYMENTS . " where orders_id = '" . $this->oID . "'");
+    $payment_query = $db->Execute("SELECT payment_id, payment_number
+                                   FROM " . TABLE_SO_PAYMENTS . "
+                                   WHERE orders_id = " . (int)$this->oID);
 
-    while (!$payment_query->EOF) {
+    foreach ($payment_query as $payment) {
       $payment_array[] = array(
-        'id' => $payment_query->fields['payment_id'],
-        'text' => $payment_query->fields['payment_number']);
-      $payment_query->MoveNext();
+        'id' => $payment['payment_id'],
+        'text' => $payment['payment_number']
+      );
     }
 
     return $payment_array;
@@ -356,9 +359,8 @@ class super_order {
   // Valid $payment_mode entries are: 'payment', 'purchase_order', 'refund'
   function button_add($payment_mode)
   {
-    echo '&nbsp;<a href="javascript:popupWindow(\'' .
-    zen_href_link(FILENAME_SUPER_PAYMENTS, 'oID=' . $this->oID . '&payment_mode=' . $payment_mode . '&action=add', 'NONSSL') . '\', \'scrollbars=yes,resizable=yes,width=400,height=300,screenX=150,screenY=100,top=100,left=150\')">' .
-    zen_image_button('btn_' . $payment_mode . '.gif', sprintf(ALT_TEXT_ADD, str_replace('_', ' ', $payment_mode))) . '</a>';
+    $button = '&nbsp;<a href="javascript:popupWindow(\'' . zen_href_link(FILENAME_SUPER_PAYMENTS, 'oID=' . $this->oID . '&payment_mode=' . $payment_mode . '&action=add') . '\', \'scrollbars=yes,resizable=yes,width=400,height=300,screenX=150,screenY=100,top=100,left=150\')" class="btn btn-primary btn-sm" role="button">' . ALT_TEXT_ADD . ' ' . str_replace('_', ' ', $payment_mode) . '</a>';
+    return $button;
   }
 
   // Displays a button that will open a popup window to update an existing payment entry
@@ -366,9 +368,8 @@ class super_order {
   // Valid $payment_mode entries are: 'payment', 'purchase_order', 'refund'
   function button_update($payment_mode, $index)
   {
-    echo '&nbsp;<a href="javascript:popupWindow(\'' .
-    zen_href_link(FILENAME_SUPER_PAYMENTS, 'oID=' . $this->oID . '&payment_mode=' . $payment_mode . '&index=' . $index . '&action=my_update', 'NONSSL') . '\', \'scrollbars=yes,resizable=yes,width=400,height=300,screenX=150,screenY=100,top=100,left=150\')">' .
-    zen_image_button('btn_modify.gif', sprintf(ALT_TEXT_UPDATE, str_replace('_', ' ', $payment_mode))) . '</a>';
+    $button = '&nbsp;<a href="javascript:popupWindow(\'' . zen_href_link(FILENAME_SUPER_PAYMENTS, 'oID=' . $this->oID . '&payment_mode=' . $payment_mode . '&index=' . $index . '&action=my_update', 'NONSSL') . '\', \'scrollbars=yes,resizable=yes,width=400,height=300,screenX=150,screenY=100,top=100,left=150\')" class="btn btn-primary btn-sm" role="button">' . ALT_TEXT_UPDATE . ' ' . str_replace('_', ' ', $payment_mode) . '</a>';
+    return $button;
   }
 
   // Displays a button that will open a popup window to confirm deleting a payment entry
@@ -376,9 +377,8 @@ class super_order {
   // Valid $payment_mode entries are: 'payment', 'purchase_order', 'refund'
   function button_delete($payment_mode, $index)
   {
-    echo '&nbsp;<a href="javascript:popupWindow(\'' .
-    zen_href_link(FILENAME_SUPER_PAYMENTS, 'oID=' . $this->oID . '&payment_mode=' . $payment_mode . '&index=' . $index . '&action=delete', 'NONSSL') . '\', \'scrollbars=yes,resizable=yes,width=400,height=300,screenX=150,screenY=100,top=100,left=150\')">' .
-    zen_image_button('btn_remove.gif', sprintf(ALT_TEXT_DELETE, str_replace('_', ' ', $payment_mode))) . '</a>';
+    $button = '&nbsp;<a href="javascript:popupWindow(\'' . zen_href_link(FILENAME_SUPER_PAYMENTS, 'oID=' . $this->oID . '&payment_mode=' . $payment_mode . '&index=' . $index . '&action=delete', 'NONSSL') . '\', \'scrollbars=yes,resizable=yes,width=400,height=300,screenX=150,screenY=100,top=100,left=150\')" class="btn btn-warning btn-sm" role="button">' . ALT_TEXT_DELETE . ' ' . str_replace('_', ' ', $payment_mode) . '</a>';
+    return $button;
   }
 
   function add_payment($payment_number, $payment_name, $payment_amount, $payment_type, $purchase_order_id = false)
@@ -392,7 +392,8 @@ class super_order {
       'payment_amount' => zen_db_prepare_input($payment_amount),
       'payment_type' => zen_db_prepare_input($payment_type),
       'date_posted' => 'now()',
-      'last_modified' => 'now()');
+      'last_modified' => 'now()'
+    );
 
     // link the payment to its P.O. if applicable
     if ($purchase_order_id) {
@@ -435,10 +436,12 @@ class super_order {
   function add_purchase_order($po_number)
   {
 
-    $add_po = array('po_number' => zen_db_prepare_input($po_number),
+    $add_po = array(
+      'po_number' => zen_db_prepare_input($po_number),
       'orders_id' => $this->oID,
       'date_posted' => 'now()',
-      'last_modified' => 'now()');
+      'last_modified' => 'now()'
+    );
 
     zen_db_perform(TABLE_SO_PURCHASE_ORDERS, $add_po);
 
