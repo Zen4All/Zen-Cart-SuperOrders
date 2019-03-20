@@ -40,37 +40,11 @@
 .paymentRow{
     background-color:#9f9;
 }
-.paymentContent{
-    color:#000;
-    font-size:9px;
-}
-.paymentRowOver{
-    background-color:#fffede;
-    border:1px solid #000;
-    cursor:pointer;
-}
 .purchaseOrderRow{
     background-color:#99f;
 }
-.purchaseOrderContent{
-    color:#000;
-    font-size:9px;
-}
-.purchaseOrderRowOver{
-    background-color:#fffede;
-    cursor:pointer;
-}
 .refundRow{
     background-color:#ffb3b5;
-}
-.refundContent{
-    color:#000;
-    font-size:9px;
-}
-.refundRowOver{
-    background-color:#fffede;
-    border:1px solid #000;
-    cursor:pointer;
 }
 .warningBox{
     background-color:#f99;
