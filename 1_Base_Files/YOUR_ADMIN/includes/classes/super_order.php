@@ -70,9 +70,11 @@ class super_order {
     $this->verify_ccpay_records();
 
     // build an array to translate the payment_type codes stored in so_payments
-    $payment_keys = $db->Execute("SELECT *
-                                  FROM " . TABLE_SO_PAYMENT_TYPES . "
-                                  WHERE language_id = " . (int)$_SESSION['languages_id'] . "
+    $payment_keys = $db->Execute("SELECT pt.payment_type_id, pt.payment_type_code,
+                                         ptd.payment_type_full
+                                  FROM " . TABLE_SO_PAYMENT_TYPES . " pt
+                                  LEFT JOIN " . TABLE_SO_PAYMENT_TYPES_DESCRIPTION . " ptd ON ptd.payment_type_id = pt.payment_type_id
+                                    AND ptd.language_id = " . (int)$_SESSION['languages_id'] . "
                                   ORDER BY payment_type_full ASC");
     if ($payment_keys->RecordCount() > 0) {
       foreach ($payment_keys as $payment_key) {
@@ -313,9 +315,11 @@ class super_order {
     if ($cc_data->RecordCount()) {
       // convert CC type to match shorthand type in SO payemnt system
       // collect payment types from the DB
-      $payment_data = $db->Execute("SELECT *
-                                    FROM " . TABLE_SO_PAYMENT_TYPES . "
-                                    WHERE language_id = " . (int)$_SESSION['languages_id']);
+      $payment_data = $db->Execute("SELECT pt.payment_type_id, pt.payment_type_code,
+                                           ptd.payment_type_full
+                                    FROM " . TABLE_SO_PAYMENT_TYPES . " pt
+                                    LEFT JOIN " . TABLE_SO_PAYMENT_TYPES_DESCRIPTION . " ptd ON ptd.payment_type_id = pt.payment_type_id
+                                      AND ptd.language_id = " . (int)$_SESSION['languages_id']);
       $cc_type_key = array();
       foreach ($payment_data as $item) {
         $cc_type_key[$item['payment_type_full']] = $item['payment_type_code'];

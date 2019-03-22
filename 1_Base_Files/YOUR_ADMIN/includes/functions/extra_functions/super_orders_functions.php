@@ -1,31 +1,30 @@
 <?php
 
-/*
-  //////////////////////////////////////////////////////////////////////////
-  //  SUPER ORDERS v3.0                                                 //
-  //                                                                    //
-  //  Based on Super Order 2.0                                          //
-  //  By Frank Koehl - PM: BlindSide (original author)                  //
-  //                                                                    //
-  //  Super Orders Updated by:            //
-  //  ~ JT of GTICustom             //
-  //  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)  //
-  //  ~ Loose Chicken Software Development, david@loosechicken.com  //
-  //                                                          //
-  //  Powered by Zen-Cart (www.zen-cart.com)                  //
-  //  Portions Copyright (c) 2005 The Zen-Cart Team           //
-  //                                                          //
-  //  Released under the GNU General Public License           //
-  //  available at www.zen-cart.com/license/2_0.txt           //
-  //  or see "license.txt" in the downloaded zip              //
-  //////////////////////////////////////////////////////////////////////////
-  //  DESCRIPTION: A collection of functions utilized throughout the  //
-  //  Super Orders files. Handy for developers, normal users won't need //
-  //  to even look in here. See each funtion for a brief description. //
-  //////////////////////////////////////////////////////////////////////////
-  // $Id: super_batch_forms.php v 2010-10-24 $
+/**
+ *
+ *  SUPER ORDERS v3.0
+ *
+ *  Based on Super Order 2.0
+ *  By Frank Koehl - PM: BlindSide (original author)
+ *
+ *  Super Orders Updated by:
+ *  ~ JT of GTICustom
+ *  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)
+ *  ~ Loose Chicken Software Development, david@loosechicken.com
+ *
+ *  Powered by Zen-Cart (www.zen-cart.com)
+ *  Portions Copyright (c) 2005 The Zen-Cart Team
+ *
+ *  Released under the GNU General Public License
+ *  available at www.zen-cart.com/license/2_0.txt
+ *  or see "license.txt" in the downloaded zip
+ *
+ *  DESCRIPTION: A collection of functions utilized throughout the
+ *  Super Orders files. Handy for developers, normal users won't need
+ *  to even look in here. See each funtion for a brief description.
+ *
+ * $Id: super_batch_forms.php v 2010-10-24 $
  */
-
 /////////////////
 // Function    : update_status
 // Arguments   : oID, new_status, notified(optional), comments(optional)
@@ -110,7 +109,10 @@ function email_latest_status($oID)
 
 
   // PayPal Trans ID, if any
-  $sql = "select txn_id, parent_txn_id from " . TABLE_PAYPAL . " where order_id = :orderID order by last_modified DESC, date_added DESC, parent_txn_id DESC, paypal_ipn_id DESC ";
+  $sql = "SELECT txn_id, parent_txn_id
+          FROM " . TABLE_PAYPAL . "
+          WHERE order_id = :orderID
+          ORDER BY last_modified DESC, date_added DESC, parent_txn_id DESC, paypal_ipn_id DESC ";
   $sql = $db->bindVars($sql, ':orderID', $oID, 'integer');
   $result = $db->Execute($sql);
   if ($result->RecordCount() > 0) {
@@ -137,11 +139,15 @@ function zen_get_payment_type_name($payment_type_code, $language_id = '')
 {
   global $db;
 
-  if (!$language_id)
+  if (empty($language_id)) {
     $language_id = $_SESSION['languages_id'];
-  $payment_type = $db->Execute("select payment_type_full from " . TABLE_SO_PAYMENT_TYPES . "
-                                where payment_type_code like '" . $payment_type_code . "'
-                                and language_id = '" . (int)$language_id . "' limit 1");
+  }
+  $payment_type = $db->Execute("SELECT ptd.payment_type_full
+                                FROM " . TABLE_SO_PAYMENT_TYPES . " pt
+                                LEFT JOIN " . TABLE_SO_PAYMENT_TYPES_DESCRIPTION . " ptd ON ptd.payment_type_id = pt.payment_type_id
+                                  AND ptd.language_id = " . (int)$language_id . "
+                                WHERE pt.payment_type_code LIKE '" . $payment_type_code . "'
+                                LIMIT 1");
 
   return $payment_type->fields['payment_type_full'];
 }
@@ -157,14 +163,17 @@ function zen_get_payment_types()
   global $db;
 
   $payment_type_array = array();
-  $payment_type = $db->Execute("select * from " . TABLE_SO_PAYMENT_TYPES . "
-                                where language_id = '" . $_SESSION['languages_id'] . "'
-                                order by payment_type_full desc");
+  $payment_types = $db->Execute("SELECT pt.payment_type_code, ptd.payment_type_full
+                                FROM " . TABLE_SO_PAYMENT_TYPES . " pt
+                                LEFT JOIN " . TABLE_SO_PAYMENT_TYPES_DESCRIPTION . " ptd ON ptd.payment_type_id = pt.payment_type_id
+                                  AND ptd.language_id = '" . $_SESSION['languages_id'] . "'
+                                ORDER BY ptd.payment_type_full DESC");
 
-  while (!$payment_type->EOF) {
-    $payment_type_array[] = array('id' => $payment_type->fields['payment_type_code'],
-      'text' => $payment_type->fields['payment_type_full']);
-    $payment_type->MoveNext();
+  foreach ($payment_types as $payment_type) {
+    $payment_type_array[] = array(
+      'id' => $payment_type['payment_type_code'],
+      'text' => $payment_type['payment_type_full']
+    );
   }
 
   return $payment_type_array;
@@ -180,9 +189,9 @@ function zen_get_payment_types()
 function so_close_status($oID)
 {
   global $db;
-  $oID = (int)$oID;
-  $status = $db->Execute("SELECT date_cancelled, date_completed FROM " . TABLE_ORDERS . "
-                          WHERE orders_id = " . $oID . "
+  $status = $db->Execute("SELECT date_cancelled, date_completed
+                          FROM " . TABLE_ORDERS . "
+                          WHERE orders_id = " . (int)$oID . "
                           AND (date_cancelled IS NOT NULL OR date_completed IS NOT NULL)");
   if ($status->RecordCount() == 0) {
     return false;
@@ -218,18 +227,23 @@ function all_products_array($first_option = false, $show_price = false, $show_mo
   }
   $products_array = array();
   if ($first_option) {
-    $products_array[] = array('id' => '',
-      'text' => $first_option);
+    $products_array[] = array(
+      'id' => '',
+      'text' => $first_option
+    );
   }
-  $products = $db->Execute("select products_id, products_name from " . TABLE_PRODUCTS_DESCRIPTION . " order by products_name asc");
-  while (!$products->EOF) {
-    $display_price = zen_get_products_base_price($products->fields['products_id']);
-    $products_array[] = array('id' => $products->fields['products_id'],
-      'text' => $products->fields['products_name'] .
+  $products = $db->Execute("SELECT products_id, products_name
+                            FROM " . TABLE_PRODUCTS_DESCRIPTION . "
+                            ORDER BY products_name ASC");
+  foreach ($products as $product) {
+    $display_price = zen_get_products_base_price($product['products_id']);
+    $products_array[] = array(
+      'id' => $product['products_id'],
+      'text' => $product['products_name'] .
       ($show_price ? ' (' . $currencies->format($display_price) . ')' : '') .
-      ($show_model ? ' [' . $products->fields['products_model'] . ']' : '') .
-      ($show_id ? ' [' . $products->fields['products_id'] . ']' : ''));
-    $products->MoveNext();
+      ($show_model ? ' [' . $product['products_model'] . ']' : '') .
+      ($show_id ? ' [' . $product['products_id'] . ']' : '')
+    );
   }
   return $products_array;
 }
@@ -245,16 +259,20 @@ function all_payments_array($first_option = false, $show_code = false)
   global $db;
   $payments_array = array();
   if ($first_option) {
-    $payments_array[] = array('id' => '',
-      'text' => $first_option);
+    $payments_array[] = array(
+      'id' => '',
+      'text' => $first_option
+    );
   }
 
-  $payments = $db->Execute("select distinct payment_method, payment_module_code from " . TABLE_ORDERS);
-  while (!$payments->EOF) {
-    $payments_array[] = array('id' => $payments->fields['payment_module_code'],
-      'text' => $payments->fields['payment_method'] .
-      ($show_code ? ' [' . $payments->fields['payment_module_code'] . ']' : ''));
-    $payments->MoveNext();
+  $payments = $db->Execute("SELECT DISCINCT payment_method, payment_module_code
+                            FROM " . TABLE_ORDERS);
+  foreach ($payments as $payment) {
+    $payments_array[] = array(
+      'id' => $payment['payment_module_code'],
+      'text' => $payment['payment_method'] .
+      ($show_code ? ' [' . $payment['payment_module_code'] . ']' : '')
+    );
   }
   return $payments_array;
 }
@@ -271,20 +289,23 @@ function all_customers_array($first_option = false, $show_email = false, $show_i
   global $db;
   $customers_array = array();
   if ($first_option) {
-    $customers_array[] = array('id' => '',
-      'text' => $first_option);
+    $customers_array[] = array(
+      'id' => '',
+      'text' => $first_option
+    );
   }
-  $customers_sql = "select distinct customers_id, customers_email_address,
+  $customers_sql = "SELECT DISTINCT customers_id, customers_email_address,
                     customers_firstname, customers_lastname
-                    from " . TABLE_CUSTOMERS . "
-                    order by customers_lastname, customers_firstname, customers_email_address";
+                    FROM " . TABLE_CUSTOMERS . "
+                    ORDER BY customers_lastname, customers_firstname, customers_email_address";
   $customers = $db->Execute($customers_sql);
-  while (!$customers->EOF) {
-    $customers_array[] = array('id' => $customers->fields['customers_id'],
-      'text' => $customers->fields['customers_lastname'] . ', ' . $customers->fields['customers_firstname'] .
-      ($show_email ? ' (' . $customers->fields['customers_email_address'] . ')' : '') .
-      ($show_id ? ' [' . $customers->fields['customers_id'] . ']' : ''));
-    $customers->MoveNext();
+  foreach ($customers as $customer) {
+    $customers_array[] = array(
+      'id' => $customer['customers_id'],
+      'text' => $customer['customers_lastname'] . ', ' . $customer['customers_firstname'] .
+      ($show_email ? ' (' . $customer['customers_email_address'] . ')' : '') .
+      ($show_id ? ' [' . $customer['customers_id'] . ']' : '')
+    );
   }
   return $customers_array;
 }
@@ -297,9 +318,9 @@ function all_customers_array($first_option = false, $show_email = false, $show_i
 /////////////////
 function zen_datetime_long($raw_date = 'now')
 {
-  if (($raw_date == '0001-01-01 00:00:00') || ($raw_date == ''))
+  if (($raw_date == '0001-01-01 00:00:00') || ($raw_date == '')) {
     return false;
-  elseif ($raw_date == 'now') {
+  } elseif ($raw_date == 'now') {
     $raw_date = date('Y-m-d H:i:s');
   }
 
@@ -323,7 +344,7 @@ function zen_db_delete($table, $parameters)
 {
   global $db;
 
-  $db->Execute('delete from ' . $table . ' where ' . $parameters);
+  $db->Execute("DELETE FROM " . $table . " WHERE " . $parameters);
 
   return;
 }
@@ -343,71 +364,68 @@ function recalc_total($target_oID)
   $ot_tax = 0;
   $ot_total = 0;
 
-  $products = $db->Execute("SELECT * FROM " . TABLE_ORDERS_PRODUCTS . "
-                            WHERE orders_id = '" . $target_oID . "'");
+  $products = $db->Execute("SELECT *
+                            FROM " . TABLE_ORDERS_PRODUCTS . "
+                            WHERE orders_id = " . (int)$target_oID);
 
   // recalculate subtotal and tax from products in order
-  while (!$products->EOF) {
-    $this_subtotal = 0;
+  foreach ($products as $product) {
     $this_tax = 0;
 
-    $this_subtotal = ($products->fields['final_price'] * $products->fields['products_quantity']);
+    $this_subtotal = ($product['final_price'] * $product['products_quantity']);
     $ot_subtotal += $this_subtotal;
 
     // not everyone charges tax, so we check to see if it exists first
-    if ($products->fields['products_tax'] > 0) {
-      $this_tax = $this_subtotal * ($products->fields['products_tax'] / 100);
+    if ($product['products_tax'] > 0) {
+      $this_tax = $this_subtotal * ($product['products_tax'] / 100);
       $ot_tax += $this_tax;
     }
-
-    $products->MoveNext();
   }
 
   // apply new subtotal and tax values to the record
-  $db->Execute("UPDATE " . TABLE_ORDERS_TOTAL . " SET
-                text = '" . $currencies->format($ot_subtotal) . "',
-                value = '" . $ot_subtotal . "'
-                WHERE orders_id = '" . $target_oID . "'
+  $db->Execute("UPDATE " . TABLE_ORDERS_TOTAL . "
+                SET text = '" . $currencies->format($ot_subtotal) . "',
+                    value = '" . $ot_subtotal . "'
+                WHERE orders_id = " . (int)$target_oID . "
                 AND class = 'ot_subtotal'");
 
   if ($ot_tax > 0) {
-    $db->Execute("UPDATE " . TABLE_ORDERS_TOTAL . " SET
-                  text = '" . $currencies->format($ot_tax) . "',
-                  value = '" . $ot_tax . "'
-                  WHERE orders_id = '" . $target_oID . "'
+    $db->Execute("UPDATE " . TABLE_ORDERS_TOTAL . "
+                  SET text = '" . $currencies->format($ot_tax) . "',
+                      value = '" . $ot_tax . "'
+                  WHERE orders_id = " . (int)$target_oID . "
                   AND class = 'ot_tax'");
   }
 
   // add up all the records for the order (except ot_total)
-  $all_totals = $db->Execute("SELECT * FROM " . TABLE_ORDERS_TOTAL . "
-                              WHERE orders_id = '" . $target_oID . "'
+  $all_totals = $db->Execute("SELECT *
+                              FROM " . TABLE_ORDERS_TOTAL . "
+                              WHERE orders_id = " . (int)$target_oID . "
                               ORDER BY sort_order ASC");
 
-  while (!$all_totals->EOF) {
-    $orders_total_id = $all_totals->fields['orders_total_id'];
+  foreach ($all_totals as $total) {
+    $orders_total_id = $total['orders_total_id'];
 
-    if ($all_totals->fields['class'] != 'ot_total') {
-      if (is_discount_module($all_totals->fields['class'])) {
-        $ot_total -= $all_totals->fields['value'];
+    if ($total['class'] != 'ot_total') {
+      if (is_discount_module($total['class'])) {
+        $ot_total -= $total['value'];
       } else {
-        $ot_total += $all_totals->fields['value'];
+        $ot_total += $total['value'];
       }
     }
-
-    $all_totals->MoveNext();
   }
 
   // apply new total value
-  $db->Execute("UPDATE " . TABLE_ORDERS_TOTAL . " SET
-                text = '" . $currencies->format($ot_total) . "',
-                value = '" . $ot_total . "'
-                WHERE orders_id = '" . $target_oID . "'
+  $db->Execute("UPDATE " . TABLE_ORDERS_TOTAL . "
+                SET text = '" . $currencies->format($ot_total) . "',
+                    value = '" . $ot_total . "'
+                WHERE orders_id = " . (int)$target_oID . "
                 AND class = 'ot_total'");
 
-  $db->Execute("UPDATE " . TABLE_ORDERS . " SET
-                order_tax = '" . $ot_tax . "',
-                order_total = '" . $ot_total . "'
-                WHERE orders_id = '" . $target_oID . "'");
+  $db->Execute("UPDATE " . TABLE_ORDERS . "
+                SET order_tax = '" . $ot_tax . "',
+                    order_total = '" . $ot_total . "'
+                WHERE orders_id = " . (int)$target_oID);
 
   //return $ot_total;
 }
@@ -440,15 +458,14 @@ function current_countries_array($first_option = false)
 
 
   $countries = $db->Execute("SELECT DISTINCT customers_country
-            FROM " . TABLE_ORDERS . "
-            WHERE customers_country <> '" . get_store_country_name() . "'
-            ORDER BY customers_country");
-  while (!$countries->EOF) {
+                             FROM " . TABLE_ORDERS . "
+                             WHERE customers_country <> '" . get_store_country_name() . "'
+                             ORDER BY customers_country");
+  foreach ($countries as $county) {
     $countries_array[] = array(
-      'id' => $countries->fields['customers_country'],
-      'text' => $countries->fields['customers_country']
+      'id' => $country['customers_country'],
+      'text' => $country['customers_country']
     );
-    $countries->MoveNext();
   }
   return $countries_array;
 }

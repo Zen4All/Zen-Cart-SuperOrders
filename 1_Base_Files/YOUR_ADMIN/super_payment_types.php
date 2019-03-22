@@ -1,28 +1,28 @@
 <?php
-/*
-  //////////////////////////////////////////////////////////////////////////
-  //  SUPER ORDERS v3.0                                                 //
-  //                                                                    //
-  //  Based on Super Order 2.0                                          //
-  //  By Frank Koehl - PM: BlindSide (original author)                  //
-  //                                                                    //
-  //  Super Orders Updated by:            //
-  //  ~ JT of GTICustom             //
-  //  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)  //
-  //  ~ Loose Chicken Software Development, david@loosechicken.com  //
-  //                                                          //
-  //  Powered by Zen-Cart (www.zen-cart.com)                  //
-  //  Portions Copyright (c) 2005 The Zen-Cart Team           //
-  //                                                          //
-  //  Released under the GNU General Public License           //
-  //  available at www.zen-cart.com/license/2_0.txt           //
-  //  or see "license.txt" in the downloaded zip              //
-  //////////////////////////////////////////////////////////////////////////
-  //  DESCRIPTION:   Manages the payment types for the Super Orders //
-  //  payment system.  Similar in form to the order status management //
-  //  page.               //
-  //////////////////////////////////////////////////////////////////////////
-  // $Id: super_batch_forms.php v 2010-10-24 $
+/**
+ *
+ *  SUPER ORDERS v3.0                                                 //
+ *                                                                    //
+ *  Based on Super Order 2.0                                          //
+ *  By Frank Koehl - PM: BlindSide (original author)                  //
+ *                                                                    //
+ *  Super Orders Updated by:            //
+ *  ~ JT of GTICustom             //
+ *  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)  //
+ *  ~ Loose Chicken Software Development, david@loosechicken.com  //
+ *                                                          //
+ *  Powered by Zen-Cart (www.zen-cart.com)                  //
+ *  Portions Copyright (c) 2005 The Zen-Cart Team           //
+ *                                                          //
+ *  Released under the GNU General Public License           //
+ *  available at www.zen-cart.com/license/2_0.txt           //
+ *  or see "license.txt" in the downloaded zip              //
+ *
+ *  DESCRIPTION:   Manages the payment types for the Super Orders //
+ *  payment system.  Similar in form to the order status management //
+ *  page.               //
+ *
+ * $Id: super_batch_forms.php v 2010-10-24 $
  */
 /*
   LOGIC HOLES
@@ -37,10 +37,12 @@ require('includes/application_top.php');
 $action = ( (isset($_GET['action']) && $_GET['action'] != '') ? $_GET['action'] : '');
 
 if (zen_not_null($action)) {
-  if (isset($_GET['payment_type_id']))
+  if (isset($_GET['payment_type_id'])) {
     $payment_type_id = (int)$_GET['payment_type_id'];
-  if (isset($_GET['payment_type_code']))
+  }
+  if (isset($_GET['payment_type_code'])) {
     $payment_type_code = $_GET['payment_type_code'];
+  }
 
   switch ($action) {
     case 'insert':
@@ -48,15 +50,20 @@ if (zen_not_null($action)) {
       $languages = zen_get_languages();
       $payment_type_full_array = zen_db_prepare_input($_POST['payment_type_full']);
       $payment_type_code_array = zen_db_prepare_input($_POST['payment_type_code']);
-
+        if ($action == 'insert') {
+          
+            $sql_array = array('payment_type_code' => $payment_type_code);
+       zen_db_perform(TABLE_SO_PAYMENT_TYPES, $sql_insert_array);
+        } elseif ($action == 'save') {
+        }
       for ($i = 0; $i < sizeof($languages); $i++) {
         $language_id = (int)$languages[$i]['id'];
         $payment_type_code = zen_db_prepare_input($payment_type_code_array[$language_id], true);
         $payment_type_full = zen_db_prepare_input($payment_type_full_array[$language_id], true);
 
         if ($action == 'insert') {
-          $sql_array = array('payment_type_full' => $payment_type_full,
-            'payment_type_code' => $payment_type_code,
+          $sql_array = array(
+            'payment_type_full' => $payment_type_full,
             'language_id' => $language_id);
 
           zen_db_perform(TABLE_SO_PAYMENT_TYPES, $sql_array);
@@ -137,7 +144,7 @@ if (zen_not_null($action)) {
   </head>
   <body onload="init()">
     <!-- header //-->
-    <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
+<?php require(DIR_WS_INCLUDES . 'header.php'); ?>
     <!-- header_eof //-->
 
     <!-- body //-->
@@ -158,7 +165,7 @@ if (zen_not_null($action)) {
             </tr>
             <?php if (isset($sql)) { ?>
 
-            <?php } ?>
+<?php } ?>
             <tr>
               <td valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="0">
                   <tr>
@@ -213,11 +220,11 @@ if (zen_not_null($action)) {
                           <td class="smallText" valign="top"><?php echo $payment_type_split->display_count($payment_type_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, $_GET['page'], TEXT_DISPLAY_NUMBER_OF_PAYMENT_TYPES); ?></td>
                           <td class="smallText" align="right"><?php echo $payment_type_split->display_links($payment_type_query_numrows, MAX_DISPLAY_SEARCH_RESULTS, MAX_DISPLAY_PAGE_LINKS, $_GET['page']); ?></td>
                         </tr>
-                        <?php if (empty($action)) { ?>
+<?php if (empty($action)) { ?>
                           <tr>
                             <td colspan="2" align="right"><?php echo '<a href="' . zen_href_link(FILENAME_SUPER_PAYMENT_TYPES, 'page=' . $_GET['page'] . '&action=new') . '">' . zen_image_button('button_insert.gif', IMAGE_INSERT) . '</a>'; ?></td>
                           </tr>
-                        <?php } ?>
+<?php } ?>
                       </table>
                     </td>
                   </tr>
