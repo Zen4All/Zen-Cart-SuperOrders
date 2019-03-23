@@ -1,9 +1,10 @@
 <?php
+
 // Super Orders
 
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
-} 
+}
 
 
 $autoLoadConfig[999][] = array(
