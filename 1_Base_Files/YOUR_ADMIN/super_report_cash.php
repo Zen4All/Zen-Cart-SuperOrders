@@ -266,7 +266,7 @@ if ($target) {
                 <tr>
                   <td colspan="7" class="dataTableContent text-center"><strong><?php echo zen_draw_separator() . TEXT_REFUNDS . zen_draw_separator(); ?></strong></td>
                 </tr>
-                <?php                foreach ($refund as $item) {                  ?>
+                <?php foreach ($refund as $item) { ?>
                   <tr class="refundRow" onclick="document.location.href = '<?php echo zen_href_link(FILENAME_SUPER_ORDERS, 'oID=' . $item['orders_id'] . '&action=edit'); ?>'">
                     <td class="dataTableContent"><?php echo $$item['orders_id']; ?></td>
                     <td class="dataTableContent text-center"><?php echo zen_datetime_short($$item['date_posted']); ?></td>
@@ -290,26 +290,24 @@ if ($target) {
               $total_income = $grand_total - $refund_total;
               ?>
               <tr>
-                <td colspan="7" class="text-right">
-                  <table border="0" cellspacing="3" cellpadding="0">
-                    <tr>
-                      <td class="ot-tax-Text" align="right"><strong><?php echo (int)$grand_count . ' ' . TABLE_FOOTER_CASH_TOTAL; ?></strong></td>
-                      <td class="ot-tax-Amount" align="right"><?php echo $currencies->format($grand_total); ?></td>
-                    </tr>
-                    <tr>
-                      <td class="ot-tax-Text" align="right"><strong><?php echo (int)$refund_count . ' ' . TABLE_FOOTER_REFUND_TOTAL; ?></strong></td>
-                      <td class="ot-tax-Amount" align="right"><?php echo '-' . $currencies->format($refund_total); ?></td>
-                    </tr>
-                    <tr>
-                      <td class="ot-total-Text" align="right"><?php echo TABLE_FOOTER_TOTAL_INCOME; ?></td>
-                      <td class="ot-total-Amount" align="right"><?php echo $currencies->format($total_income); ?></td>
-                    </tr>
-                  </table></td>
+                <td colspan="5">
+                <td class="ot-tax-Text text-right"><strong><?php echo (int)$grand_count . ' ' . TABLE_FOOTER_CASH_TOTAL; ?></strong></td>
+                <td class="ot-tax-Amount text-right"><?php echo $currencies->format($grand_total); ?></td>
+              </tr>
+              <tr>
+                <td colspan="5">
+                <td class="ot-tax-Text text-right"><strong><?php echo (int)$refund_count . ' ' . TABLE_FOOTER_REFUND_TOTAL; ?></strong></td>
+                <td class="ot-tax-Amount text-right"><?php echo '-' . $currencies->format($refund_total); ?></td>
+              </tr>
+              <tr>
+                <td colspan="5">
+                <td class="ot-total-Text text-right"><?php echo TABLE_FOOTER_TOTAL_INCOME; ?></td>
+                <td class="ot-total-Amount text-right"><?php echo $currencies->format($total_income); ?></td>
               </tr>
             <?php } else { ?>
               <tr class="dataTableRowUnique">
-                <td class="dataTableContent" colspan="3" align="left"><strong><?php echo TABLE_FOOTER_NUM_PAYMENTS . $grand_count; ?></strong></td>
-                <td class="dataTableContent" colspan="4" align="right"><strong><?php echo TABLE_FOOTER_TOTAL_INCOME . $currencies->format($grand_total); ?></strong></td>
+                <td class="dataTableContent" colspan="3"><strong><?php echo TABLE_FOOTER_NUM_PAYMENTS . $grand_count; ?></strong></td>
+                <td class="dataTableContent text-right" colspan="4"><strong><?php echo TABLE_FOOTER_TOTAL_INCOME . $currencies->format($grand_total); ?></strong></td>
               </tr>
             <?php } ?>
           </tbody>

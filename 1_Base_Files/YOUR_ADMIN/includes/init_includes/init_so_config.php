@@ -82,8 +82,7 @@ $sql = "CREATE TABLE IF NOT EXISTS ".DB_PREFIX."so_payment_types (
   payment_type_code varchar(4) NOT NULL default '',
   payment_type_full varchar(20) NOT NULL default '',
   PRIMARY KEY  (payment_type_id),
-  UNIQUE KEY type_code (payment_type_code),
-  KEY type_code_2 (payment_type_code)
+  UNIQUE KEY type_code (payment_type_code)
 )";
     $db->Execute($sql);
 /* Add default payment types to so_payment_types table */
