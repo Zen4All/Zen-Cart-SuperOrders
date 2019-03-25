@@ -22,13 +22,13 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: invoice.php 19136 2011-07-18 16:56:18Z wilt $
  */
-require('includes/application_top.php');
-require(DIR_WS_CLASSES . 'order.php');
-require(DIR_WS_CLASSES . 'currencies.php');
-require_once(DIR_WS_LANGUAGES . 'english/orders.php');
-require_once(DIR_WS_LANGUAGES . 'english/invoice.php');
-require_once(DIR_WS_LANGUAGES . 'english/packingslip.php');
-require_once(DIR_WS_LANGUAGES . 'english/super_shipping_label.php');
+require 'includes/application_top.php';
+require DIR_WS_CLASSES . 'order.php';
+require DIR_WS_CLASSES . 'currencies.php';
+require_once DIR_WS_LANGUAGES . $_SESSION['language'] . '/orders.php';
+require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/invoice.php');
+require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/packingslip.php');
+require_once(DIR_WS_LANGUAGES . $_SESSION['language'] . '/super_shipping_label.php');
 require_once(DIR_WS_CLASSES . 'super_order.php');
 $selected_oids = zen_db_prepare_input($_POST['batch_order_numbers']);
 $target_file = zen_db_prepare_input($_POST['target_file']);

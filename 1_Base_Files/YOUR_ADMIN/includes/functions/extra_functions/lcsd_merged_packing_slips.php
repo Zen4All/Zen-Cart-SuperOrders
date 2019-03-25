@@ -1,38 +1,39 @@
 <?php
 
-/*
-  //////////////////////////////////////////////////////////////////////////
-  //  SUPER ORDERS v4.0.5                                                 //
-  //                                                                      //
-  //  Based on Super Order 2.0                                            //
-  //  By Frank Koehl - PM: BlindSide (original author)                    //
-  //                                                                      //
-  //  Super Orders Updated by:                                            //
-  //  ~ JT of GTICustom                                                   //
-  //  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)  //
-  //  ~ Loose Chicken Software Development, david@loosechicken.com        //
-  //  ~ Zen4All, http://zen4all.nl                                        //
-  //                                                                      //
-  //  Powered by Zen-Cart (www.zen-cart.com)                              //
-  //  Portions Copyright (c) 2005 The Zen-Cart Team                       //
-  //                                                                      //
-  //  Released under the GNU General Public License                       //
-  //  available at www.zen-cart.com/license/2_0.txt                       //
-  //  or see "license.txt" in the downloaded zip                          //
-  //////////////////////////////////////////////////////////////////////////
-  //  DESCRIPTION:   PDF version of super_packingslip.php,                //
-  //  Features include:                                                   //
-  //  ~ Pricing information which supports tax included pricing options   //
-  //    identical to super_invoices.php                                   //
-  //  ~ Admin configurable options to use with forms that have a peel     //
-  //    off mailing label in place of the default "Packing Slip" text     //
-  //////////////////////////////////////////////////////////////////////////
-  // $Id: lcsd_merged_packing_slips.php v 2015-12-30 $
+/**
+ *
+ *  SUPER ORDERS v4.0.5
+ *
+ *  Based on Super Order 2.0
+ *  By Frank Koehl - PM: BlindSide (original author)
+ *
+ *  Super Orders Updated by:
+ *  ~ JT of GTICustom
+ *  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)
+ *  ~ Loose Chicken Software Development, david@loosechicken.com
+ *  ~ Zen4All, http://zen4all.nl
+ *
+ *  Powered by Zen-Cart (www.zen-cart.com)
+ *  Portions Copyright (c) 2005 The Zen-Cart Team
+ *
+ *  Released under the GNU General Public License
+ *  available at www.zen-cart.com/license/2_0.txt
+ * or see "license.txt" in the downloaded zip
+ *
+ *  DESCRIPTION:   PDF version of super_packingslip.php,
+ *  Features include:
+ *  ~ Pricing information which supports tax included pricing options
+ *    identical to super_invoices.php
+ *  ~ Admin configurable options to use with forms that have a peel
+ *    off mailing label in place of the default "Packing Slip" text
+ *
+ * $Id: lcsd_merged_packing_slips.php v 2015-12-30 $
  */
 
 $display_tax = (TAX_ID_NUMBER == '' ? true : false);
 
-function lcsd_merged_packingslips_master_list($selected_oids, $merge_selected_oids) {
+function lcsd_merged_packingslips_master_list($selected_oids, $merge_selected_oids)
+{
 
   if ($selected_oids == '' || $selected_oids == null) {
     return;
@@ -56,53 +57,49 @@ function lcsd_merged_packingslips_master_list($selected_oids, $merge_selected_oi
 
   if ($merge_selected_oids) {
 
-    $customers = $db->Execute("SELECT MIN(o.orders_id) AS orders_id, o.customers_id,
-                        o.delivery_name, o.delivery_street_address, o.delivery_postcode
-                    FROM " . TABLE_ORDERS . " AS o
-                    JOIN " . TABLE_CUSTOMERS . " AS c ON o.customers_id = c.customers_id " .
-            $orderwhere . "
-                    GROUP BY o.customers_id, o.delivery_name, o.delivery_street_address, o.delivery_postcode
-                    ORDER BY MIN(o.orders_id) ASC ");
+    $customers = $db->Execute("SELECT MIN(o.orders_id), o.customers_id, o.delivery_name, o.delivery_street_address, o.delivery_postcode
+                               FROM " . TABLE_ORDERS . " o
+                               LEFT JOIN " . TABLE_CUSTOMERS . " AS c ON c.customers_id = o.customers_id
+                               " . $orderwhere . "
+                               GROUP BY o.customers_id, o.delivery_name, o.delivery_street_address, o.delivery_postcode
+                               ORDER BY MIN(o.orders_id) ASC");
 
-    while (!$customers->EOF) {
+    foreach ($customers as $customer) {
       $orders = $db->Execute("SELECT o.orders_id, o.customers_id
-                        FROM " . TABLE_ORDERS . " AS o
-                        JOIN " . TABLE_CUSTOMERS . " AS c ON o.customers_id = c.customers_id " .
-              $orderwhere . "
-                        AND o.customers_id = " . (int)$customers->fields['customers_id'] . "
-                        AND o.delivery_name = " . '"' . zen_db_input($customers->fields['delivery_name']) . '"' . "
-                        AND o.delivery_street_address = " . '"' . zen_db_input($customers->fields['delivery_street_address']) . '"' . "
-                        AND o.delivery_postcode = " . '"' . zen_db_input($customers->fields['delivery_postcode']) . '"' . "
-                        ORDER BY o.orders_id ASC ");
+                              FROM " . TABLE_ORDERS . " o
+                              LEFT JOIN " . TABLE_CUSTOMERS . " c ON c.customers_id = o.customers_id
+                              " . $orderwhere . "
+                              AND o.customers_id = " . (int)$customer['customers_id'] . "
+                              AND o.delivery_name = '" . zen_db_input($customer['delivery_name']) . "'
+                              AND o.delivery_street_address = '" . zen_db_input($customer['delivery_street_address']) . "'
+                              AND o.delivery_postcode = '" . zen_db_input($customer['delivery_postcode']) . "'
+                              ORDER BY o.orders_id ASC");
 
       $orderArray = array();
-      while (!$orders->EOF) {
-        $OrderID = $orders->fields['orders_id'];
+      foreach ($orders as $item) {
+        $OrderID = $item['orders_id'];
         $order = new order($OrderID);
         /* order object doesn't include orderid.  added id to info so we can retrieve it */
         $order->info['id'] = $OrderID;
         $orderArray[] = $order;
-        $orders->MoveNext();
       }
       draw_packing_slip_master_list_customer($orderArray, $pdf);
-      $customers->MoveNext();
     }
   } else {
     $totalListQty = 0;
     $orders = $db->Execute("SELECT o.orders_id, o.customers_id
-                    FROM " . TABLE_ORDERS . " AS o
-                    JOIN " . TABLE_CUSTOMERS . " AS c ON o.customers_id = c.customers_id " .
-            $orderwhere . "
-                    ORDER BY o.orders_id ASC ");
+                            FROM " . TABLE_ORDERS . " o
+                            LEFT JOIN " . TABLE_CUSTOMERS . " c ON c.customers_id = o.customers_id
+                            " . $orderwhere . "
+                            ORDER BY o.orders_id ASC ");
 
-    while (!$orders->EOF) {
-      $OrderID = $orders->fields['orders_id'];
+    foreach ($orders as $item) {
+      $OrderID = $item['orders_id'];
       $order = new order($OrderID);
       /* order object doesn't include orderid.  added id to info so we can retrieve it */
       $order->info['id'] = $OrderID;
 
       draw_packing_slip_master_list_customer(array($order), $pdf);
-      $orders->MoveNext();
     }
     //at end of loop, make a double line and finish it off.
     $pdf->Line(18, $pdf->GetY(), 594, $pdf->GetY());
@@ -114,7 +111,8 @@ function lcsd_merged_packingslips_master_list($selected_oids, $merge_selected_oi
   $pdf->Output();
 }
 
-function draw_packing_slip_master_list_customer($orderArray, &$pdf) {
+function draw_packing_slip_master_list_customer($orderArray, &$pdf)
+{
   $order = $orderArray[0];
 
   $customerName = $order->delivery['name'];
@@ -192,7 +190,8 @@ function draw_packing_slip_master_list_customer($orderArray, &$pdf) {
   }
 }
 
-function lcsd_merged_packingslips($selected_oids, $merge_selected_oids) {
+function lcsd_merged_packingslips($selected_oids, $merge_selected_oids)
+{
   global $db;
   if ($selected_oids == '' || $selected_oids == null) {
     return;
@@ -218,22 +217,23 @@ function lcsd_merged_packingslips($selected_oids, $merge_selected_oids) {
   // $pdf->AddPage('');
 
   if ($merge_selected_oids) {
-    $customers = $db->Execute("SELECT MIN(o.orders_id) AS orders_id, o.customers_id,
-                                          o.delivery_name, o.delivery_street_address, o.delivery_postcode
-                               FROM " . TABLE_ORDERS . " AS o
-                               JOIN " . TABLE_CUSTOMERS . " AS c ON o.customers_id = c.customers_id " . $orderwhere . "
+    $customers = $db->Execute("SELECT MIN(o.orders_id), o.customers_id, o.delivery_name, o.delivery_street_address, o.delivery_postcode
+                               FROM " . TABLE_ORDERS . " o
+                               LEFT JOIN " . TABLE_CUSTOMERS . " c ON c.customers_id = o.customers_id
+                               " . $orderwhere . "
                                GROUP BY o.customers_id, o.delivery_name, o.delivery_street_address, o.delivery_postcode
-                               ORDER BY MIN(o.orders_id) ASC ");
+                               ORDER BY MIN(o.orders_id) ASC");
 
     while (!$customers->EOF) {
       $orders = $db->Execute("SELECT o.orders_id, o.customers_id
                               FROM " . TABLE_ORDERS . " AS o
-                              JOIN " . TABLE_CUSTOMERS . " AS c ON o.customers_id = c.customers_id " . $orderwhere . "
+                              JOIN " . TABLE_CUSTOMERS . " AS c ON c.customers_id = o.customers_id
+                              " . $orderwhere . "
                               AND o.customers_id = " . (int)$customers->fields['customers_id'] . "
-                              AND o.delivery_name = " . '"' . zen_db_input($customers->fields['delivery_name']) . '"' . "
-                              AND o.delivery_street_address = " . '"' . zen_db_input($customers->fields['delivery_street_address']) . '"' . "
-                              AND o.delivery_postcode = " . '"' . zen_db_input($customers->fields['delivery_postcode']) . '"' . "
-                              ORDER BY o.orders_id ASC ");
+                              AND o.delivery_name = '" . zen_db_input($customers->fields['delivery_name']) . "'
+                              AND o.delivery_street_address = '" . zen_db_input($customers->fields['delivery_street_address']) . "'
+                              AND o.delivery_postcode = '" . zen_db_input($customers->fields['delivery_postcode']) . "'
+                              ORDER BY o.orders_id ASC");
       $OrderID = $orders->fields['orders_id'];
       $order = new order($OrderID);
       /* order object doesn't include orderid.  added id to info so we can retrieve it */
@@ -262,9 +262,10 @@ function lcsd_merged_packingslips($selected_oids, $merge_selected_oids) {
   } else {
 
     $orders = $db->Execute("SELECT o.orders_id, o.customers_id
-                            FROM " . TABLE_ORDERS . " AS o
-                            JOIN " . TABLE_CUSTOMERS . " AS c ON o.customers_id = c.customers_id " . $orderwhere . "
-                            ORDER BY o.orders_id ASC ");
+                            FROM " . TABLE_ORDERS . " o
+                            LEFT JOIN " . TABLE_CUSTOMERS . " c ON c.customers_id = o.customers_id
+                            " . $orderwhere . "
+                            ORDER BY o.orders_id ASC");
 
     while (!$orders->EOF) {
       $OrderID = $orders->fields['orders_id'];
@@ -285,7 +286,8 @@ function lcsd_merged_packingslips($selected_oids, $merge_selected_oids) {
   $pdf->Output();
 }
 
-function draw_packing_slip_customer($order, &$pdf) {
+function draw_packing_slip_customer($order, &$pdf)
+{
   $billTo = zen_address_format($order->customer['format_id'], $order->billing, 0, '', "\n");
   if ($order->billing['street_address'] == '') {
     $billTo = zen_address_format($order->customer['format_id'], $order->customer, 0, '', "\n");
@@ -312,7 +314,8 @@ function draw_packing_slip_customer($order, &$pdf) {
   $pdf->SetXY(18, $EndY);
 }
 
-function draw_packing_slip_order($order, &$pdf) {
+function draw_packing_slip_order($order, &$pdf)
+{
   global $db;
 
   require_once(DIR_WS_CLASSES . 'currencies.php');
@@ -530,21 +533,21 @@ function draw_packing_slip_order($order, &$pdf) {
       $pdf->Cell(40, 14, html_entity_decode(zen_display_tax_value($order->products[$i]['tax']) . '%', ENT_QUOTES, "ISO-8859-15"), 'LRT', 0, 'R', 1);
 
       if ($order->info['currency'] == 'EUR') {
-        $f1 = str_replace('&euro;', '€', $currencies->format($order->products[$i]['final_price'], true, $order->info['currency'], $order->info['currency_value']));
+        $f1 = str_replace('&euro;', 'â‚¬', $currencies->format($order->products[$i]['final_price'], true, $order->info['currency'], $order->info['currency_value']));
         $pdf->Cell(68, 14, html_entity_decode($f1), 'LRT', 'R', 1);
       } else {
         $pdf->Cell(68, 14, html_entity_decode($currencies->format($order->products[$i]['final_price'], true, $order->info['currency'], $order->info['currency_value']), ENT_QUOTES, "ISO-8859-15"), 'LRT', 0, 'R', 1);
       }
 
       if ($order->info['currency'] == 'EUR') {
-        $f2 = str_replace('&euro;', '€', $currencies->format(zen_add_tax($order->products[$i]['final_price'], $order->products[$i]['tax']), true, $order->info['currency'], $order->info['currency_value']));
+        $f2 = str_replace('&euro;', 'â‚¬', $currencies->format(zen_add_tax($order->products[$i]['final_price'], $order->products[$i]['tax']), true, $order->info['currency'], $order->info['currency_value']));
         $pdf->Cell(68, 14, html_entity_decode($f2), 'LRT', 'R', 1);
       } else {
         $pdf->Cell(68, 14, html_entity_decode($currencies->format(zen_add_tax($order->products[$i]['final_price'], $order->products[$i]['tax']), true, $order->info['currency'], $order->info['currency_value']), ENT_QUOTES, "ISO-8859-15"), 'LRT', 0, 'R', 1);
       }
 
       if ($order->info['currency'] == 'EUR') {
-        $f3 = str_replace('&euro;', '€', $currencies->format($order->products[$i]['final_price'] * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']));
+        $f3 = str_replace('&euro;', 'â‚¬', $currencies->format($order->products[$i]['final_price'] * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']));
         $pdf->Cell(68, 14, html_entity_decode($f3), 'LRT', 'R', 1);
       } else {
         $pdf->Cell(68, 14, html_entity_decode($currencies->format($order->products[$i]['final_price'] * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']), ENT_QUOTES, "ISO-8859-15"), 'LRT', 0, 'R', 1);
@@ -553,7 +556,7 @@ function draw_packing_slip_order($order, &$pdf) {
       if ($order->info['currency'] == 'EUR') {
 
 
-        $f = str_replace('&euro;', '€', $currencies->format(zen_add_tax($order->products[$i]['final_price'], $order->products[$i]['tax']) * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']));
+        $f = str_replace('&euro;', 'â‚¬', $currencies->format(zen_add_tax($order->products[$i]['final_price'], $order->products[$i]['tax']) * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']));
         $pdf->MultiCell(68, 14, html_entity_decode($f), 'LRT', 'R', 1);
       } else {
         $pdf->MultiCell(68, 14, html_entity_decode($currencies->format(zen_add_tax($order->products[$i]['final_price'], $order->products[$i]['tax']) * $order->products[$i]['qty'], true, $order->info['currency'], $order->info['currency_value']), ENT_QUOTES, "ISO-8859-15"), 'LRT', 'R', 1);
@@ -630,7 +633,7 @@ function draw_packing_slip_order($order, &$pdf) {
 
     //echo substr($text,0,5);
     if (substr($text, 0, 5) == '&euro') {
-      $a = str_replace('&euro;', '€', $text);
+      $a = str_replace('&euro;', 'â‚¬', $text);
       $pdf->MultiCell(50, 14, html_entity_decode($a, ENT_QUOTES, "ISO-8859-15"), 0, 0, 'R');
     } else {
       $pdf->MultiCell(50, 14, html_entity_decode($text, ENT_QUOTES, "ISO-8859-15"), 0, 0, 'R');
@@ -655,7 +658,7 @@ function draw_packing_slip_order($order, &$pdf) {
 
   $var1 = substr($currencies->format($so->amount_applied), 0, 5);
   if ($var1 == '&euro') {
-    $pdf->MultiCell(50, 14, '€' . $so->amount_applied, 0, 'R');
+    $pdf->MultiCell(50, 14, 'â‚¬' . $so->amount_applied, 0, 'R');
   } else {
     $pdf->MultiCell(50, 14, html_entity_decode($currencies->format($so->amount_applied), ENT_QUOTES, "ISO-8859-15"), 0, 'R');
   }
@@ -664,7 +667,7 @@ function draw_packing_slip_order($order, &$pdf) {
 
   $var = substr($currencies->format($so->balance_due), 0, 5);
   if ($var == '&euro') {
-    $pdf->MultiCell(50, 14, '€' . $so->balance_due, 0, 'R');
+    $pdf->MultiCell(50, 14, 'â‚¬' . $so->balance_due, 0, 'R');
   } else {
     $pdf->MultiCell(50, 14, html_entity_decode($currencies->format($so->balance_due), ENT_QUOTES, "ISO-8859-15"), 0, 'R');
   }
