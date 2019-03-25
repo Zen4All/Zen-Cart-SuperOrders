@@ -240,20 +240,22 @@ if ($target) {
                 }
                 ?>
                 <tr class="dataTableRowUnique">
-                  <td class="dataTableContent" colspan="3" align="left"><strong><?php echo sprintf(TABLE_SUB_COUNT, $so->full_type($current_type)) . $sub_count; ?></strong></td>
-                  <td class="dataTableContent" colspan="4" align="right"><strong><?php echo sprintf(TABLE_SUB_TOTAL, $so->full_type($current_type)) . $currencies->format($sub_total); ?></strong></td>
+                  <td class="dataTableContent" colspan="3"><strong><?php echo sprintf(TABLE_SUB_COUNT, $so->full_type($current_type)) . $sub_count; ?></strong></td>
+                  <td class="dataTableContent text-right" colspan="4"><strong><?php echo sprintf(TABLE_SUB_TOTAL, $so->full_type($current_type)) . $currencies->format($sub_total); ?></strong></td>
                 </tr>
               <?php } else { ?>
                 <tr>
-                  <td class="dataTableContent" colspan="7" align="center"><strong><?php echo TEXT_NO_PAYMENT_DATA; ?></strong></td>
+                  <td class="dataTableContent text-center" colspan="7"><strong><?php echo TEXT_NO_PAYMENT_DATA; ?></strong></td>
                 </tr>
                 <?php
               }
-            }  // END if ($target == 'payments' || $target == 'both')
+            }
 
             if ($target == 'refunds' || $target == 'both') {
-              $refund_query = "SELECT * FROM " . TABLE_SO_REFUNDS . "
-                       WHERE date_posted BETWEEN '" . $sd . "' AND DATE_ADD('" . $ed . "', INTERVAL 1 DAY)";
+              $refund_query = "SELECT *
+                               FROM " . TABLE_SO_REFUNDS . "
+                               WHERE date_posted BETWEEN '" . $sd . "'
+                               AND DATE_ADD('" . $ed . "', INTERVAL 1 DAY)";
 
               $refund = $db->Execute($refund_query);
 
@@ -262,36 +264,33 @@ if ($target) {
                 $refund_total = 0;
                 ?>
                 <tr>
-                  <td colspan="7" class="dataTableContent" align="center"><strong><?php echo zen_draw_separator() . TEXT_REFUNDS . zen_draw_separator(); ?></strong></td>
+                  <td colspan="7" class="dataTableContent text-center"><strong><?php echo zen_draw_separator() . TEXT_REFUNDS . zen_draw_separator(); ?></strong></td>
                 </tr>
-                <?php
-                while (!$refund->EOF) {
-                  ?>
-                  <tr class="refundRow" width="100%" cellspacing="0" cellpadding="0" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)" onclick="document.location.href = '<?php echo zen_href_link(FILENAME_SUPER_ORDERS, 'oID=' . $refund->fields['orders_id'] . '&action=edit'); ?>'">
-                    <td class="dataTableContent" align="left"><?php echo $refund->fields['orders_id']; ?></td>
-                    <td class="dataTableContent" align="center"><?php echo zen_datetime_short($refund->fields['date_posted']); ?></td>
-                    <td class="dataTableContent" align="left"><?php echo $refund->fields['refund_number']; ?></td>
-                    <td class="dataTableContent" align="left"><?php echo $refund->fields['refund_name']; ?></td>
-                    <td class="dataTableContent" align="center"><?php echo $refund->fields['refund_type']; ?></td>
-                    <td class="dataTableContent" align="left">&nbsp;</td>
-                    <td class="dataTableContent" align="right"><?php echo $currencies->format($refund->fields['refund_amount']); ?></td>
+                <?php                foreach ($refund as $item) {                  ?>
+                  <tr class="refundRow" onclick="document.location.href = '<?php echo zen_href_link(FILENAME_SUPER_ORDERS, 'oID=' . $item['orders_id'] . '&action=edit'); ?>'">
+                    <td class="dataTableContent"><?php echo $$item['orders_id']; ?></td>
+                    <td class="dataTableContent text-center"><?php echo zen_datetime_short($$item['date_posted']); ?></td>
+                    <td class="dataTableContent"><?php echo $$item['refund_number']; ?></td>
+                    <td class="dataTableContent"><?php echo $$item['refund_name']; ?></td>
+                    <td class="dataTableContent text-center"><?php echo $$item['refund_type']; ?></td>
+                    <td class="dataTableContent">&nbsp;</td>
+                    <td class="dataTableContent text-right"><?php echo $currencies->format($$item['refund_amount']); ?></td>
                   </tr>
                   <?php
                   $refund_count++;
-                  $refund_total += $refund->fields['refund_amount'];
-                  $refund->MoveNext();
+                  $refund_total += $$item['refund_amount'];
                 }
               } else {
                 ?>
                 <tr>
-                  <td class="dataTableContent" colspan="7" align="center"><strong><?php echo TEXT_NO_REFUND_DATA; ?></strong></td>
+                  <td class="dataTableContent text-center" colspan="7"><strong><?php echo TEXT_NO_REFUND_DATA; ?></strong></td>
                 </tr>
                 <?php
               }
               $total_income = $grand_total - $refund_total;
               ?>
               <tr>
-                <td colspan="7" align="right">
+                <td colspan="7" class="text-right">
                   <table border="0" cellspacing="3" cellpadding="0">
                     <tr>
                       <td class="ot-tax-Text" align="right"><strong><?php echo (int)$grand_count . ' ' . TABLE_FOOTER_CASH_TOTAL; ?></strong></td>
@@ -308,7 +307,7 @@ if ($target) {
                   </table></td>
               </tr>
             <?php } else { ?>
-              <tr class="dataTableRowUnique" onmouseover="rowOverEffect(this)" onmouseout="rowOutEffect(this)">
+              <tr class="dataTableRowUnique">
                 <td class="dataTableContent" colspan="3" align="left"><strong><?php echo TABLE_FOOTER_NUM_PAYMENTS . $grand_count; ?></strong></td>
                 <td class="dataTableContent" colspan="4" align="right"><strong><?php echo TABLE_FOOTER_TOTAL_INCOME . $currencies->format($grand_total); ?></strong></td>
               </tr>
