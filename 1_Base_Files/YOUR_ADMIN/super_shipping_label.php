@@ -71,7 +71,7 @@ if ($batched == false) {
 
     <?php } ?>
 
-    <?php if (($batched == true) and ( $batch_item > 1) and ( ($batch_item % $forms_per_page) == 0)) { ?>
+    <?php if (($batched == true) && ( $batch_item > 1) && ( ($batch_item % $forms_per_page) == 0)) { ?>
       <div style="page-break-before:always"><span style="display: none;">&nbsp;</span></div>
       <br>
     <?php } ?>
@@ -105,7 +105,8 @@ if ($batched == false) {
       </table>
     </div>
 
-    <?php if (($batched == false) or ( ($batched == true) and ( $batch_item == $number_of_orders))) { ?>
+    <?php if (($batched == false) || ( ($batched == true) && ( $batch_item == $number_of_orders))) { ?>
     </body>
   </html>
-<?php } ?>
+<?php
+}

@@ -81,7 +81,7 @@ if ($target) {
         <?php if (!$is_for_display) { ?>
         <div class="col-sm-12">
           <!-- Print Header -->
-          <h1><a href="<?php echo zen_href_link(FILENAME_SUPER_REPORT_CASH, 'target=' . $target . '&start_date=' . $_GET['start_date'] . '&end_date=' . $_GET['end_date']); ?>"><?php echo HEADING_TITLE; ?></a></h1>
+          <h1><?php echo HEADING_TITLE; ?></h1>
           <div class="pageHeading text-right"><?php echo $_GET['start_date'] . TEXT_TO . $_GET['end_date']; ?></div>
           <!-- END Print Header -->
         </div>
@@ -175,7 +175,7 @@ if ($target) {
                                     FROM " . TABLE_ORDERS . " o
                                     WHERE date_purchased BETWEEN '" . $sd . "'
                                     AND DATE_ADD('" . $ed . "', INTERVAL 1 DAY)";
-              $order_list = $db->Execute($orders_list_query);
+              $orders_list = $db->Execute($orders_list_query);
               foreach ($orders_list as $order_list) {
                 $so = new super_order($order_list['orders_id']);  // instantiated once simply for the full_type() function
                 $so = NULL;
@@ -325,7 +325,7 @@ if ($target) {
       <!-- body_eof //-->
       <?php if (!$is_for_display) { ?>
         <div class="col-sm-12">
-          <a href="javascript:history.back()" class="btn btn-default" role="button"><?php echo IMAGE_BACK; ?></a>&nbsp;<button type="button" onClick="window.print()" class="btn btn-info"><?php echo BUTTON_PRINT; ?></button>
+          <a href="<?php echo zen_href_link(FILENAME_SUPER_REPORT_CASH, 'target=' . $target . '&start_date=' . $_GET['start_date'] . '&end_date=' . $_GET['end_date']); ?>" class="btn btn-default" role="button"><?php echo IMAGE_BACK; ?></a>&nbsp;<button type="button" onClick="window.print()" class="btn btn-info"><?php echo BUTTON_PRINT; ?></button>
         </div>
       <?php } ?>
       <!-- footer //-->
