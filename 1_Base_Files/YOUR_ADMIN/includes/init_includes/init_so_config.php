@@ -41,8 +41,8 @@ $sql = "CREATE TABLE IF NOT EXISTS ".DB_PREFIX."so_payments (
   payment_name varchar(40) NOT NULL default '',
   payment_amount decimal(14,2) NOT NULL default '0.00',
   payment_type varchar(20) NOT NULL default '',
-  date_posted datetime NOT NULL default '0000-00-00 00:00:00',
-  last_modified datetime NOT NULL default '0000-00-00 00:00:00',
+  date_posted datetime NOT NULL default '0001-01-01 00:00:00',
+  last_modified datetime NOT NULL default '0001-01-01 00:00:00',
   purchase_order_id int(11) NOT NULL default '0',
   PRIMARY KEY  (payment_id)
 )";
@@ -53,8 +53,8 @@ $sql = "CREATE TABLE IF NOT EXISTS ".DB_PREFIX."so_purchase_orders (
   purchase_order_id int(11) NOT NULL auto_increment,
   orders_id int(11) NOT NULL default '0',
   po_number varchar(32) default NULL,
-  date_posted datetime NOT NULL default '0000-00-00 00:00:00',
-  last_modified datetime NOT NULL default '0000-00-00 00:00:00',
+  date_posted datetime NOT NULL default '0001-01-01 00:00:00',
+  last_modified datetime NOT NULL default '0001-01-01 00:00:00',
   PRIMARY KEY  (purchase_order_id)
 )";
     $db->Execute($sql);
@@ -68,8 +68,8 @@ $sql = "CREATE TABLE IF NOT EXISTS ".DB_PREFIX."so_refunds (
   refund_name varchar(40) NOT NULL default '',
   refund_amount decimal(14,2) NOT NULL default '0.00',
   refund_type varchar(20) NOT NULL default 'REF',
-  date_posted datetime NOT NULL default '0000-00-00 00:00:00',
-  last_modified datetime NOT NULL default '0000-00-00 00:00:00',
+  date_posted datetime NOT NULL default '0001-01-01 00:00:00',
+  last_modified datetime NOT NULL default '0001-01-01 00:00:00',
   PRIMARY KEY  (refund_id),
   KEY refund_id (refund_id)
 )";
@@ -82,8 +82,7 @@ $sql = "CREATE TABLE IF NOT EXISTS ".DB_PREFIX."so_payment_types (
   payment_type_code varchar(4) NOT NULL default '',
   payment_type_full varchar(20) NOT NULL default '',
   PRIMARY KEY  (payment_type_id),
-  UNIQUE KEY type_code (payment_type_code),
-  KEY type_code_2 (payment_type_code)
+  UNIQUE KEY type_code (payment_type_code)
 )";
     $db->Execute($sql);
 /* Add default payment types to so_payment_types table */
