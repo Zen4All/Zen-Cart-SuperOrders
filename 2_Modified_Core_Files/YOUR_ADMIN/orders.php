@@ -46,12 +46,9 @@ if (isset($_GET['download_reset_on'])) {
 if (isset($_GET['download_reset_off'])) {
   $_GET['download_reset_off'] = (int)$_GET['download_reset_off'];
 }
-if (!isset($_GET['status']))
-  $_GET['status'] = '';
-if (!isset($_GET['list_order']))
-  $_GET['list_order'] = '';
-if (!isset($_GET['page']))
-  $_GET['page'] = '';
+if (!isset($_GET['status'])) $_GET['status'] = '';
+if (!isset($_GET['list_order'])) $_GET['list_order'] = '';
+if (!isset($_GET['page'])) $_GET['page'] = '';
 
 include DIR_FS_CATALOG . DIR_WS_CLASSES . 'order.php';
 // prepare order-status pulldown list
@@ -366,9 +363,6 @@ if (zen_not_null($action) && $order_exists == true) {
     <link rel="stylesheet" href="includes/css/super_stylesheet.css">
     <?php if (TY_TRACKER == 'True') { ?>
       <link rel="stylesheet" href="includes/typt_stylesheet.css">
-    <?php } ?>
-    <?php if (SO_EDIT_ORDERS_SWITCH == 'True') { ?>
-      <link rel="stylesheet" href="includes/edit_orders.css">
     <?php } ?>
     <?php /* EOF Super Orders xxx of zzz */ ?>
     <link rel="stylesheet" media="print" href="includes/stylesheet_print.css">
@@ -1215,11 +1209,6 @@ if (zen_not_null($action) && $order_exists == true) {
         <div class="row text-right noprint">
             <?php /* BOF Super Orders xxx of zzz */ ?>
             <?php /* move to notifier */ ?>
-            <?php /* Begin Add Edit Order button to edit order page */ ?>
-            <?php if (SO_EDIT_ORDERS_SWITCH == 'True') { ?>
-            <a href="<?php echo zen_href_link(FILENAME_EDIT_ORDERS, 'oID=' . $oID); ?>" class="btn btn-info" role="button"><?php echo ICON_ORDER_EDIT; ?></a>&nbsp;&nbsp;
-          <?php } ?>
-          <?php /* End Add Edit Order button to edit order page */ ?>
           <a href="<?php echo zen_href_link(FILENAME_SUPER_DATA_SHEET, 'oID=' . $oID); ?>" target="_blank" class="btn btn-info" role="button"><?php echo ICON_ORDER_PRINT; ?></a>&nbsp;&nbsp;
           <?php /* EOF Super Orders xxx of zzz */ ?>
           <a href="<?php echo zen_href_link(FILENAME_ORDERS_INVOICE, 'oID=' . $_GET['oID']); ?>" target="_blank" class="btn btn-primary" role="button"><?php echo IMAGE_ORDERS_INVOICE; ?></a> <a href="<?php echo zen_href_link(FILENAME_ORDERS_PACKINGSLIP, 'oID=' . $_GET['oID']); ?>" target="_blank" class="btn btn-primary" role="button"><?php echo IMAGE_ORDERS_PACKINGSLIP; ?></a> <a href="<?php echo zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('action'))); ?>" class="btn btn-primary" role="button"><?php echo IMAGE_ORDERS; ?></a><?php echo $extra_buttons; ?>
@@ -1447,11 +1436,6 @@ if (zen_not_null($action) && $order_exists == true) {
                       echo '<a href="' . zen_href_link(FILENAME_SUPER_SHIPPING_LABEL, 'oID=' . $orders->fields['orders_id']) . '" target="_blank">' . zen_image(DIR_WS_IMAGES . 'icon_shipping_label.gif', ICON_ORDER_SHIPPING_LABEL) . '</a>&nbsp;';
                       echo '<a href="' . zen_href_link(FILENAME_INVOICE, 'oID=' . $orders->fields['orders_id']) . '" target="_blank">' . zen_image(DIR_WS_IMAGES . 'icon_invoice.gif', ICON_ORDER_INVOICE) . '</a>&nbsp;';
                       echo '<a href="' . zen_href_link(FILENAME_PACKINGSLIP, 'oID=' . $orders->fields['orders_id']) . '" target="_blank">' . zen_image(DIR_WS_IMAGES . 'icon_packingslip.gif', ICON_ORDER_PACKINGSLIP) . '</a>&nbsp;';
-//		Begin - add Edit Orders link to order list icons
-                      if (SO_EDIT_ORDERS_SWITCH == 'True') {
-                        echo '<a href="' . zen_href_link(FILENAME_EDIT_ORDERS, 'oID=' . $orders->fields['orders_id'] . '&action=edit', 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_edit.gif', ICON_ORDER_EDIT) . '</a>&nbsp';
-                      }
-//		End - add Edit Orders link to order list icons
                       echo '<a href="' . zen_href_link(FILENAME_SUPER_DATA_SHEET, 'oID=' . $orders->fields['orders_id']) . '" target="_blank">' . zen_image(DIR_WS_IMAGES . 'icon_print.gif', ICON_ORDER_PRINT) . '</a>&nbsp;';
                       echo '<a href="' . zen_href_link(FILENAME_ORDERS, 'oID=' . $orders->fields['orders_id'] . '&action=delete', 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_delete2.gif', ICON_ORDER_DELETE) . '</a>&nbsp;';
                       echo '<a href="' . zen_href_link(FILENAME_ORDERS, zen_get_all_get_params(array('oID')) . 'oID=' . $orders->fields['orders_id'], 'NONSSL') . '">' . zen_image(DIR_WS_IMAGES . 'icon_info.gif', IMAGE_ICON_INFO) . '</a>';
