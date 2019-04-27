@@ -239,10 +239,7 @@ function all_products_array($first_option = false, $show_price = false, $show_mo
     $display_price = zen_get_products_base_price($product['products_id']);
     $products_array[] = array(
       'id' => $product['products_id'],
-      'text' => $product['products_name'] .
-      ($show_price ? ' (' . $currencies->format($display_price) . ')' : '') .
-      ($show_model ? ' [' . $product['products_model'] . ']' : '') .
-      ($show_id ? ' [' . $product['products_id'] . ']' : '')
+      'text' => $product['products_name'] . ($show_price ? ' (' . $currencies->format($display_price) . ')' : '') . ($show_model ? ' [' . $product['products_model'] . ']' : '') . ($show_id ? ' [' . $product['products_id'] . ']' : '')
     );
   }
   return $products_array;
@@ -270,8 +267,7 @@ function all_payments_array($first_option = false, $show_code = false)
   foreach ($payments as $payment) {
     $payments_array[] = array(
       'id' => $payment['payment_module_code'],
-      'text' => $payment['payment_method'] .
-      ($show_code ? ' [' . $payment['payment_module_code'] . ']' : '')
+      'text' => $payment['payment_method'] . ($show_code ? ' [' . $payment['payment_module_code'] . ']' : '')
     );
   }
   return $payments_array;
@@ -302,9 +298,7 @@ function all_customers_array($first_option = false, $show_email = false, $show_i
   foreach ($customers as $customer) {
     $customers_array[] = array(
       'id' => $customer['customers_id'],
-      'text' => $customer['customers_lastname'] . ', ' . $customer['customers_firstname'] .
-      ($show_email ? ' (' . $customer['customers_email_address'] . ')' : '') .
-      ($show_id ? ' [' . $customer['customers_id'] . ']' : '')
+      'text' => $customer['customers_lastname'] . ', ' . $customer['customers_firstname'] . ($show_email ? ' (' . $customer['customers_email_address'] . ')' : '') . ($show_id ? ' [' . $customer['customers_id'] . ']' : '')
     );
   }
   return $customers_array;
@@ -461,7 +455,7 @@ function current_countries_array($first_option = false)
                              FROM " . TABLE_ORDERS . "
                              WHERE customers_country <> '" . get_store_country_name() . "'
                              ORDER BY customers_country");
-  foreach ($countries as $county) {
+  foreach ($countries as $country) {
     $countries_array[] = array(
       'id' => $country['customers_country'],
       'text' => $country['customers_country']

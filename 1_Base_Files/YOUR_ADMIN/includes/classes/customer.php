@@ -51,13 +51,13 @@
 class customer {
 
   var $cID, $profile, $address, $admin_notes, $admin_note_count, $karma;
-  var $info, $totals, $average, $address;
+  var $info, $totals, $average;
 
-  function customer($cID)
+  function __construct($cID)
   {
   global $db;
     $this->cID = (int)$cID;
-    $$db->Execute("SELECTT *
+    $db->Execute("SELECT *
                    FROM " . TABLE_CUSTOMERS . "
                    WHERE customers_id = " . $this->cID);
   }
@@ -292,12 +292,6 @@ if (zen_not_null($action)) {
 
       break;
     case 'deleteconfirm':
-// demo active test
-      if (zen_admin_demo()) {
-        $_GET['action'] = '';
-        $messageStack->add_session(ERROR_ADMIN_DEMO, 'caution');
-        zen_redirect(zen_href_link(FILENAME_CUSTOMERS, zen_get_all_get_params(array('cID', 'action')), 'NONSSL'));
-      }
       $customers_id = zen_db_prepare_input($_GET['cID']);
 
       if (isset($_POST['delete_reviews']) && ($_POST['delete_reviews'] == 'on')) {
