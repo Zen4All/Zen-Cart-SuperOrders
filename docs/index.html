@@ -6,14 +6,9 @@
     <title>Super Orders 5.0.0 for Zen Cart 1.5.6+</title>
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <style>
-      span.c7 {font-weight: bold; text-decoration: underline}
       span.c6 {color:red}
-      small.c5 {font-style: italic}
-      p.c4 {font-style: italic}
-      div.c3 {display: block;}
-      br.c2 {clear: both;}
-      div.c1 {display: none;}
     </style>
   </head>
   <body>
@@ -21,10 +16,14 @@
       <div class="card bg-light">
         <div class="card-header">
           <h1>Super Orders 5.0.0 for Zen Cart 1.5.6</h1>
+          <div class="pos_rel">
+            <div id="downloads">
+              <a class="zip_download_link" href="https://github.com/Zen4All/Zen-Cart_SuperOrders/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Zen4All/Zen-Cart_SuperOrders/tarball/master">Download this project as a tar.gz file</a>
+            </div>
+          </div>
         </div>
         <div class="card-body">
-          <!--<p>Support thread: <a href="http://www.zen-cart.com/forum/showthread.php?t=44668" target="_blank">http://www.zen-cart.com/forum/showthread.php?p=886839</a><br>
-      Download link: <a href="http://www.zen-cart.com/index.php?main_page=product_contrib_info&products_id=257" target="_blank">http://www.zen-cart.com/index.php?main_page=product_contrib_info&products_id=743</a></p>-->
           <ul class="nav nav-tabs" id="Tab" role="tablist">
             <li class="nav-item">
               <a class="nav-link active" id="purpose-tab" data-toggle="tab" href="#purpose" role="tab" aria-controls="purpose" aria-selected="true">Purpose & Aim</a>
@@ -48,6 +47,10 @@
             </li>
           </ul>
           <div class="tab-content" id="TabContent">
+            <div class="text-right">
+              <a href="https://www.zen-cart.com/showthread.php?200406-Super-Orders-v4-0-Support-Thread-(for-ZC-v1-5-x)" title="Support Thread" target="_blank" class="btn btn-info" role="button">Support Thread</a>
+              <a href="https://github.com/Zen4All/Zen-Cart_SuperOrders" title="View on GitHub" target="_blank" class="btn btn-info" role="button">View on GitHub <i class="fa fa-github fa-lg"></i></a>
+            </div>
             <div class="tab-pane fade show active" id="purpose" role="tabpanel" aria-labelledby="purpose-tab">
               <h2>Purpose & Aim</h2>
               <fieldset>
@@ -88,39 +91,39 @@
             </div>
             <div class="tab-pane fade" id="installation" role="tabpanel" aria-labelledby="installation-tab">
               <h2>Installation</h2>
-              <div class="boldemphasis">
-                <p>*** READ EVERYTHING IN THIS README BEFORE YOU BEGIN ***</p>
-                <p>***** BACKUP YOUR STORE BEFORE YOU BEGIN*****</p>
+              <div class="emphasis">
+                <p><strong>*** READ EVERYTHING IN THIS README BEFORE YOU BEGIN ***</strong></p>
+                <p><strong>***** BACKUP YOUR STORE BEFORE YOU BEGIN*****</strong></p>
               </div>
               <fieldset>
                 <legend>New Installation or Upgrading your store to Zen Cart v1.5 with an older version of Super Orders installed</legend>
 
                 <p>Here's the BEST part of the new Super Orders.. two words.. AUTO INSTALLER!! No more external SQL files needed to install/upgrade Super Orders.. Yep that's right.. TheSuper Orders install/upgrade is easier than ever!!! Whether you are upgrading from a previous Super Orders install or doing a vanilla Super Orders install, the newauto installer has got you covered. <strong>Please note:</strong> Uninstall is not automated. So to uninstall you will still need to use an external SQL file..</p>
-                <p>DO NOT RUN THE UNINSTALL SQL when upgrading..<br /><br />Let me repeat..<br /><br /><strong>DO NOT RUN THE UNINSTALL SQL when upgrading!!!!!!</strong> You will wipe out your payment/refunds/purchase order tables.. (This is IRREVERSIBLE!!) Doing so will cause issues with your Super Orders v4.0 install.</p>
-                <p><strong>DO NOT RUN OLDER VERSIONS OF THE INSTALL/UPGRADE SQL FILES when installing/upgrading!!!!!!</strong> Doing so will cause issues with your Super Orders v4.0 install.<br /><br />To install/upgrade Super Orders:</p>
+                <p>DO NOT RUN THE UNINSTALL SQL when upgrading..<br><br>Let me repeat..<br><br><strong>DO NOT RUN THE UNINSTALL SQL when upgrading!!!!!!</strong> You will wipe out your payment/refunds/purchase order tables.. (This is IRREVERSIBLE!!) Doing so will cause issues with your Super Orders v4.0 install.</p>
+                <p><strong>DO NOT RUN OLDER VERSIONS OF THE INSTALL/UPGRADE SQL FILES when installing/upgrading!!!!!!</strong> Doing so will cause issues with your Super Orders v4.0 install.<br><br>To install/upgrade Super Orders:</p>
                 <ol>
                   <li>Unzip the package contents to a temp directory</li>
-                  <li>Rename the <strong>YOUR_ADMIN_FOLDER</strong> folder in the <strong>1_Base_Files</strong> folder to match the name of your shop's admin folder.. Let me repeat this as this is the one step in module installs that most OFTEN gets overlooked/missed:<br /><br />
-                    <div class="boldemphasis">Rename the YOUR_ADMIN_FOLDER folders to match the name of your shop's admin folder</div>
+                  <li>Rename the <strong>YOUR_ADMIN_FOLDER</strong> folder in the <strong>1_Base_Files</strong> folder to match the name of your shop's admin folder.. Let me repeat this as this is the one step in module installs that most OFTEN gets overlooked/missed:<br><br>
+                    <div class="emphasis"><strong>Rename the YOUR_ADMIN_FOLDER folders to match the name of your shop's admin folder</strong></div>
                   </li>
-                  <li>Rename the <strong>YOUR_ADMIN_FOLDER</strong> folders in the <strong>2a_Modified_Core_Files</strong> folder to match the name of your store's admin folder<br /><br />
+                  <li>Rename the <strong>YOUR_ADMIN_FOLDER</strong> folders in the <strong>2a_Modified_Core_Files</strong> folder to match the name of your store's admin folder<br><br>
                     <div class="emphasis">Because these are core files, they have been separated in the install fileset so they are easily identified. If you have installed any mods which make changes to the files in this folder, you will need to use a tool like Winmerge or Beyond Compare to incorporate those changes into these files.</div>
                   </li>
                   <li>Log into your store's admin before uploading the files.
                     <div class="emphasis">If you log into your store after uploading the files, the auto-install will still ocurr, but you will not see the install confimation message. (this is because the auto-install will take place during the login action and the confirmation message will not display during the login process)</div>
                   </li>
                   <li>
-                    <div class="boldemphasis">IF YOU ARE UPGRADING FROM AN OLDER VERSION OF SUPER ORDERS:</div>The files in the <strong>"Deprecated files"</strong> section of the <strong>"Files"</strong> tab should be deleted in their entirety or replaced with Zen Cart defaults. Do not keep "backup" copies of these files on your web server as they will not work with Zen Cart v1.5 and therefore keeping backups of them serves NO useful purpose. Keeping these files will in fact cause errors in your store. (Please see the <strong>"Deprecated files"</strong> section of the <strong>"Files"</strong> tab before proceeding)
+                    <div class="emphasis"><strong>IF YOU ARE UPGRADING FROM AN OLDER VERSION OF SUPER ORDERS:</strong></div>The files in the <strong>"Deprecated files"</strong> section of the <strong>"Files"</strong> tab should be deleted in their entirety or replaced with Zen Cart defaults. Do not keep "backup" copies of these files on your web server as they will not work with Zen Cart v1.5 and therefore keeping backups of them serves NO useful purpose. Keeping these files will in fact cause errors in your store. (Please see the <strong>"Deprecated files"</strong> section of the <strong>"Files"</strong> tab before proceeding)
                   </li>
                   <li>FTP the CONTENTS of <strong>[temp directory]/1_Base_Files</strong> into the ROOT of your Zen Cart installation. The files are already arranged following the Zen Cart folder structure.</li>
-                  <li>FTP the CONTENTS of <strong>[temp directory]/2a_Modified_Core_Files</strong> into the ROOT of your Zen Cart installation. The files are already arranged following the Zen Cart folder structure. If, and ONLY IF, you have COWOA 2.6 installed, FTP the CONTENTS of <strong>[temp directory]/2a_Modified_Core_Files</strong> into the ROOT of your Zen Cart installation.<br /><br />Because these are core files, they have been separated from the Super Orders base files. If you have installed any mods which make changes to the files in this folder, you will need to use a tool like Winmerge or Beyond Compare to incorporate those changes into these files.</li>
+                  <li>FTP the CONTENTS of <strong>[temp directory]/2a_Modified_Core_Files</strong> into the ROOT of your Zen Cart installation. The files are already arranged following the Zen Cart folder structure. If, and ONLY IF, you have COWOA 2.6 installed, FTP the CONTENTS of <strong>[temp directory]/2a_Modified_Core_Files</strong> into the ROOT of your Zen Cart installation.<br><br>Because these are core files, they have been separated from the Super Orders base files. If you have installed any mods which make changes to the files in this folder, you will need to use a tool like Winmerge or Beyond Compare to incorporate those changes into these files.</li>
                   <li>Once the files are uploaded, click ANY link in your store's admin, and the auto-installer will be triggered. If you have followed the install instructions, you will see the installation confirmation message.</li>
                 </ol>
               </fieldset>
               <fieldset>
                 <legend>Deprecated files - Delete or replace with defaults</legend>
                 <p>These file(s) are from previous versions of Super Orders and are no longer needed for this version of Super Orders. They are safe to delete where marked as such. Modified core files (if included in this list) should be replaced with Zen Cart defaults. DO NOT keep ANY of these files as they may in fact cause errors in your store.</p>
-                <p class="c4">As with ANY module, any files which override existing cart files should be examined using a tool like Winmerge or Beyond Compare to ensure that any other non Super Orders related modifications are included.</p>
+                <p><i>As with ANY module, any files which override existing cart files should be examined using a tool like Winmerge or Beyond Compare to ensure that any other non Super Orders related modifications are included.</i></p>
                 <ul>
                   <li>YOUR_ADMIN_FOLDER/super_customers.php <strong>(delete)</strong></li>
                   <li>YOUR_ADMIN_FOLDER/super_orders.php <strong>(delete)</strong></li>
@@ -165,584 +168,199 @@
               <fieldset>
                 <legend>Configuring Super Orders</legend>
                 <ol>
-                  <li>Configure Phone and Fax Numbers (See Figure 1 below)<br />The SQL file added new defines for your store's phone and fax numbers, so that we can display them without the address. Go into the admin and browse to <strong>Configuration &gt; My Store &gt; Store Fax</strong> and add your fax number. You'll find the line to add the phone number directly beneath it - <strong>Configuration &gt; My Store &gt; Store Phone</strong>.<br /><small class="c5"><strong>TIP:</strong> Super Orders uses these configs on the invoice, but you can use them anywhere you want! Just use the define <strong>STORE_PHONE</strong> or <strong>STORE_FAX</strong> in your own customizations.</small></li>
-                  <li>Customize Super Orders (See Figure 2 below)<br />Go to <strong>Admin &gt; Configuration &gt; Super Orders</strong>, you'll find all the configurable options in there, with explanations and instructions.</li>
-                  <li>Install "Purchase Order" Payment Module<br />The PO tracking system and attached reports won't work without this! Go to <strong>Admin &gt; Modules &gt; Payment</strong>, you should find "<strong>Purchase Order</strong>" at the bottom. It should look familiar when you install and configure it, since it mimics the "<strong>Check/Money Order</strong>" module. If you will not be using Purchase Orders, you do not
+                  <li>Configure Phone and Fax Numbers (See Figure 1 below)<br>The SQL file added new defines for your store's phone and fax numbers, so that we can display them without the address. Go into the admin and browse to <strong>Configuration &gt; My Store &gt; Store Fax</strong> and add your fax number. You'll find the line to add the phone number directly beneath it - <strong>Configuration &gt; My Store &gt; Store Phone</strong>.<br><small><i><strong>TIP:</strong> Super Orders uses these configs on the invoice, but you can use them anywhere you want! Just use the define <strong>STORE_PHONE</strong> or <strong>STORE_FAX</strong> in your own customizations.</i></small></li>
+                  <li>Customize Super Orders (See Figure 2 below)<br>Go to <strong>Admin &gt; Configuration &gt; Super Orders</strong>, you'll find all the configurable options in there, with explanations and instructions.</li>
+                  <li>Install "Purchase Order" Payment Module<br>The PO tracking system and attached reports won't work without this! Go to <strong>Admin &gt; Modules &gt; Payment</strong>, you should find "<strong>Purchase Order</strong>" at the bottom. It should look familiar when you install and configure it, since it mimics the "<strong>Check/Money Order</strong>" module. If you will not be using Purchase Orders, you do not
                     need to install the Purchase Order payment module.</li>
-                </ol><small><strong>Figure 1</strong></small><br />
+                </ol><small><strong>Figure 1</strong></small><br>
                 <img src="images/admin_mystore.png" width="934" alt="">
-                <small><strong>Figure 2</strong></small><br />
+                <small><strong>Figure 2</strong></small><br>
                 <img src="images/admin_configuration.png" width="934" alt="">
               </fieldset>
               <hr />
               <fieldset>
                 <legend>Features</legend>
                 <p>Super Orders is a collection of customizations mixed with new features. Each heading below reflects a different ability of the Super Orders system.</p>
-
-                <p>Each feature description begins with a new line. All features are in
-                  addition to the default Zen Cart orders.php functionality, nothing was
-                  removed... However, LOTS was added to the default functionality!!!</p>
+                <p>Each feature description begins with a new line. All features are in addition to the default Zen Cart orders.php functionality, nothing was removed... However, LOTS was added to the default functionality!!!</p>
               </fieldset>
-
               <fieldset>
                 <legend>Order Management</legend>
-
                 <p>Location: <strong>Admin &gt; Customers &gt; Orders</strong></p>
-
-                <p>The orders listing page now has shortcut buttons on each order line that
-                  match the buttons that appear in the sidebox, saving an extra click.</p>
-
-                <p>Added customer shortcuts, one to find all orders by the customer, another to
-                  pull up their profile edit screen.</p>
-
-                <p>The original <strong>"Edit"</strong> button in the sidebox has been replaced
-                  with <strong>"Details,"</strong> to more accurately reflect the button's
-                  purpose.</p>
-
-                <p>The order detail page (again, this used to be accessed via the
-                  <strong>"Edit"</strong> button) includes shortcuts to edit admin comments,
-                  split an order, pull up the data sheet, invoice and packing slip, and a quick
-                  navigation system to pull up the detail screen for any other order.</p>
+                <p>The orders listing page now has shortcut buttons on each order line that match the buttons that appear in the sidebox, saving an extra click.</p>
+                <p>Added customer shortcuts, one to find all orders by the customer, another to pull up their profile edit screen.</p>
+                <p>The original <strong>"Edit"</strong> button in the sidebox has been replaced with <strong>"Details,"</strong> to more accurately reflect the button's purpose.</p>
+                <p>The order detail page (again, this used to be accessed via the <strong>"Edit"</strong> button) includes shortcuts to edit admin comments, split an order, pull up the data sheet, invoice and packing slip, and a quick navigation system to pull up the detail screen for any other order.</p>
               </fieldset>
               <hr />
-
               <fieldset>
                 <legend>Editing Admin Comments & Splitting Orders</legend>
-
-                <p>Location: <strong>Admin &gt; Customers &gt; Orders &gt; Detail</strong>
-                  button</p>
-
+                <p>Location: <strong>Admin &gt; Customers &gt; Orders &gt; Detail</strong> button</p>
                 <p>You'll find two links placed on the Super Orders page:</p>
-
                 <ul>
                   <li>Edit Admin Comments</li>
-
                   <li>Split Order</li>
                 </ul>
-
-                <p>Each brings up a popup window to edit the specified information. Submitting
-                  and closing the window will refresh the page to display your changes.</p>
-
-                <p><strong>Edit Admin Comments</strong> - Allows the shopowner to edit hidden
-                  (admin) comments</p>
-
-                <p>Previous versions of Super Orders allowed editing of ALL order comments. The
-                  Super Orders development team felt that this was not a good shop practice.
-                  There is no method in SUper Orders to notify customers when a previously sent
-                  customer comment had been altered later. Therefore, beginning with version 3.0
-                  comment editing was modified to restrict comments editing to admin comments
-                  only (hidden comments) to be edited. Editing these comments requires no
-                  customer notification</p>
-
-                <p><strong>Split Order</strong> - Allows the shopowner to split items off of
-                  one order and onto a new order</p>
-
-                <p>When an order is split, the ORIGINAL shipping, tax, and other order total
-                  values remain with the "parent" (original) order, and the "child" (new) order
-                  will only include the totals for the products being moved over. This allows for
-                  payments for paid orders being split correctly as a result. No additional order
-                  splits are allowed after the order is split. Additionally the grand total of
-                  the original order will be clearly displayed on both the parent and resulting
-                  child order.</p>
-
-                <p>Why was split orders changed?<br />
-                  <br />
-                  The original split order function was modified in this version of Super Orders
-                  so that shopowners can easily reconcile split orders (particularly PAID split
-                  orders). Prior versions of Super Orders provided NO audit trail for split
-                  orders. One of the things which was problematic in earlier versions of the
-                  split orders functionality in Super Orders was HOW it split the payments and
-                  credits on an order. The code was written to move the product(s) selected to a
-                  new order and it simply copied over the original shipping, payments and credits
-                  to the new child order. Once an order was split multiple times, there was
-                  NOTHING to help shopowners clearly see which orders were split and from where.
-                  In order for a shopowner to reconcile several split orders against a single
-                  payment, the shopowner would have to adopt a seperate manual process to
-                  reconcile all the resulting child orders against the original order/payment.
-                  Super Orders provided no such audit trails</p>
-
-                <p>The ONLY way previously to correct this was to use something like the Edit
-                  Orders module and manually correct the child orders. When work began on Super
-                  Order v3.0 it was decided to look at how to improve the split orders
-                  functionality. Upon really examining the split orders functionality, it became
-                  clear that there was an order reconciliation issue. Orders could be split until
-                  there was nothing left to split, but there was NO WAY to reconcile the parent
-                  order to the resulting child orders. For orders paid via PayPal or credit cards
-                  this was especially problematic. There was no clean way to tie a group of
-                  orders to a single payment. Shopowners would have to manually keep track of
-                  this themselves outside of Zen Cart, and though they certainly could use the
-                  order notes to "tie" the orders together, there was nothing which explicitly
-                  linked the parent order to the resulting child orders.<br />
-                  <br />
-                  To resolve the order reconciliation issue, starting with v3.0 of Super Orders
-                  the split order functionality was simplified. Instead of splitting orders to
-                  infinity and back a better way to explicitly link a parent order to it's child
-                  order and clearly show the original payment data as well was implemented. As of
-                  v3.0 an order can only be split once creating a child and a parent order. The
-                  original shipping stays with the parent order, but the payment is divided
-                  between the child and the parent based on the remaining order balance in both.
-                  Gift certificates and other discounts were not fully tested as to how they
-                  would be split across the parent and child orders. Order with giftcertificates
-                  and discounts may still required some editing to correct the balances of the
-                  parent and child orders.</p>
-
-                <p>The original FULL order amount is clearly displayed on both the parent and
-                  child order along with the original FULL payment information. Additionally
-                  child orders where the original order was paid via PayPal, Authorize.net, or
-                  Linkpoint no longer erroneously display the "Grey Box" payments notification
-                  area.<br />
-                  <br />
-                  Now is there a way to keep the original ability to split an order multiple
-                  times, apply the correct shipping to each order, apply the payments, GVs,
-                  credit, taxes, and still provide a method to reconcile all the orders? Oh most
-                  definitely, but it would require a fair bit of work to execute a complete
-                  re-tooling of the split orders functionality.. AND when this work is being done
-                  as a free contribution frankly it becomes a matter of who has bandwidth
-                  available to make all the necessary changes to support this.. So instead a
-                  simpler solution in order to solve most of the major problems identified was
-                  implemented. For now, those seeking a more sophisticated split orders
-                  functionality should seek the services of a developer to create this
-                  functionaity. oDesk, Elancer, and vWorker are resources that can assist in this
-                  regard.</p>
-
-                <p><strong>ABOUT ORDER EDITING:</strong> Integrating full order edit
-                  functionality within Super Orders is a major undertaking and was never been
-                  fully developed in any version. Previous versions of Super Orders releases
-                  included some very BASIC order editing features that were adapted from an EARLY
-                  version of <strong>Edit Orders</strong>. The customer and order total edit
-                  functionality has been deprecated in this version. For those who require more
-                  comprehensive order edit functionality, this version of Super Orders now
-                  includes easy integration with <strong>Edit Orders v4.0.0</strong></p>
+                <p>Each brings up a popup window to edit the specified information. Submitting, and closing the window will refresh the page to display your changes.</p>
+                <p><strong>Edit Admin Comments</strong> - Allows the shopowner to edit hidden (admin) comments</p>
+                <p>Previous versions of Super Orders allowed editing of ALL order comments. The Super Orders development team felt that this was not a good shop practice. There is no method in SUper Orders to notify customers when a previously sent customer comment had been altered later. Therefore, beginning with version 3.0 comment editing was modified to restrict comments editing to admin comments only (hidden comments) to be edited. Editing these comments requires no customer notification</p>
+                <p><strong>Split Order</strong> - Allows the shopowner to split items off of one order and onto a new order</p>
+                <p>When an order is split, the ORIGINAL shipping, tax, and other order total values remain with the "parent" (original) order, and the "child" (new) order will only include the totals for the products being moved over. This allows for payments for paid orders being split correctly as a result. No additional order splits are allowed after the order is split. Additionally the grand total of the original order will be clearly displayed on both the parent and resulting child order.</p>
+                <p>Why was split orders changed?<br><br>The original split order function was modified in this version of Super Orders so that shopowners can easily reconcile split orders (particularly PAID split orders). Prior versions of Super Orders provided NO audit trail for split orders. One of the things which was problematic in earlier versions of the split orders functionality in Super Orders was HOW it split the payments and credits on an order. The code was written to move the product(s) selected to a new order and it simply copied over the original shipping, payments and credits to the new child order. Once an order was split multiple times, there was NOTHING to help shopowners clearly see which orders were split and from where. In order for a shopowner to reconcile several split orders against a single payment, the shopowner would have to adopt a seperate manual process to reconcile all the resulting child orders against the original order/payment. Super Orders provided no such audit trails</p>
+                <p>The ONLY way previously to correct this was to use something like the Edit Orders module and manually correct the child orders. When work began on Super Order v3.0 it was decided to look at how to improve the split orders functionality. Upon really examining the split orders functionality, it became clear that there was an order reconciliation issue. Orders could be split until there was nothing left to split, but there was NO WAY to reconcile the parent order to the resulting child orders. For orders paid via PayPal or credit cards this was especially problematic. There was no clean way to tie a group of orders to a single payment. Shopowners would have to manually keep track of this themselves outside of Zen Cart, and though they certainly could use the order notes to "tie" the orders together, there was nothing which explicitly linked the parent order to the resulting child orders.<br><br>To resolve the order reconciliation issue, starting with v3.0 of Super Orders the split order functionality was simplified. Instead of splitting orders to infinity and back a better way to explicitly link a parent order to it's child order and clearly show the original payment data as well was implemented. As of v3.0 an order can only be split once creating a child and a parent order. The original shipping stays with the parent order, but the payment is divided between the child and the parent based on the remaining order balance in both. Gift certificates and other discounts were not fully tested as to how they would be split across the parent and child orders. Order with giftcertificates and discounts may still required some editing to correct the balances of the parent and child orders.</p>
+                <p>The original FULL order amount is clearly displayed on both the parent and child order along with the original FULL payment information. Additionally child orders where the original order was paid via PayPal, Authorize.net, or Linkpoint no longer erroneously display the "Grey Box" payments notification area.<br><br> Now is there a way to keep the original ability to split an order multiple times, apply the correct shipping to each order, apply the payments, GVs, credit, taxes, and still provide a method to reconcile all the orders? Oh most definitely, but it would require a fair bit of work to execute a complete re-tooling of the split orders functionality.. AND when this work is being done as a free contribution frankly it becomes a matter of who has bandwidth available to make all the necessary changes to support this.. So instead a simpler solution in order to solve most of the major problems identified was implemented. For now, those seeking a more sophisticated split orders functionality should seek the services of a developer to create this functionaity. oDesk, Elancer, and vWorker are resources that can assist in this regard.</p>
+                <p><strong>ABOUT ORDER EDITING:</strong> Integrating full order edit functionality within Super Orders is a major undertaking and was never been fully developed in any version. Previous versions of Super Orders releases included some very BASIC order editing features that were adapted from an EARLY version of <strong>Edit Orders</strong>. The customer and order total edit functionality has been deprecated in this version. For those who require more comprehensive order edit functionality, this version of Super Orders now includes easy integration with <strong>Edit Orders v4.0.0</strong></p>
               </fieldset>
               <hr />
-
               <fieldset>
                 <legend>Super Orders Payment/Refunds Entry</legend>
-
-                <p>Super Orders includes a rudimentary accounting function which gives
-                  shopowners the ability to enter and track order payment. The Super Orders
-                  payment system can track all of the following scenarios:</p>
-
+                <p>Super Orders includes a rudimentary accounting function which gives shopowners the ability to enter and track order payment. The Super Orders payment system can track all of the following scenarios:</p>
                 <ul>
                   <li>Multiple PO's</li>
-
                   <li>Multiple payments</li>
-
                   <li>Multiple payments per PO</li>
-
                   <li>Multiple refunds per payment</li>
-
                   <li>Multiple refunds per order</li>
                 </ul>
-
-                <p>Opening the details screen for any order will display the payment system.
-                  There you'll find buttons to add the three types of payment data:</p>
-
+                <p>Opening the details screen for any order will display the payment system. There you'll find buttons to add the three types of payment data:</p>
                 <ul>
                   <li>Purchase Orders</li>
-
                   <li>Payments</li>
-
                   <li>Refunds</li>
-                </ul><br />
-                <small><strong>Figure 4</strong></small><br />
-                <img src="images/admin_payments.png" border="1" alt="" /><br />
-                <br />
-
-                <p>Clicking any one will bring up a pop-up window to enter the details for that
-                  particular payment entry type. When you are done, the popup will close and
-                  return you to the original page, refreshing it to display your new entry.</p>
-
-                <p>One of the nice parts of this feature is that the refunds function allows
-                  you to optionally link a refund to a specific exisitng payment entry.</p>
-
-                <p>Buttons to edit and delete payments are on the line listing the payment.
-                  Click the corresponding button to modify the entry or remove it entirely. It's
-                  pretty self-explanatory, but please post on the forum thread if you have
-                  problems or questions.</p>
-
-                <p>Super Orders will auto enter a Super Orders payment record for orders paid
-                  via <img src="images/new.jpg" border="0" width="20" alt="" />&nbsp;PayPal,
-                  Authorize.net, and Linkpoint. All other payment types will require you to enter
-                  a Super Orders payment record manually</p>
-
-                <p><strong>ABOUT AUTOMATED SUPER ORDERS REFUNDS:</strong><br />
-                  While Super Orders will auto enter a Super Orders payment record for orders
-                  paid via <img src="images/new.jpg" border="0" width="20" alt="" />&nbsp;PayPal,
-                  Authorize.net, and Linkpoint, the automation of Super Orders refund records for
-                  PayPal, Authorize.net and Linkpoint admin generated refund transactions is a
-                  major undertaking.<br />
-                  <br />
-                  The method required for generating automated Super Orders refund records for
-                  PayPal paid orders is different than the method required for generating
-                  automated Super Orders refunds for Authorize.net and Linkpoint. Therefore this
-                  feature is not included. There are posts in the Super Orders v2.0, v3.0, and
-                  v4.0 support threads which discuss how to add this functionality to Super
-                  Orders for PayPal transactions only. We have chosen not to implement this
-                  feature (auto-refunds) unless it can be implemented for <strong>ALL</strong>
-                  payment methods which are supported by automated payment records. This keeps
-                  Super Orders and it's functionality CONSISTENT for a larger variety of
-                  shopowners versus providing functionality that is beneficial to only ONE group
-                  of shopowners. That said if you require automated Super Orders refunds
-                  functionality for PayPal transactions please do try one of the posted solutions
-                  (look for carlvt88's posts on this topic)<br />
-                  <br />
-                  and so it's CRYSTAL CLEAR to ALL:<br /></p>
-
-                <div class="boldemphasis">
-                  PAYMENTS and REFUNDS referenced in this section are SUPER ORDERS payments and
-                  refund records.
-                </div>
+                </ul><br>
+                <small><strong>Figure 4</strong></small><br>
+                <img src="images/admin_payments.png" style="border:1px solid #000;" alt="" /><br>
+                <br>
+                <p>Clicking any one will bring up a pop-up window to enter the details for that particular payment entry type. When you are done, the popup will close and return you to the original page, refreshing it to display your new entry.</p>
+                <p>One of the nice parts of this feature is that the refunds function allows you to optionally link a refund to a specific exisitng payment entry.</p>
+                <p>Buttons to edit and delete payments are on the line listing the payment. Click the corresponding button to modify the entry or remove it entirely. It's pretty self-explanatory, but please post on the forum thread if you have problems or questions.</p>
+                <p>Super Orders will auto enter a Super Orders payment record for orders paid via <img src="images/new.jpg" border="0" width="20" alt="" />&nbsp;PayPal, Authorize.net, and Linkpoint. All other payment types will require you to enter a Super Orders payment record manually</p>
+                <p><strong>ABOUT AUTOMATED SUPER ORDERS REFUNDS:</strong><br> While Super Orders will auto enter a Super Orders payment record for orders paid via <img src="images/new.jpg" border="0" width="20" alt="" />&nbsp;PayPal, Authorize.net, and Linkpoint, the automation of Super Orders refund records for PayPal, Authorize.net and Linkpoint admin generated refund transactions is a major undertaking.<br><br>The method required for generating automated Super Orders refund records for PayPal paid orders is different than the method required for generating automated Super Orders refunds for Authorize.net and Linkpoint. Therefore this feature is not included. There are posts in the Super Orders v2.0, v3.0, and v4.0 support threads which discuss how to add this functionality to Super Orders for PayPal transactions only. We have chosen not to implement this feature (auto-refunds) unless it can be implemented for <strong>ALL</strong> payment methods which are supported by automated payment records. This keeps Super Orders and it's functionality CONSISTENT for a larger variety of shopowners versus providing functionality that is beneficial to only ONE group of shopowners. That said if you require automated Super Orders refunds functionality for PayPal transactions please do try one of the posted solutions (look for carlvt88's posts on this topic)<br><br>and so it's CRYSTAL CLEAR to ALL:<br></p>
+                <div class="emphasis"><strong>PAYMENTS and REFUNDS referenced in this section are SUPER ORDERS payments and refund records.</strong></div>
               </fieldset>
               <hr />
-
               <fieldset>
                 <legend>Payment Types</legend>
-
-                <p>The payment system allows the user to specify the type of payment being
-                  entered. For instance, if the payment is cash, simply select
-                  <strong>"Cash"</strong> from the dropdown; if it's a credit card payment,
-                  select the proper Credit Card, or just choose the generic <strong>"Credit
-                    Card"</strong> for lesser known providers.</p>
-
-                <p>Furthermore, the system allows the user to add/edit/delete the available
-                  payment types to suit his or her needs. Go to: <strong>Admin &gt; Localization
-                    &gt; Payment Types</strong></p>
-
-                <p>There you will find an interface similar to the order status page. From here
-                  you may create whatever payment methods you want, as well as edit/delete those
-                  you already have. As described above, the system comes with a good list of
-                  payment types that should cover most stores, people, and situations.<br />
-                  <i><small><strong><br />
-                        Note:</strong> If you are using PayPal, Authorize.net, or Linkpoint, please do
-                      NOT delete or EDIT the major credit card names/codes. If you do, you will stop
-                      autopayments from working correctly</small></i></p><small><strong>Figure
-                    5</strong></small><br />
-                <img src="images/admin_payment_types.png" border="1" width="934px" alt="" />
+                <p>The payment system allows the user to specify the type of payment being entered. For instance, if the payment is cash, simply select <strong>"Cash"</strong> from the dropdown; if it's a credit card payment, select the proper Credit Card, or just choose the generic <strong>"Credit Card"</strong> for lesser known providers.</p>
+                <p>Furthermore, the system allows the user to add/edit/delete the available payment types to suit his or her needs. Go to: <strong>Admin &gt; Localization &gt; Payment Types</strong></p>
+                <p>There you will find an interface similar to the order status page. From here you may create whatever payment methods you want, as well as edit/delete those you already have. As described above, the system comes with a good list of payment types that should cover most stores, people, and situations.<br><i><small><strong><br>Note:</strong> If you are using PayPal, Authorize.net, or Linkpoint, please do NOT delete or EDIT the major credit card names/codes. If you do, you will stop autopayments from working correctly</small></i></p>
+                <small><strong>Figure 5</strong></small><br>
+                <img src="images/admin_payment_types.png" style="border:1px solid #000;" width="934" alt="" />
               </fieldset>
               <hr />
-
               <fieldset>
                 <legend>Language Support for Payment Types</legend>
-
-                <p>The payment system part of Super Orders was built based on English being the
-                  primary language in the store and doesn't fully work properly with languages
-                  other than English.</p>
-
-                <p>Here's what happens currently when you add a new payment type in a different
-                  language:</p>
-
+                <p>The payment system part of Super Orders was built based on English being the primary language in the store and doesn't fully work properly with languages other than English.</p>
+                <p>Here's what happens currently when you add a new payment type in a different language:</p>
                 <blockquote>
-                  <p>In testing the payment types we discovered that adding NEW payment types
-                    for all active languages works as expected.. You simply add the Payment Type
-                    code and the Payment Type name for each supported language.</p>
-
-                  <p>However EDITING payments types is where it gets strange.. The edit screen
-                    appears to allow you to edit the payment type for all supported languages in
-                    tyour store, However, what is ACTUALLY displayed appears to be duplicates of
-                    the Payment Type for only one elanguage repeated in each of the form
-                    fields</p>
-
-                  <p>If you edit the payment type it will only update for the Payment Type for
-                    the language currently active, and in order for the change to save, you must
-                    enter your change in the LAST input box REGARDLESS of whether it's the
-                    correct one for the currently active language. Furthermore, you cannot use
-                    the same Payment Type code for each language (which is REQUIRED if you want
-                    auto payments for PayPal and Credit Card payments to work with ALL active
-                    languages)</p>
+                  <p>In testing the payment types we discovered that adding NEW payment types for all active languages works as expected.. You simply add the Payment Type code and the Payment Type name for each supported language.</p>
+                  <p>However EDITING payments types is where it gets strange.. The edit screen appears to allow you to edit the payment type for all supported languages in tyour store, However, what is ACTUALLY displayed appears to be duplicates of the Payment Type for only one elanguage repeated in each of the form fields</p>
+                  <p>If you edit the payment type it will only update for the Payment Type for the language currently active, and in order for the change to save, you must enter your change in the LAST input box REGARDLESS of whether it's the correct one for the currently active language. Furthermore, you cannot use the same Payment Type code for each language (which is REQUIRED if you want auto payments for PayPal and Credit Card payments to work with ALL active languages)</p>
                 </blockquote>
-
-                <p>This flaw may be fully addressed in a future release. Until this is
-                  addressed and fixed it, there is a farily easy workaround which involves adding
-                  the payment types for other languages directly to the database. The Super
-                  Orders install package includes a sample script which allows you to add
-                  additional Super Orders payment types. You need to make the correct
-                  translations and change the language ID to match the language ID for the
-                  language you are adding. ie: If you are adding French payment types and your
-                  French language ID = 2, then change the language ID in the script to 2, and
-                  update all the payment types to the correct translations required. Then using
-                  the Admin SQL installer, run your the script to add these payment types to the
-                  database.</p>
-
-                <p>There is a small database change to update one of the table indexes that
-                  must be made BEFORE uploading your payment types to allow multiple languages to
-                  share the same payment type code. Without this index modification, the auto
-                  payments feature for Super Orders WILL NOT work for PayPal or credit card
-                  payments. (the auto pay code is dependent on the Super Orders payment type code
-                  matching the credit card codes used in the Zen Cart checkout class files).</p>
-
-                <p>This script is down and dirty, and it has not been tested thoroughly so
-                  PLEASE backup your database before trying this. This way if you have issues,
-                  you can simply rollback. However, this is pretty straight forward and should
-                  get you going if you need payment types for other languages in your store.</p>
+                <p>This flaw may be fully addressed in a future release. Until this is addressed and fixed it, there is a farily easy workaround which involves adding the payment types for other languages directly to the database. The Super Orders install package includes a sample script which allows you to add additional Super Orders payment types. You need to make the correct translations and change the language ID to match the language ID for the language you are adding. ie: If you are adding French payment types and your French language ID = 2, then change the language ID in the script to 2, and update all the payment types to the correct translations required. Then using the Admin SQL installer, run your the script to add these payment types to the database.</p>
+                <p>There is a small database change to update one of the table indexes that must be made BEFORE uploading your payment types to allow multiple languages to share the same payment type code. Without this index modification, the auto payments feature for Super Orders WILL NOT work for PayPal or credit card payments. (the auto pay code is dependent on the Super Orders payment type code matching the credit card codes used in the Zen Cart checkout class files).</p>
+                <p>This script is down and dirty, and it has not been tested thoroughly so PLEASE backup your database before trying this. This way if you have issues, you can simply rollback. However, this is pretty straight forward and should get you going if you need payment types for other languages in your store.</p>
               </fieldset>
               <hr />
-
               <fieldset>
                 <legend>Shipping Label</legend>
-
-                <p>Location: <strong>Admin &gt; Customers &gt; Orders &gt; Shipping
-                    Label</strong> button</p>
-
-                <p>This is taken directly from the <strong>"Basic Shipping Label"</strong>
-                  contrib available in the Zen Cart downloads section. The filename was modified
-                  and some defines for language interoperability were added, and the button label
-                  was recreated so that it matches the others, otherwise it's exactly the
-                  same.</p>
-
-                <p>If it doesn't fit your requirements exactly, the label is super-easy to
-                  modify. Just edit admin/super_shipping_label.php; the entire thing is HTML
-                  except for the address data displayed. Adjust to suit your needs.</p>
+                <p>Location: <strong>Admin &gt; Customers &gt; Orders &gt; Shipping Label</strong> button</p>
+                <p>This is taken directly from the <strong>"Basic Shipping Label"</strong> contrib available in the Zen Cart downloads section. The filename was modified and some defines for language interoperability were added, and the button label was recreated so that it matches the others, otherwise it's exactly the same.</p>
+                <p>If it doesn't fit your requirements exactly, the label is super-easy to modify. Just edit admin/super_shipping_label.php; the entire thing is HTML except for the address data displayed. Adjust to suit your needs.</p>
               </fieldset>
               <hr />
-
               <fieldset>
                 <legend>Invoice</legend>
-
-                <p>Location: <strong>Admin &gt; Customers &gt; Orders &gt; Invoice</strong>
-                  button</p>
-
-                <p>If the order payment is a PO, the PO details will appear next to the address
-                  information after the PO number has been entered. The order must be placed and
-                  paid for using the purchase order module included with this contrib. The
-                  details appear regardless of whether a PO number was entered or not, but the
-                  number will be included once you have entered it.</p>
-
-                <p>Added the word <strong>"Invoice"</strong> to the header (P.O. users
-                  typically require this)</p>
-
+                <p>Location: <strong>Admin &gt; Customers &gt; Orders &gt; Invoice</strong> button</p>
+                <p>If the order payment is a PO, the PO details will appear next to the address information after the PO number has been entered. The order must be placed and paid for using the purchase order module included with this contrib. The details appear regardless of whether a PO number was entered or not, but the number will be included once you have entered it.</p>
+                <p>Added the word <strong>"Invoice"</strong> to the header (P.O. users typically require this)</p>
                 <p>Billing address positioned for a windowed envelope.</p>
-
-                <p>Displays the Tax ID and removes the tax lines, if applicable. <strong>Admin
-                    &gt; Configuration &gt; Super Orders &gt; Tax Exempt Number</strong></p>
-
-                <p>Added <strong>"Amount Paid"</strong> and <strong>"Balance Due"</strong>
-                  lines. Values reflect order total and applied payments/refunds of the payment
-                  system.</p>
+                <p>Displays the Tax ID and removes the tax lines, if applicable. <strong>Admin &gt; Configuration &gt; Super Orders &gt; Tax Exempt Number</strong></p>
+                <p>Added <strong>"Amount Paid"</strong> and <strong>"Balance Due"</strong> lines. Values reflect order total and applied payments/refunds of the payment system.</p>
               </fieldset>
               <hr />
-
               <fieldset>
                 <legend>Packing Slip</legend>
-
-                <p>Location: <strong>Admin &gt; Customers &gt; Orders &gt; Packing
-                    Slip</strong> button</p>
-
-                <p>Now displays the shipping method with other order info (in case different
-                  shipping methods have different priorities, e.g. Rush shipping).</p>
-
+                <p>Location: <strong>Admin &gt; Customers &gt; Orders &gt; Packing Slip</strong> button</p>
+                <p>Now displays the shipping method with other order info (in case different shipping methods have different priorities, e.g. Rush shipping).</p>
                 <p>Added the word <strong>"Packing Slip"</strong> to the header.</p>
-
-                <p>Put the shipping address in position for a windowed envelope (Yes, a packing
-                  slip usually goes *in* the box, but you never know).</p>
-
-                <p>Packing slip images are now a simple on/of admin configurable feature.
-                  <strong>Admin &gt; Configuration &gt; Super Orders &gt; Standard Packing Slips
-                    - Show Images</strong></p>
+                <p>Put the shipping address in position for a windowed envelope (Yes, a packing slip usually goes *in* the box, but you never know).</p>
+                <p>Packing slip images are now a simple on/of admin configurable feature. <strong>Admin &gt; Configuration &gt; Super Orders &gt; Standard Packing Slips - Show Images</strong></p>
               </fieldset>
               <hr />
-
               <fieldset>
                 <legend>Batch Form Printing</legend>
-
                 <p>Location: <strong>Admin &gt; Customers &gt; Batch Form Print</strong></p>
-
-                <p>Ack: super_batch_forms.php is based on
-                  <strong>"easy-batch-printing"</strong> written by PandA.nl (Forum PM:
-                  paulm)</p>
-
-                <p>This file allows you to print invoices and packing slips in bulk. It was
-                  ported from OSC, and while the original code remains largely in-tact, it works
-                  perfectly in the latest versions of Zen. The Super Orders version simply
-                  integrates the code more seamlessly into the admin, and adds a few more
-                  printing options.</p>
-
-                <p>You select the form you want, for which orders, and the number of copies,
-                  and the code spits out a new window with the right numbers, each one split into
-                  a different frame. Then just press print on your browser.</p>
-
-                <p><img src="images/new.jpg" border="0" width="20" alt=
-                        "" />&nbsp;&nbsp;&nbsp;Batch printing of standard invoices, packingslips, and
-                  labels no longer renders a page with each selected item generated on separate
-                  frames.</p>
-
-                <p><img src="images/new.jpg" border="0" width="20" alt=
-                        "" />&nbsp;&nbsp;&nbsp;Batch Form Printing now includes options for PDF batch
-                  invoice printing. Displays all the same information as the default Super Orders
-                  invoice, and provides options for including your own logo on the invoice. PDF
-                  invoices displays the Tax ID and removes the tax lines, if applicable.
-                  <strong>Admin &gt; Configuration &gt; Super Orders &gt; Tax Exempt
+                <p>Ack: super_batch_forms.php is based on <strong>"easy-batch-printing"</strong> written by PandA.nl (Forum PM: paulm)</p>
+                <p>This file allows you to print invoices and packing slips in bulk. It was ported from OSC, and while the original code remains largely in-tact, it works perfectly in the latest versions of Zen. The Super Orders version simply integrates the code more seamlessly into the admin, and adds a few more printing options.</p>
+                <p>You select the form you want, for which orders, and the number of copies, and the code spits out a new window with the right numbers, each one split into a different frame. Then just press print on your browser.</p>
+                <p><img src="images/new.jpg" border="0" width="20" alt="" />&nbsp;&nbsp;&nbsp;Batch printing of standard invoices, packingslips, and labels no longer renders a page with each selected item generated on separate frames.</p>
+                <p><img src="images/new.jpg" border="0" width="20" alt="" />&nbsp;&nbsp;&nbsp;Batch Form Printing now includes options for PDF batch invoice printing. Displays all the same information as the default Super Orders invoice, and provides options for including your own logo on the invoice. PDF invoices displays the Tax ID and removes the tax lines, if applicable. <strong>Admin &gt; Configuration &gt; Super Orders &gt; Tax Exempt
                     Number</strong>.</p>
-
-                <p>Other options for the PDF packing slips are configured in the Super Orders
-                  admin. <strong>Admin &gt; Configuration &gt; Super Orders &gt; Standard Packing
-                    Slips - Show Images</strong></p>
-
-                <p><small><strong>Figure 6</strong></small><br />
-                  <img src="images/admin_pdf_invoices.png" border="1" width="934px" alt="" /></p>
-
-                <p><span class="boldemphasis">A quick note on the PDF packingslips:</span></p>
-
-                <p>A packingslip is defined as: <span class="emphasis"><em>A statement of the
-                      contents of a container, usually put into the container so that the quantity of
-                      merchandise may be counted by the person who opens the
-                      container.</em></span></p>
-
-                <p>A few folks have made a BIG deal about the fact that the Super Orders PDF
-                  packingslips includes pricing information. This is not unusual as many large
-                  retailers also send out packingslips which include pricing information. The
-                  point here is that there is NO RULE that says a packingslip CANNOT include
-                  pricing information. It's called a DETAILED packingslip which serves as a
-                  packingslip and receipt for an order.</p>
-
-                <p>Now is there a way to make the display of prices an admin configurable
-                  option so that shopowners can choose whether to display prices or not on the
-                  PDF packingslip? Sure, but the PDF packingslip code was generously contributed
-                  by another community member, and it wasn't written this way. This code was
-                  contributed as is, and there are no plans to modify it this time. When this
-                  work is being done as a FREE contribution, frankly it becomes a matter of who
-                  has bandwidth available to make these changes. For now, those who would like
-                  different options for the PDF packingslip functionality have the option to seek
-                  out the services of a developer to create this functionaity. oDesk, Elancer,
-                  and vWorker are all excellent resources that can assist in this regard.</p>
-
-                <p>&nbsp;</p>
+                <p>Other options for the PDF packing slips are configured in the Super Orders admin. <strong>Admin &gt; Configuration &gt; Super Orders &gt; Standard Packing Slips - Show Images</strong></p>
+                <p><small><strong>Figure 6</strong></small><br><img src="images/admin_pdf_invoices.png" style="border:1px solid #000;" width="934" alt="" /></p>
+                <p><span class="emphasis"><strong>A quick note on the PDF packingslips:</strong></span></p>
+                <p>A packingslip is defined as: <span class="emphasis"><em>A statement of the contents of a container, usually put into the container so that the quantity of merchandise may be counted by the person who opens the container.</em></span></p>
+                <p>A few folks have made a BIG deal about the fact that the Super Orders PDF packingslips includes pricing information. This is not unusual as many large retailers also send out packingslips which include pricing information. The point here is that there is NO RULE that says a packingslip CANNOT include pricing information. It's called a DETAILED packingslip which serves as a packingslip and receipt for an order.</p>
+                <p>Now is there a way to make the display of prices an admin configurable option so that shopowners can choose whether to display prices or not on the PDF packingslip? Sure, but the PDF packingslip code was generously contributed by another community member, and it wasn't written this way. This code was contributed as is, and there are no plans to modify it this time. When this work is being done as a FREE contribution, frankly it becomes a matter of who has bandwidth available to make these changes. For now, those who would like different options for the PDF packingslip functionality have the option to seek out the services of a developer to create this functionaity. oDesk, Elancer, and vWorker are all excellent resources that can assist in this regard.</p>
               </fieldset>
               <hr />
-
               <fieldset>
                 <legend>Batch Status Updating</legend>
-
                 <p>Location: <strong>Admin &gt; Customers &gt; Batch Status Update</strong></p>
-
-                <p>This file allows you to update the status of multiple orders at once. You
-                  can search by any of the following criteria: date of order, current status,
-                  ordered product, customer, payment method, order total, country, and the usual
-                  text search.</p>
-
-                <p>Select the new status, add your comments, and whether or not to notify the
-                  customer (set to "off" by default to avoid unintentional mass mailings) and
-                  you're all set!</p>
+                <p>This file allows you to update the status of multiple orders at once. You can search by any of the following criteria: date of order, current status, ordered product, customer, payment method, order total, country, and the usual text search.</p>
+                <p>Select the new status, add your comments, and whether or not to notify the customer (set to "off" by default to avoid unintentional mass mailings) and you're all set!</p>
               </fieldset>
               <hr />
-
               <fieldset>
                 <legend>Outstanding Payments</legend>
-
-                <p>Location: <strong>Admin &gt; Reports &gt; Orders Awaiting
-                    Payment</strong></p>
-
-                <p>This report displays all your outstanding payment paperwork. Each radio
-                  button will search for orders that are missing the indicated transaction piece
-                  (e.g. searching "Purchase Orders" will display orders in which the customer
-                  chose to pay via PO but has not submitted a PO yet).</p>
-
-                <p>By default it will look for orders older than 30 days without the specified
-                  information (typical timeframe to define a payment as "late"), but you can
-                  include orders within 30 days by clicking the indicated box.</p>
-
-                <p>The print format is just as its name implies, prints nicely on 8.5" x 11"
-                  paper. You can click the title in the print format to return to the regular
-                  admin display.</p>
+                <p>Location: <strong>Admin &gt; Reports &gt; Orders Awaiting Payment</strong></p>
+                <p>This report displays all your outstanding payment paperwork. Each radio button will search for orders that are missing the indicated transaction piece (e.g. searching "Purchase Orders" will display orders in which the customer chose to pay via PO but has not submitted a PO yet).</p>
+                <p>By default it will look for orders older than 30 days without the specified information (typical timeframe to define a payment as "late"), but you can include orders within 30 days by clicking the indicated box.</p>
+                <p>The print format is just as its name implies, prints nicely on 8.5" x 11" paper. You can click the title in the print format to return to the regular admin display.</p>
               </fieldset>
               <hr />
-
               <fieldset>
                 <legend>Cash Flow</legend>
-
                 <p>Location: <strong>Admin &gt; Reports &gt; Cash Report</strong></p>
+                <p>Similar to the "Awaiting Payment" report, the Cash Report displays all the actual monetary transactions entered into the payment system.</p>
+                <p>Your options are payments (income), refunds (loss), or both. PO's are not an option because they are merely a promise to pay, not actual cash. Payments attached to PO's are included in the "Payments" search.</p>
 
-                <p>Similar to the "Awaiting Payment" report, the Cash Report displays all the
-                  actual monetary transactions entered into the payment system.</p>
-
-                <p>Your options are payments (income), refunds (loss), or both. PO's are not an
-                  option because they are merely a promise to pay, not actual cash. Payments
-                  attached to PO's are included in the "Payments" search.</p>
-
-                <p>The date range search reflects the date upon which the payment or refund was
-                  entered, NOT the order date, date of a particular status, etc. This date is
-                  displayed on the order detail page on the payment line item under the heading
-                  "Date Posted".</p>
-
-                <p>Like the Awaiting Payment report, the print format displays a nice print
-                  layout. You can also click the title in the print format to return to the
-                  regular admin display.</p>
+                <p>The date range search reflects the date upon which the payment or refund was entered, NOT the order date, date of a particular status, etc. This date is displayed on the order detail page on the payment line item under the heading "Date Posted".</p>
+                <p>Like the Awaiting Payment report, the print format displays a nice print layout. You can also click the title in the print format to return to the regular admin display.</p>
               </fieldset>
             </div>
             <div class="tab-pane fade" id="addons" role="tabpanel" aria-labelledby="addons-tab">
               <h2>Add-ons Integration</h2>
-
               <p>Super Orders now provides an easy means to integrate (no file merging required!!) with the following modules:</p>
               <ul>
                 <li><img src="images/new.jpg" width="20" alt="" />&nbsp;&nbsp;Edit Orders</li>
                 <li><img src="images/new.jpg" width="20" alt="" />&nbsp;&nbsp;Ty Package Tracker</li>
               </ul>
-
-              <p>In order for these modules to work with Super Orders it is presumed that you
-                already have these modules installed and working correctly. To use them with
-                Super Orders, you only need to turn on the corresponding admin flag - see Figure
-                2 & 3 below.</p>
-
-              <p>If you don't have any of these modules installed, but <strong>DO</strong> plan
-                to install them to use with Super Orders, we <strong>STRONGLY</strong> suggest
-                that you install them <strong>BEFORE YOU INSTALL SUPER ORDERS</strong>. Make sure
-                you get them working correctly <strong>FIRST</strong> before you install Super
-                Orders.</p>
-
-              <p>Why do we suggest this?? We suggest this so that new shopowners who are
-                planning to install these modules can get them working FIRST before installing
-                Super Orders. This way you can make sure the base module is installed correctly.
-                This gives new shopowners an opportunity to work out all the kinks and issues
-                with installation of these mods FIRST so as not to mix apples with oranges by
-                thinking that issues with other mods are being caused by Super Orders.</p>
-
+              <p>In order for these modules to work with Super Orders it is presumed that you already have these modules installed and working correctly. To use them with Super Orders, you only need to turn on the corresponding admin flag - see Figure 2 & 3 below.</p>
+              <p>If you don't have any of these modules installed, but <strong>DO</strong> plan to install them to use with Super Orders, we <strong>STRONGLY</strong> suggest that you install them <strong>BEFORE YOU INSTALL SUPER ORDERS</strong>. Make sure you get them working correctly <strong>FIRST</strong> before you install Super Orders.</p>
+              <p>Why do we suggest this?? We suggest this so that new shopowners who are planning to install these modules can get them working FIRST before installing Super Orders. This way you can make sure the base module is installed correctly. This gives new shopowners an opportunity to work out all the kinks and issues with installation of these mods FIRST so as not to mix apples with oranges by thinking that issues with other mods are being caused by Super Orders.</p>
               <p>One last thing...</p>
-
-              <p><strong>PLEASE DO NOT</strong> post regarding questions/issues/errors with
-                Edit Orders, or Ty Package Tracker in the Super Orders support threads!!!! You
-                will be (politely) redirected to the proper support threads. Thanks for
-                understanding..</p>
+              <p><strong>PLEASE DO NOT</strong> post regarding questions/issues/errors with Edit Orders, or Ty Package Tracker in the Super Orders support threads!!!! You will be (politely) redirected to the proper support threads. Thanks for understanding..</p>
               <hr />
-
               <fieldset>
                 <legend>Edit Orders Integration</legend>
-
-                <p>If you have Edit Orders v4.0.0 installed you can now enable Edit Orders
-                  buttons in the Super Orders system to integrate Super Orders with Edit
-                  Orders.</p>
-
+                <p>If you have Edit Orders v4.0.0 installed you can now enable Edit Orders buttons in the Super Orders system to integrate Super Orders with Edit Orders.</p>
                 <ol>
                   <li>Install Edit Orders v4.0.0</li>
-
-                  <li>Go to <strong>Configuration &gt; Super Orders</strong>. Set the "Edit
-                    Orders Module Switch" to "True"</li>
+                  <li>Go to <strong>Configuration &gt; Super Orders</strong>. Set the "Edit Orders Module Switch" to "True"</li>
                 </ol>
-
-                <p>This will enable the Edit Orders v4.0.0 buttons and make them available in
-                  Super Orders. <strong><span class="c6">DO NOT activate this flag if you do NOT
-                      have Edit Orders v4.0.0 installed or you WILL get errors in your
-                      store!!!</span></strong></p>
+                <p>This will enable the Edit Orders v4.0.0 buttons and make them available in Super Orders. <strong><span class="c6">DO NOT activate this flag if you do NOT have Edit Orders v4.0.0 installed or you WILL get errors in your store!!!</span></strong></p>
               </fieldset>
               <hr />
-
               <fieldset>
                 <legend>Ty Package Tracker Integration</legend>
-
-                <p>If you have Ty Package Tracker v3.1.2 or greater installed you can now
-                  enable the Ty Package Tracker fields in the Super Orders system.</p>
-
+                <p>If you have Ty Package Tracker v3.1.2 or greater installed you can now enable the Ty Package Tracker fields in the Super Orders system.</p>
                 <ol>
                   <li>Install Ty Package Tracker (v3.1.2 or greater)</li>
-
-                  <li>Go to <strong>Configuration &gt; Ty Package Tracker</strong>. Set the "Ty
-                    Package Tracker Module Switch" to "True".</li>
+                  <li>Go to <strong>Configuration &gt; Ty Package Tracker</strong>. Set the "Ty Package Tracker Module Switch" to "True".</li>
                 </ol>
-
-                <p>This will enable the Ty Package Tracker fields and make them available in
-                  Super Orders. <strong><span class="c6">DO NOT activate this flag if you do NOT
-                      have Ty Package Tracker v3.1.2 installed or you WILL get errors in your
-                      store!!!</span></strong></p><small><strong>Figure 3</strong></small><br />
-                <img src="images/admin_typackage_tracker.png" width="934" alt="">
+                <p>This will enable the Ty Package Tracker fields and make them available in Super Orders. <strong><span class="c6">DO NOT activate this flag if you do NOT have Ty Package Tracker v3.1.2 installed or you WILL get errors in your store!!!</span></strong></p>
+                <small><strong>Figure 3</strong></small><br> <img src="images/admin_typackage_tracker.png" width="934" alt="">
               </fieldset>
             </div>
             <div class="tab-pane fade" id="files" role="tabpanel" aria-labelledby="files-tab">
@@ -793,532 +411,211 @@
                   <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/cp1254.map</li>
                   <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/cp1255.map</li>
                   <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/cp1257.map</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/cp1258.map</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/iso-8859-1.map</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/iso-8859-2.map</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/iso-8859-4.map</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/iso-8859-5.map</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/iso-8859-7.map</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/iso-8859-9.map</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/iso-8859-11.map</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/iso-8859-15.map</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/iso-8859-16.map</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/koi8-r.map</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/koi8-u.map</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/makefont.php</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/extra_datafiles/super_orders_defines.php</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/functions/extra_functions/super_orders_functions.php</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/functions/extra_functions/orders_common_functions.php</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/functions/extra_functions/lcsd_merged_packing_slips.php</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_batch_status.php</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_edit.php</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_orders.php</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_report_await_pay.php</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_packingslip.php</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_report_cash.php</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_invoice.php</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_payment_types.php</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_payments.php</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_data_sheet.php</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_batch_forms.php</li>
-
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/cp1258.map</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/iso-8859-1.map</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/iso-8859-2.map</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/iso-8859-4.map</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/iso-8859-5.map</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/iso-8859-7.map</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/iso-8859-9.map</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/iso-8859-11.map</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/iso-8859-15.map</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/iso-8859-16.map</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/koi8-r.map</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/koi8-u.map</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/classes/fpdf/font/makefont/makefont.php</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/extra_datafiles/super_orders_defines.php</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/functions/extra_functions/super_orders_functions.php</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/functions/extra_functions/orders_common_functions.php</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/functions/extra_functions/lcsd_merged_packing_slips.php</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_batch_status.php</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_edit.php</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_orders.php</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_report_await_pay.php</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_packingslip.php</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_report_cash.php</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_invoice.php</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_payment_types.php</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_payments.php</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_data_sheet.php</li>
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_batch_forms.php</li>
                   <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/super_batch_pages.php</li>
-
-                  <li>
-                    1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/order_status_email.php</li>
-
+                  <li>1_Base_Files/YOUR_ADMIN_FOLDER/includes/languages/english/order_status_email.php</li>
                   <li>1_Base_Files/includes/classes/super_order.php</li>
-
                   <li>1_Base_Files/includes/extra_datafiles/super_orders_defines.php</li>
-
-                  <li>
-                    1_Base_Files/includes/languages/english/modules/payment/purchaseorder.php</li>
-
+                  <li>1_Base_Files/includes/languages/english/modules/payment/purchaseorder.php</li>
                   <li>1_Base_Files/includes/modules/payment/purchaseorder.php</li>
                 </ul>
               </fieldset>
-
               <fieldset>
-                <legend>Core Zen Cart Files Modified (Required)</legend> <i>As with ANY module,
-                  any files which override existing cart files should be merged using a tool like
-                  Winmerge or Beyond Compare before you install the module.</i>
-
+                <legend>Core Zen Cart Files Modified (Required)</legend> <i>As with ANY module, any files which override existing cart files should be merged using a tool like Winmerge or Beyond Compare before you install the module.</i>
                 <ul>
                   <li>2_Modified_Core_Files/YOUR_ADMIN_FOLDER/orders.php</li>
-
                   <li>2_Modified_Core_Files/YOUR_ADMIN_FOLDER/invoice.php</li>
-
                   <li>2_Modified_Core_Files/YOUR_ADMIN_FOLDER/packingslip.php</li>
-
                   <li>2_Modified_Core_Files/YOUR_ADMIN_FOLDER/includes/general.js</li>
-
-                  <li>
-                    2_Modified_Core_Files/YOUR_ADMIN_FOLDER/includes/languages/english/orders.php</li>
-
-                  <li>
-                    2_Modified_Core_Files/YOUR_ADMIN_FOLDER/includes/languages/english/invoice.php</li>
-
-                  <li>
-                    2_Modified_Core_Files/YOUR_ADMIN_FOLDER/includes/languages/english/packingslip.php</li>
-
+                  <li>2_Modified_Core_Files/YOUR_ADMIN_FOLDER/includes/languages/english/orders.php</li>
+                  <li>2_Modified_Core_Files/YOUR_ADMIN_FOLDER/includes/languages/english/invoice.php</li>
+                  <li>2_Modified_Core_Files/YOUR_ADMIN_FOLDER/includes/languages/english/packingslip.php</li>
                   <li>2_Modified_Core_Files/includes/classes/order.php</li>
-
-                  <li>
-                    2_Modified_Core_Files/includes/languages/english/YOUR_TEMPLATE/account_history_info.php</li>
-
-                  <li>
-                    2_Modified_Core_Files/includes/modules/pages/account_history_info/header.php</li>
-
-                  <li>
-                    2_Modified_Core_Files/includes/templates/YOUR_TEMPLATE/templates/tpl_account_history_info_default.php</li>
+                  <li>2_Modified_Core_Files/includes/languages/english/YOUR_TEMPLATE/account_history_info.php</li>
+                  <li>2_Modified_Core_Files/includes/modules/pages/account_history_info/header.php</li>
+                  <li>2_Modified_Core_Files/includes/templates/YOUR_TEMPLATE/templates/tpl_account_history_info_default.php</li>
                 </ul>
               </fieldset>
             </div>
             <div class="tab-pane fade" id="credits" role="tabpanel" aria-labelledby="credits-tab">
               <h2>Credits & History</h2>
-              Based on Super Orders 2.0 - By Frank Koehl - PM: BlindSide (original author)<br />
-              <br />
-
-              <fieldset>
-                <legend>Acknowledgements</legend>
-
-                <ul>
-                  <li>First, thanks to Frank Koehl (BlindSide) for creating the original Super
-                    Orders.</li>
-
-                  <li>Thanks to all of the authors of the various threads that went into the
-                    crafting this updated version.</li>
-                </ul>
-
-                <p>Super Orders contributors:</p>
-
-                <ul>
-                  <li>JT - GTI Custom (http://gticustom.com)</li>
-
-                  <li>C Jones - Over the Hill Web Consulting (http://overthehillweb.com)</li>
-
-                  <li>Loose Chicken Software Development (david@loosechicken.com)</li>
-
-                  <li>Scott C. Wilson - That Software Guy (http://thatsoftwareguy.com)</li>
-
-                  <li>Tony Benedetti - benedettitony@gmail.com</li>
-
-                  <li>Kelly Hudson - ScriptJunkie</li>
-
-                  <li>Carl P - carlvt88</li>
-
-                  <li>A Ballanger (http://www.zen-cart.com/member.php?115838)</li>
-
-                  <li>Numinix Web Development Ltd. (http://www.numinix.com)</li>
-
-                  <li>Paul Williams - retched</li>
-                </ul>
-              </fieldset>
-
-              <fieldset>
-                <legend>Change Log</legend>
-                <h3>v4.0.11</h3>
-
-                <ul>
-                  <li>Removed extra slashes that appeared in packingslip.php's comments fields. 
-                    (This tends to happen on servers where the field isn't auto 
-                    escaped.)
-                  </li>
-                </ul>
-
-                <h3>v4.0.10</h3>
-
-                <ul>
-                  <li>Removed refreshing of page for /YOUR_ADMIN/super_batch_forms.php
-                    and /YOUR_ADMIN/super_batch_status.php. Now Javascript will take 
-                    over and check all the boxes on a page.</li>
-                  <li>Removed all mysql_ functions and relegated any lookups to the 
-                    innate ZenCart DB class. Improved support for ZenCart 1.5.2 and
-                    1.5.3.</li>
-                  <li>Added missing define for 'TEXT_NO_ORDERS' for super_batch_forms.php
-                  </li>
-                </ul>
-
-                <h3>v4.0.9</h3>
-
-                <ul>
-                  <li>Added support for Store Credit.</li>
-                  <li>Bug fix in order splitting for handful of discount mods.</li>
-                </ul>
-
-                <h3>v4.0.8</h3>
-
-                <ul>
-                  <li>Added column names to INSERT statements in automatic DB patch
-                    installer</li>
-                </ul>
-
-                <h3>v4.0.7</h3>
-
-                <ul>
-                  <li>Correction of error: WARNING | [PHP 5.3] INI directive
-                    'magic_quotes_runtime' is deprecated.</li>
-                </ul>
-
-                <h3>v4.0.6</h3>
-
-                <ul>
-                  <li>correct issue with fpdf.php class file</li>
-
-                  <li>Improved Ty Package Tracker integration code (lhungil)</li>
-
-                  <li>Hide Ty Package Tracker and Edit Orders stylesheets if these modules are
-                    not installed</li>
-                </ul>
-
-                <h3>v4.0.5</h3>
-
-                <ul>
-                  <li>~ PHP 5.3 updates to remove deprecated PHP functions<br />
-                    ~ Minor change to update the add-on for Zen Cart v1.5.1</li>
-                </ul>
-
-                <h3>v4.0.4</h3>
-
-                <ul>
-                  <li>1. Fixed the error with Shipping Label & Packaging Slip (See #2
-                    Below).<br />
-                    2. Changed ALL Files to use Unix (LF Only) Encoding.<br />
-                    3. Fixed problem with Payment & Purchase Order page not displaying (
-                    Re-enabled define('FILENAME_SUPER_PAYMENTS) ).<br />
-                    4. Cleaned up code comments a little bit.</li>
-                </ul>
-
-                <h3>v4.0.3</h3>
-
-                <ul>
-                  <li>Full integration of Super Orders functionality into the into Zen Cart
-                    core. Eliminate once and for all the separate Super Orders versions of the
-                    core "cousin files", and replace the super_orders.php, super_invoice.php,
-                    super_packingslip.php with Super Order enhanced versions of orders.php,
-                    invoice.php, & packingslip.php.</li>
-
-                  <li>Auto generate Super Orders payment records when orders a paid via
-                    PayPal</li>
-
-                  <li><span class="c7">Credit Card Auto Payment Generation Tweak:</span><br />
-                    <br />
-                    I decided to update the class file that auto generates Super Orders payments
-                    for credit card paid orders based on Blindside's post here:<a href=
-                                                                                  "http://www.zen-cart.com/forum/showpost.php?p=276219&postcount=207"
-                                                                                  target="_blank"><br />
-                      <br />
-                      http://www.zen-cart.com/forum/showpost.php?p=276219&postcount=207</a>.
-                    (just the part of this code which relates to credit payments.. PayPal auto
-                    payments are handled differently)<br />
-                    <br />
-                    I liked the fact that it no longer hardcodes the credit card codes, and
-                    instead relies on the data in the Super Orders payments types table. IF a NEW
-                    credit card type is supported by Zen Cart, the only thing Super Orders users
-                    need to do is to create a corresponding Super Orders payment type (the Super
-                    Orders payment code must match the corresponding credit card as it does now
-                    for supported credit cards).. This is loads easier for all I think!!<br />
-                    <br />
-                    This will help keep people -- particularly newbies -- "out of the code" just
-                    to update the module.. Having to edit module files is often where things go
-                    wrong for newbies.</li>
-
-                  <li>Batch Form Printing. When shopowners print multiple invoices they are
-                    presented with a new window with all the selected invoices in separate
-                    frames. Printing frames is only supported by IE and Firefox (the 2 most
-                    commonly used browsers when SO was initially released). This code still
-                    works, but is showing signs of it's age. (the 80s called..) Frame printing is
-                    not supported in Chrome, Safari, or Opera. Therefore, this function is to be
-                    modified so that batch invoices no longer render in frames and the selected
-                    invoice prints on its own page. Align batch invoices and packingslips so that
-                    they look/act like the single printed versions.</li>
-
-                  <li>File: admin\super_report_await_pay.php<br />
-                    Line 132: Missing a &lt;?php<br />
-                    <a href=
-                       "http://www.zen-cart.com/forum/showpost.php?p=1008080&postcount=275"
-                       target=
-                       "_blank">http://www.zen-cart.com/forum/showpost.php?p=1008080&postcount=275</a></li>
-
-                  <li>Error with the super_data_sheet.php lines around lines 225 where Ty
-                    Package Tracker 2 is spliced in.<br />
-                    <a href=
-                       "http://www.zen-cart.com/forum/showpost.php?p=977666&postcount=55"
-                       target="_blank">http://www.zen-cart.com/forum/showpost.php?p=977666&postcount=55</a></li>
-
-                  <li>Correct PDF packing slip to intepret and output currency and other
-                    symbols correctly. (trademarks, currency symbols, copyright, etc)</li>
-
-                  <li>Eliminate the need for the common_orders_functions.php file. Edit Orders
-                    and Super Orders should have their own functions files.</li>
-
-                  <li>Comments in "Batch Status Update" should work the same way default order
-                    comments work. (support for e-mail, no e-mail, or hidden comments) . If
-                    working properly should allow shop owner to create batch hidden order
-                    comments.<br />
-                    <br />
-                    Currently does not create the correct comment type. Hidden comments and no
-                    e-mail comments are not e-mailed to the customer, but they are stored and
-                    displayed in the store as if they are e-mail comments.</li>
-
-                  <li>PDF Packing Slip now prints comments the same way comments print on the
-                    regular invoice.</li>
-
-                  <li>Correct balance due display on PDF packing slip</li>
-                </ul>
-
-                <h3>v3.0.2</h3>
-
-                <ul>
-                  <li>Allowing the use of just range first and/or range last in Batch Status
-                    Update, Batch Status Print</li>
-
-                  <li>Narrowed window to fit in Batch Status Update, Batch Status Print</li>
-                </ul>
-
-                <h3>v3.0.1</h3>
-
-                <ul>
-                  <li>Adding a comment to an order with an apostrophe causes SQL failure -
-                    fixed</li>
-
-                  <li>Not installing Ty Tracker means Super Orders Print will fail - fixed</li>
-
-                  <li>Display all comments in Invoice</li>
-
-                  <li>Display all comments in Packing Slip</li>
-                </ul>
-
-                <h3>v3.0.0</h3>
-
-                <ul>
-                  <li>Clean up and reorganize the readme file (again!!!)</li>
-
-                  <li>MANY misc bug fixes and corrections</li>
-
-                  <li>Overall cleanup of the files to remove deprecated and unused code</li>
-
-                  <li>Countries now included as search option in "Batch Form Printing" and
-                    "Batch Status Updating"</li>
-
-                  <li>The "<strong>Edit Status History</strong>" feature has been restored and
-                    the functionality modified. Editing of order comments is now limited to
-                    hidden "admin only" comments. Additionally in previous versions of Super
-                    Orders the "<strong>Edit Status History</strong>" feature inserted HTML and
-                    ASCII line breaks into the database, and this ugly line break code was
-                    displayed when the customer viewed their order history from "Status History
-                    & Comments". This particular problem goes back to 2006, and has now been
-                    FULLY resolved/addressed.</li>
-
-                  <li>Customer comments modified to incorporate the latest Zen Cart 1.3.9
-                    functionality/format</li>
-
-                  <li>Packing slip images are now a simple on/off admin configurable
-                    option.</li>
-
-                  <li>Batch print functionality has been expanded to include PDF invoices!!
-                    Options for the invoices are admin configurable</li>
-
-                  <li>Split orders has been improved to help shopowners easily reconcile a
-                    split order. Creates a parent and child order. Paid split orders will display
-                    the grand total paid for both parent and child order. For orders paid via
-                    PayPal, Authorize.net or Linkpoint, the admin payment panel will not display
-                    on the child order.</li>
-
-                  <li>Order total and customer address edit features have been removed in their
-                    entirety. (use <strong>Edit Orders</strong> if you need order/customer
-                    address editing functionality)</li>
-
-                  <li>Added missing shortcut icons on the orders listing screen. Now there is a
-                    corresponding shortcut icon on each order line that matches the buttons that
-                    appear in the sidebox.</li>
-
-                  <li>Restoration of missing default Zen Cart orders.php functionality. This
-                    now allows payment processor generated (PayPal, Authorize.net or Linkpoint)
-                    refunds to now be processed within Super Orders. (no longer requires the
-                    retention of the default orders.php to process PayPal, Authorize.net or
-                    Linkpoint refunds)</li>
-
-                  <li>AUTO PAYMENT FOR ORDERS PAID VIA PAYPAL!!!!!!! 'Nuff said...</li>
-
-                  <li>Improved graphics and buttons to <strong>SPRUCE UP</strong> the Super
-                    Orders UI</li>
-
-                  <li>If you have Edit Orders v3.0 installed, you can enable Edit Order in the
-                    Super Orders admin to enable Edit Orders buttons in Super Orders (No Super
-                    Orders code merging required.. Simply install Edit Orders and "turn on" Edit
-                    Orders in the Super Orders admin!!)</li>
-
-                  <li>If you have Ty Package Tracker v3.0 installed, you can enable the Ty
-                    Package Tracker fields for Super Orders (No Super Orders code merging
-                    required..) Simply install Ty Package Tracker and "turn on" Super Orders from
-                    the Ty Package Tracker admin!!)</li>
-
-                  <li>If you have USPS Click-N-Ship installed, you can enable USPS Click-N-Ship
-                    in the Super Orders admin to enable USPS Click-N-Ship fields/buttons in Super
-                    Orders (No Super Orders code merging required.. Simply install USPS
-                    Click-N-Ship and "turn on" USPS Click-N-Ship in the Super Orders
-                    admin!!)</li>
-
-                  <li>If you have FedEx Automated Labels installed, you can enable FedEx
-                    Automated Labels in the Super Orders admin to enable FedEx Automated Labels
-                    buttons in Super Orders (No Super Orders code merging required.. Simply
-                    install FedEx Automated Labels and "turn on" FedEx Automated Labels in the
-                    Super Orders admin!!)</li>
-                </ul>
-
-                <h3>v1.3.9</h3>
-
-                <ul>
-                  <li>Updated for Zen 1.3.9 compatibility</li>
-                </ul>
-
-                <h3>v2.0 Rev 48</h3>
-
-                <ul>
-                  <li>Clean up and reorganize the readme file</li>
-
-                  <li>Addition of a "<strong>Required_CoreEdits</strong>" folder. This folder
-                    contains files that include the edits outlined in the the "<strong>REQUIRED
-                      FILE EDITS</strong>" section of the previous version of the Super Orders
-                    readme</li>
-
-                  <li>Addition of an "<strong>Optional_Files</strong>" set of folders. This
-                    folder contains files that include most of the edits outlined in the the
-                    "<strong>OPTIONAL FILE EDITS</strong>" section of the previous version Super
-                    Orders readme</li>
-
-                  <li>Removed all the <strong>authorizenet_aim.php</strong> edits from readme
-                    because they appear to be from an older version of the Authorize.net payment
-                    module files. (These instructions are in the "OPTIONAL FILE EDITS" section of
-                    the previous versions readme file)</li>
-
-                  <li>Updated e-mail format (modified lines 30 - 33 of
-                    <strong>order_status_email.php</strong>) to improve the aesthetics of the
-                    e-mail generated</li>
-
-                  <li>The "<strong>Edit Status History</strong>" function has been removed. It
-                    creates an audit/accountability issue by allowing the editing of order
-                    notes/comments. The "<strong>Edit Status History</strong>" feature also
-                    injects HTML line breaks and ASCII line breaks into the database, and these
-                    line breaks are displayed when the customer views their order history from
-                    "Status History & Comments". This particular problem goes back to 2006,
-                    and has not been fully resolved/addressed even in the last version of Super
-                    Orders.<br />
-                    <br />
-                    The problem is due to the comments not being properly scrubbed before
-                    inserting them into the DB. This particular issue also is a potential
-                    security flaw.</li>
-
-                  <li>Removed the code in Rev47 which was supposed to correct the customer
-                    notifications and in particular the behavior of the "<strong>Customer
-                      Notified</strong>" flag in the "<strong>Status History</strong>" section. The
-                    "<strong>Customer Notified</strong>" flag did not match the actual activity.
-                    The Rev47 code did not correct the issue. The code to fix this problem comes
-                    from the the <strong>super_orders.php</strong> file that comes with Numinix's
-                    Fast & Easy Checkout. (v1.6.2)</li>
-
-                  <li>Changed the packing slip images to an on/off option. (Previous versions
-                    limited the number of images that would show on a packing slip to 3 -- other
-                    options for packing slip images are found later in this readme in the Other
-                    Tips/Edits section)</li>
-                  <li>Other changes in this version of Super Orders are based on the following threads:
-                    <ol>
-                      <li><a href="http://www.zen-cart.com/forum/showpost.php?p=456907&postcount=720" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=456907&postcount=720</a><br />
-                        Items 1-3 are all various fixes which corrects the shipping display to show the full shipping description (carrier and shipping service) on the following files: <strong>super_packingslip.php</strong>, <strong>super_invoice.php</strong>, <strong>super_orders.php</strong>, and <strong>super_data_sheet.php</strong>. The default Zen Cart packing slip, invoice, orders, and datasheet all display the FULL shipping description while Super Orders has always used the short shipping descriptions. (It is likely that this is because this was a requirement of the client for whom this mod was originally built for)</li>
-                      <li><a href="http://www.zen-cart.com/forum/showpost.php?p=474959&postcount=777" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=474959&postcount=777</a><br />
-                        See Item #1 for description information</li>
-                      <li><a href="http://www.zen-cart.com/forum/showpost.php?p=495850&postcount=851" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=495850&postcount=851</a><br />
-                        See Item #1 for description information. Fixes shipping description onthe super_orders.php file.</li>
-                      <li><a href="http://www.zen-cart.com/forum/showpost.php?p=573887&postcount=1079" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=573887&postcount=1079</a><br />
-                        For products with text attributes that include multiple lines and line breaks entered by the customer, the default Zen Cart order invoice prints out the text entered by the customer fine, and retains the multiple lines and line breaks entered by the customer. However, the Super Orders <strong>invoice</strong> does not. This fix addresses that issue. Applied this fix to <strong>super_packingslip.php</strong>, <strong>super_invoice.php</strong>, <strong>super_orders.php</strong>, and <strong>super_data_sheet.php</strong>)</li>
-                      <li><a href="http://www.zen-cart.com/forum/showpost.php?p=621110&postcount=1126" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=621110&postcount=1126</a><br />
-                        Corrects an issue where Super Orders fails to update the "last modified date" when updating the order status using the batch status update function</li>
-
-                      <li><a href="http://www.zen-cart.com/forum/showpost.php?p=636329&postcount=1146" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=636329&postcount=1146</a><br />
-                        Includes an optional edit for the default state of the "<strong>Notify Customer</strong>" checkbox</li>
-                      <li><a href="http://www.zen-cart.com/forum/showpost.php?p=639013&postcount=1147" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=639013&postcount=1147</a><br />
-                        Addresses another error in Append Comments & Notify Customer as well as a clarification on how these features are SUPPOSED to work. Changes to language files were made to support this.</li>
-                      <li><a href="http://www.zen-cart.com/forum/showpost.php?p=734090&postcount=1316" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=734090&postcount=1316</a><br />
-                        Fixes the issue with packing list images displaying distorted</li>
-                      <li><a href="http://www.zen-cart.com/forum/showpost.php?p=793720&postcount=1436" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=793720&postcount=1436</a><br />
-                        Options for how the number of images are displayed on packing list (more options for packingslip imagescan be found in the <strong>Other Tips/Edits</strong> section of this readme)</li>
-                      <li>
-                        <a href="http://www.zen-cart.com/forum/showpost.php?p=803476&postcount=1474" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=803476&postcount=1474</a><br />
-                        Fixes issue with Batch Status Updating & Batch Printing which throws errors when you search for orders using the following options:
-                        <ul>
-                          <li><strong>= equals</strong></li>
-                          <li><strong>&lt; less than</strong></li>
-                        </ul>
-                        Because there is an issue with <strong>"= equals"</strong> not working with decimal values (ie: $2.50), the <strong>"= equals</strong>" option will be disabled from the dropdown.
-                      </li>
-
-                      <li><a href="http://www.zen-cart.com/forum/showpost.php?p=804899&postcount=1487" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=804899&postcount=1487</a><br />
-                        Fixes the textarea element on super_batch_status.php so it displays correctly in Internet Explorer. This is a bug with the way Internet Explorer displays textarea elements. The original author of this mod posted a hint regarding this issue here: (<a href="http://www.zen-cart.com/forum/showpost.php?p=292293&postcount=289" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=292293&postcount=2</a></li>
-                    </ol>
-                  </li>
-                </ul>
-              </fieldset>
+              Based on Super Orders 2.0 - By Frank Koehl - PM: BlindSide (original author)<br>
+              <br>
+              <h3>Acknowledgements</h3>
+              <ul>
+                <li>First, thanks to Frank Koehl (BlindSide) for creating the original Super Orders.</li>
+                <li>Thanks to all of the authors of the various threads that went into the crafting this updated version.</li>
+              </ul>
+              <p>Super Orders contributors:</p>
+              <ul>
+                <li>JT - GTI Custom (http://gticustom.com)</li>
+                <li>C Jones - Over the Hill Web Consulting (http://overthehillweb.com)</li>
+                <li>Loose Chicken Software Development (david@loosechicken.com)</li>
+                <li>Scott C. Wilson - That Software Guy (http://thatsoftwareguy.com)</li>
+                <li>Tony Benedetti - benedettitony@gmail.com</li>
+                <li>Kelly Hudson - ScriptJunkie</li>
+                <li>Carl P - carlvt88</li>
+                <li>A Ballanger (http://www.zen-cart.com/member.php?115838)</li>
+                <li>Numinix Web Development Ltd. (http://www.numinix.com)</li>
+                <li>Paul Williams - retched</li>
+              </ul>
+              <h3>Change Log</h3>
+              <h4>v4.0.11</h4>
+              <ul>
+                <li>Removed extra slashes that appeared in packingslip.php's comments fields. (This tends to happen on servers where the field isn't auto escaped.)
+                </li>
+              </ul>
+              <h4>v4.0.10</h4>
+              <ul>
+                <li>Removed refreshing of page for /YOUR_ADMIN/super_batch_forms.php and /YOUR_ADMIN/super_batch_status.php. Now Javascript will take over and check all the boxes on a page.</li>
+                <li>Removed all mysql_ functions and relegated any lookups to the innate ZenCart DB class. Improved support for ZenCart 1.5.2 and 1.5.3.</li>
+                <li>Added missing define for 'TEXT_NO_ORDERS' for super_batch_forms.php</li>
+              </ul>
+              <h4>v4.0.9</h4>
+              <ul>
+                <li>Added support for Store Credit.</li>
+                <li>Bug fix in order splitting for handful of discount mods.</li>
+              </ul>
+              <h4>v4.0.8</h4>
+              <ul>
+                <li>Added column names to INSERT statements in automatic DB patch installer</li>
+              </ul>
+              <h4>v4.0.7</h4>
+              <ul>
+                <li>Correction of error: WARNING | [PHP 5.3] INI directive 'magic_quotes_runtime' is deprecated.</li>
+              </ul>
+              <h4>v4.0.6</h4>
+              <ul>
+                <li>correct issue with fpdf.php class file</li>
+                <li>Improved Ty Package Tracker integration code (lhungil)</li>
+                <li>Hide Ty Package Tracker and Edit Orders stylesheets if these modules are not installed</li>
+              </ul>
+              <h4>v4.0.5</h4>
+              <ul>
+                <li>~ PHP 5.3 updates to remove deprecated PHP functions<br>~ Minor change to update the add-on for Zen Cart v1.5.1</li>
+              </ul>
+              <h4>v4.0.4</h4>
+              <ol>
+                <li>Fixed the error with Shipping Label & Packaging Slip (See #2 Below).</li>
+                <li>Changed ALL Files to use Unix (LF Only) Encoding.</li>
+                <li>Fixed problem with Payment & Purchase Order page not displaying (Re-enabled define('FILENAME_SUPER_PAYMENTS) ).</li>
+                <li>Cleaned up code comments a little bit.</li>
+              </ol>
+              <h4>v4.0.3</h4>
+              <ul>
+                <li>Full integration of Super Orders functionality into the into Zen Cart core. Eliminate once and for all the separate Super Orders versions of the core "cousin files", and replace the super_orders.php, super_invoice.php, super_packingslip.php with Super Order enhanced versions of orders.php, invoice.php, & packingslip.php.</li>
+                <li>Auto generate Super Orders payment records when orders a paid via PayPal</li>
+                <li><strong><u>Credit Card Auto Payment Generation Tweak:</u></strong><br><br>I decided to update the class file that auto generates Super Orders payments for credit card paid orders based on Blindside's post here:<a href="http://www.zen-cart.com/forum/showpost.php?p=276219&postcount=207" target="_blank"><br><br>http://www.zen-cart.com/forum/showpost.php?p=276219&postcount=207</a>. (just the part of this code which relates to credit payments.. PayPal auto payments are handled differently)<br><br>I liked the fact that it no longer hardcodes the credit card codes, and instead relies on the data in the Super Orders payments types table. IF a NEW credit card type is supported by Zen Cart, the only thing Super Orders users need to do is to create a corresponding Super Orders payment type (the Super Orders payment code must match the corresponding credit card as it does now for supported credit cards).. This is loads easier for all I think!!<br><br>This will help keep people -- particularly newbies -- "out of the code" just to update the module.. Having to edit module files is often where things go wrong for newbies.</li>
+                <li>Batch Form Printing. When shopowners print multiple invoices they are presented with a new window with all the selected invoices in separate frames. Printing frames is only supported by IE and Firefox (the 2 most commonly used browsers when SO was initially released). This code still works, but is showing signs of it's age. (the 80s called..) Frame printing is not supported in Chrome, Safari, or Opera. Therefore, this function is to be modified so that batch invoices no longer render in frames and the selected invoice prints on its own page. Align batch invoices and packingslips so that they look/act like the single printed versions.</li>
+                <li>File: admin\super_report_await_pay.php<br>Line 132: Missing a &lt;?php<br><a href="http://www.zen-cart.com/forum/showpost.php?p=1008080&postcount=275" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=1008080&postcount=275</a></li>
+                <li>Error with the super_data_sheet.php lines around lines 225 where Ty Package Tracker 2 is spliced in.<br><a href="http://www.zen-cart.com/forum/showpost.php?p=977666&postcount=55" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=977666&postcount=55</a></li>
+                <li>Correct PDF packing slip to intepret and output currency and other symbols correctly. (trademarks, currency symbols, copyright, etc)</li>
+                <li>Eliminate the need for the common_orders_functions.php file. Edit Orders and Super Orders should have their own functions files.</li>
+                <li>Comments in "Batch Status Update" should work the same way default order comments work. (support for e-mail, no e-mail, or hidden comments) . If working properly should allow shop owner to create batch hidden order comments.<br><br>Currently does not create the correct comment type. Hidden comments and no e-mail comments are not e-mailed to the customer, but they are stored and displayed in the store as if they are e-mail comments.</li>
+                <li>PDF Packing Slip now prints comments the same way comments print on the regular invoice.</li>
+                <li>Correct balance due display on PDF packing slip</li>
+              </ul>
+              <h4>v3.0.2</h4>
+              <ul>
+                <li>Allowing the use of just range first and/or range last in Batch Status Update, Batch Status Print</li>
+                <li>Narrowed window to fit in Batch Status Update, Batch Status Print</li>
+              </ul>
+              <h4>v3.0.1</h4>
+              <ul>
+                <li>Adding a comment to an order with an apostrophe causes SQL failure - fixed</li>
+                <li>Not installing Ty Tracker means Super Orders Print will fail - fixed</li>
+                <li>Display all comments in Invoice</li>
+                <li>Display all comments in Packing Slip</li>
+              </ul>
+              <h4>v3.0.0</h4>
+              <ul>
+                <li>Clean up and reorganize the readme file (again!!!)</li>
+                <li>MANY misc bug fixes and corrections</li>
+                <li>Overall cleanup of the files to remove deprecated and unused code</li>
+                <li>Countries now included as search option in "Batch Form Printing" and "Batch Status Updating"</li>
+                <li>The "<strong>Edit Status History</strong>" feature has been restored and the functionality modified. Editing of order comments is now limited to hidden "admin only" comments. Additionally in previous versions of Super Orders the "<strong>Edit Status History</strong>" feature inserted HTML and ASCII line breaks into the database, and this ugly line break code was displayed when the customer viewed their order history from "Status History & Comments". This particular problem goes back to 2006, and has now been FULLY resolved/addressed.</li>
+                <li>Customer comments modified to incorporate the latest Zen Cart 1.3.9 functionality/format</li>
+                <li>Packing slip images are now a simple on/off admin configurable option.</li>
+                <li>Batch print functionality has been expanded to include PDF invoices!! Options for the invoices are admin configurable</li>
+                <li>Split orders has been improved to help shopowners easily reconcile a split order. Creates a parent and child order. Paid split orders will display the grand total paid for both parent and child order. For orders paid via PayPal, Authorize.net or Linkpoint, the admin payment panel will not display on the child order.</li>
+                <li>Order total and customer address edit features have been removed in their entirety. (use <strong>Edit Orders</strong> if you need order/customer address editing functionality)</li>
+                <li>Added missing shortcut icons on the orders listing screen. Now there is a corresponding shortcut icon on each order line that matches the buttons that appear in the sidebox.</li>
+                <li>Restoration of missing default Zen Cart orders.php functionality. This now allows payment processor generated (PayPal, Authorize.net or Linkpoint) refunds to now be processed within Super Orders. (no longer requires the retention of the default orders.php to process PayPal, Authorize.net or Linkpoint refunds)</li>
+                <li>AUTO PAYMENT FOR ORDERS PAID VIA PAYPAL!!!!!!! 'Nuff said...</li>
+                <li>Improved graphics and buttons to <strong>SPRUCE UP</strong> the Super Orders UI</li>
+                <li>If you have Edit Orders v3.0 installed, you can enable Edit Order in the Super Orders admin to enable Edit Orders buttons in Super Orders (No Super Orders code merging required.. Simply install Edit Orders and "turn on" Edit Orders in the Super Orders admin!!)</li>
+                <li>If you have Ty Package Tracker v3.0 installed, you can enable the Ty Package Tracker fields for Super Orders (No Super Orders code merging required..) Simply install Ty Package Tracker and "turn on" Super Orders from the Ty Package Tracker admin!!)</li>
+                <li>If you have USPS Click-N-Ship installed, you can enable USPS Click-N-Ship in the Super Orders admin to enable USPS Click-N-Ship fields/buttons in Super Orders (No Super Orders code merging required.. Simply install USPS Click-N-Ship and "turn on" USPS Click-N-Ship in the Super Orders admin!!)</li>
+                <li>If you have FedEx Automated Labels installed, you can enable FedEx Automated Labels in the Super Orders admin to enable FedEx Automated Labels buttons in Super Orders (No Super Orders code merging required.. Simply install FedEx Automated Labels and "turn on" FedEx Automated Labels in the Super Orders admin!!)</li>
+              </ul>
+              <h4>v1.3.9</h4>
+              <ul>
+                <li>Updated for Zen 1.3.9 compatibility</li>
+              </ul>
+              <h4>v2.0 Rev 48</h4>
+              <ul>
+                <li>Clean up and reorganize the readme file</li>
+                <li>Addition of a "<strong>Required_CoreEdits</strong>" folder. This folder contains files that include the edits outlined in the the "<strong>REQUIRED FILE EDITS</strong>" section of the previous version of the Super Orders readme</li>
+                <li>Addition of an "<strong>Optional_Files</strong>" set of folders. This folder contains files that include most of the edits outlined in the the "<strong>OPTIONAL FILE EDITS</strong>" section of the previous version Super Orders readme</li>
+                <li>Removed all the <strong>authorizenet_aim.php</strong> edits from readme because they appear to be from an older version of the Authorize.net payment module files. (These instructions are in the "OPTIONAL FILE EDITS" section of the previous versions readme file)</li>
+                <li>Updated e-mail format (modified lines 30 - 33 of <strong>order_status_email.php</strong>) to improve the aesthetics of the e-mail generated</li>
+                <li>The "<strong>Edit Status History</strong>" function has been removed. It creates an audit/accountability issue by allowing the editing of order notes/comments. The "<strong>Edit Status History</strong>" feature also injects HTML line breaks and ASCII line breaks into the database, and these line breaks are displayed when the customer views their order history from "Status History & Comments". This particular problem goes back to 2006, and has not been fully resolved/addressed even in the last version of Super Orders.<br><br>The problem is due to the comments not being properly scrubbed before inserting them into the DB. This particular issue also is a potential security flaw.</li>
+                <li>Removed the code in Rev47 which was supposed to correct the customer notifications and in particular the behavior of the "<strong>Customer Notified</strong>" flag in the "<strong>Status History</strong>" section. The "<strong>Customer Notified</strong>" flag did not match the actual activity. The Rev47 code did not correct the issue. The code to fix this problem comes from the the <strong>super_orders.php</strong> file that comes with Numinix's Fast & Easy Checkout. (v1.6.2)</li>
+                <li>Changed the packing slip images to an on/off option. (Previous versions limited the number of images that would show on a packing slip to 3 -- other options for packing slip images are found later in this readme in the Other Tips/Edits section)</li>
+                <li>Other changes in this version of Super Orders are based on the following threads:
+                  <ol>
+                    <li><a href="http://www.zen-cart.com/forum/showpost.php?p=456907&postcount=720" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=456907&postcount=720</a><br>Items 1-3 are all various fixes which corrects the shipping display to show the full shipping description (carrier and shipping service) on the following files: <strong>super_packingslip.php</strong>, <strong>super_invoice.php</strong>, <strong>super_orders.php</strong>, and <strong>super_data_sheet.php</strong>. The default Zen Cart packing slip, invoice, orders, and datasheet all display the FULL shipping description while Super Orders has always used the short shipping descriptions. (It is likely that this is because this was a requirement of the client for whom this mod was originally built for)</li>
+                    <li><a href="http://www.zen-cart.com/forum/showpost.php?p=474959&postcount=777" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=474959&postcount=777</a><br>See Item #1 for description information</li>
+                    <li><a href="http://www.zen-cart.com/forum/showpost.php?p=495850&postcount=851" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=495850&postcount=851</a><br>See Item #1 for description information. Fixes shipping description onthe super_orders.php file.</li>
+                    <li><a href="http://www.zen-cart.com/forum/showpost.php?p=573887&postcount=1079" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=573887&postcount=1079</a><br>For products with text attributes that include multiple lines and line breaks entered by the customer, the default Zen Cart order invoice prints out the text entered by the customer fine, and retains the multiple lines and line breaks entered by the customer. However, the Super Orders <strong>invoice</strong> does not. This fix addresses that issue. Applied this fix to <strong>super_packingslip.php</strong>, <strong>super_invoice.php</strong>, <strong>super_orders.php</strong>, and <strong>super_data_sheet.php</strong>)</li>
+                    <li><a href="http://www.zen-cart.com/forum/showpost.php?p=621110&postcount=1126" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=621110&postcount=1126</a><br>Corrects an issue where Super Orders fails to update the "last modified date" when updating the order status using the batch status update function</li>
+                    <li><a href="http://www.zen-cart.com/forum/showpost.php?p=636329&postcount=1146" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=636329&postcount=1146</a><br>Includes an optional edit for the default state of the "<strong>Notify Customer</strong>" checkbox</li>
+                    <li><a href="http://www.zen-cart.com/forum/showpost.php?p=639013&postcount=1147" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=639013&postcount=1147</a><br>Addresses another error in Append Comments & Notify Customer as well as a clarification on how these features are SUPPOSED to work. Changes to language files were made to support this.</li>
+                    <li><a href="http://www.zen-cart.com/forum/showpost.php?p=734090&postcount=1316" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=734090&postcount=1316</a><br>Fixes the issue with packing list images displaying distorted</li>
+                    <li><a href="http://www.zen-cart.com/forum/showpost.php?p=793720&postcount=1436" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=793720&postcount=1436</a><br>Options for how the number of images are displayed on packing list (more options for packingslip imagescan be found in the <strong>Other Tips/Edits</strong> section of this readme)</li>
+                    <li>
+                      <a href="http://www.zen-cart.com/forum/showpost.php?p=803476&postcount=1474" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=803476&postcount=1474</a><br>Fixes issue with Batch Status Updating & Batch Printing which throws errors when you search for orders using the following options:
+                      <ul>
+                        <li><strong>= equals</strong></li>
+                        <li><strong>&lt; less than</strong></li>
+                      </ul>
+                      Because there is an issue with <strong>"= equals"</strong> not working with decimal values (ie: $2.50), the <strong>"= equals</strong>" option will be disabled from the dropdown.
+                    </li>
+                    <li><a href="http://www.zen-cart.com/forum/showpost.php?p=804899&postcount=1487" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=804899&postcount=1487</a><br>Fixes the textarea element on super_batch_status.php so it displays correctly in Internet Explorer. This is a bug with the way Internet Explorer displays textarea elements. The original author of this mod posted a hint regarding this issue here: (<a href="http://www.zen-cart.com/forum/showpost.php?p=292293&postcount=289" target="_blank">http://www.zen-cart.com/forum/showpost.php?p=292293&postcount=2</a></li>
+                  </ol>
+                </li>
+              </ul>
             </div>
             <div class="tab-pane fade " id="license" role="tabpanel" aria-labelledby="license-tab">
               <h2>License</h2>
-              <p>Super Orders is released under the General Public License (see <a href="../LICENSE">LICENSE</a>)</p>
+              <p>Super Orders is released under the General Public License (see <a href="../LICENSE" target="_blank">LICENSE</a>)</p>
               <p>This script is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p>
               <p>Always backup your shop and database before making changes.</p>
               <p>Original Super Orders code development sponsored by Destination ImagiNation, Inc.</p>
