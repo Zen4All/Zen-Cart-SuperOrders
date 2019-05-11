@@ -7,8 +7,8 @@
  * @copyright (c) 2014-2019, Zen4All
  * @license http://www.gnu.org/licenses/gpl.txt GNU General Public License V2.0
  */
- if (!defined('IS_accessADMIN_FLAG')) {
-     die('Illegal ');
+ if (!defined('IS_ADMIN_FLAG')) {
+     die('Illegal access');
  }
 
  $module_constant = 'SO_VERSION';
