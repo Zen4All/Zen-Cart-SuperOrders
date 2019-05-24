@@ -70,8 +70,3 @@ define('BOX_REPORTS_SUPER_REPORT_AWAIT_PAY', 'Orders Awaiting Payment');
 define('BOX_REPORTS_SUPER_REPORT_CASH', 'Cash Report');
 define('BOX_REPORTS_SUPER_PAYMENT_TYPES', 'Payment Types');
 define('BOX_LOCALIZATION_MANAGE_PAYMENT_TYPES','Manage Payment Types');
-
-
-// DO NOT EDIT!
-define('SUPER_ORDERS_VERSION', '5.0.00');
-// DO NOT EDIT!

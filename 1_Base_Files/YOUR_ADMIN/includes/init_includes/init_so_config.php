@@ -7,25 +7,31 @@
  * @copyright (c) 2014-2019, Zen4All
  * @license http://www.gnu.org/licenses/gpl.txt GNU General Public License V2.0
  */
- if (!defined('IS_ADMIN_FLAG')) {
-     die('Illegal access');
- }
+if (!defined('IS_ADMIN_FLAG')) {
+  die('Illegal Access');
+}
 
- $module_constant = 'SO_VERSION';
- $module_installer_directory = DIR_FS_ADMIN . 'includes/installers/super_orders';
- $module_name = 'Super Orders';
- $module_file_for_version_check = '';
- $zencart_com_plugin_id = 155;
+$module_constant = 'SO_VERSION';
+$module_installer_directory = DIR_FS_ADMIN . 'includes/installers/super_orders';
+$module_name = 'Super Orders';
+$zencart_com_plugin_id = 155;
 
- $configuration_group_id = '';
- if (defined($module_constant)) {
-     $current_version = constant($module_constant);
- } else {
-     $current_version = '0.0.0';
-  $db->Execute("INSERT INTO " . TABLE_CONFIGURATION_GROUP . " (configuration_group_title, configuration_group_description, sort_order, visible)
-                VALUES ('" . $module_name . "', '" . $module_name . " Settings', '1', '1');");
-  $configuration_group_id = $db->Insert_ID();
-
+$configuration_group_id = '';
+if (defined($module_constant)) {
+  $current_version = constant($module_constant);
+} else {
+  $current_version = '0.0.0';
+  // Checking for old Existing Super Orders installtions in database
+  $check = $db->Execute("SELECT configuration_group_id
+                         FROM " . TABLE_CONFIGURATION_GROUP . "
+                         WHERE configuration_group_title = '" . $module_name . "'");
+  if ($check->RecordCount() < 0) {
+    $db->Execute("INSERT INTO " . TABLE_CONFIGURATION_GROUP . " (configuration_group_title, configuration_group_description, sort_order, visible)
+                  VALUES ('" . $module_name . "', '" . $module_name . " Settings', '1', '1');");
+    $configuration_group_id = $db->Insert_ID();
+  } else {
+    $configuration_group_id = $check->fields['configuration_group_id'];
+  }
   $db->Execute("UPDATE " . TABLE_CONFIGURATION_GROUP . "
                 SET sort_order = " . $configuration_group_id . "
                 WHERE configuration_group_id = " . $configuration_group_id . ";");
@@ -42,14 +48,14 @@ if ($configuration_group_id == '') {
 $installers = scandir($module_installer_directory, 1);
 
 $newest_version = $installers[0];
-$newest_version = substr($newest_version, 0 - 4);
+$newest_version = substr($newest_version, 0, -4);
 
 sort($installers);
 if (version_compare($newest_version, $current_version) > 0) {
   foreach ($installers as $installer) {
-    if (version_compare($newest_version, substr($installer, 0, - 4)) >= 0 && version_compare($current_version, substr($installer, 0, - 4)) < 0) {
+    if (version_compare($newest_version, substr($installer, 0, -4)) >= 0 && version_compare($current_version, substr($installer, 0, -4)) < 0) {
       include($module_installer_directory . '/' . $installer);
-      $current_version = str_replace('_', '.', substr($installer, 0, - 4));
+      $current_version = str_replace('_', '.', substr($installer, 0, -4));
       $db->Execute("UPDATE " . TABLE_CONFIGURATION . " SET configuration_value = '" . $current_version . "' WHERE configuration_key = '" . $module_constant . "' LIMIT 1;");
       $messageStack->add("Installed " . $module_name . " v" . $current_version, 'success');
     }

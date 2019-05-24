@@ -2,7 +2,7 @@
 
 /**
  *
- *  SUPER ORDERS v3.0
+ *  SUPER ORDERS v5.0
  *
  *  Based on Super Order 2.0
  *  By Frank Koehl - PM: BlindSide (original author)
@@ -11,6 +11,7 @@
  *  ~ JT of GTICustom
  *  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)
  *  ~ Loose Chicken Software Development, david@loosechicken.com
+ *  ~ Zen4All (https://zen4all.nl)
  *
  *  Powered by Zen-Cart (www.zen-cart.com)
  *  Portions Copyright (c) 2005 The Zen-Cart Team
@@ -262,7 +263,7 @@ function all_payments_array($first_option = false, $show_code = false)
     );
   }
 
-  $payments = $db->Execute("SELECT DISCINCT payment_method, payment_module_code
+  $payments = $db->Execute("SELECT DISTINCT payment_method, payment_module_code
                             FROM " . TABLE_ORDERS);
   foreach ($payments as $payment) {
     $payments_array[] = array(
