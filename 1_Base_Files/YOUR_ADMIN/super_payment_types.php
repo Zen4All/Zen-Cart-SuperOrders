@@ -1,26 +1,26 @@
 <?php
 /**
  *
- *  SUPER ORDERS v3.0                                                 //
- *                                                                    //
- *  Based on Super Order 2.0                                          //
- *  By Frank Koehl - PM: BlindSide (original author)                  //
- *                                                                    //
- *  Super Orders Updated by:            //
- *  ~ JT of GTICustom             //
- *  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)  //
- *  ~ Loose Chicken Software Development, david@loosechicken.com  //
- *                                                          //
- *  Powered by Zen-Cart (www.zen-cart.com)                  //
- *  Portions Copyright (c) 2005 The Zen-Cart Team           //
- *                                                          //
- *  Released under the GNU General Public License           //
- *  available at www.zen-cart.com/license/2_0.txt           //
- *  or see "license.txt" in the downloaded zip              //
+ *  SUPER ORDERS v3.0
  *
- *  DESCRIPTION:   Manages the payment types for the Super Orders //
- *  payment system.  Similar in form to the order status management //
- *  page.               //
+ *  Based on Super Order 2.0
+ *  By Frank Koehl - PM: BlindSide (original author)
+ *
+ *  Super Orders Updated by:
+ *  ~ JT of GTICustom
+ *  ~ C Jones Over the Hill Web Consulting (http://overthehillweb.com)
+ *  ~ Loose Chicken Software Development, david@loosechicken.com
+ *
+ *  Powered by Zen-Cart (www.zen-cart.com)
+ *  Portions Copyright (c) 2005 The Zen-Cart Team
+ *
+ *  Released under the GNU General Public License
+ *  available at www.zen-cart.com/license/2_0.txt
+ *  or see "license.txt" in the downloaded zip
+ *
+ *  DESCRIPTION:   Manages the payment types for the Super Orders
+ *  payment system.  Similar in form to the order status management
+ *  page.
  *
  * $Id: super_batch_forms.php v 2010-10-24 $
  */
@@ -51,7 +51,7 @@ if (zen_not_null($action)) {
       $payment_type_full_array = zen_db_prepare_input($_POST['payment_type_full']);
       $payment_type_code_array = zen_db_prepare_input($_POST['payment_type_code']);
         if ($action == 'insert') {
-          
+
             $sql_array = array('payment_type_code' => $payment_type_code);
        zen_db_perform(TABLE_SO_PAYMENT_TYPES, $sql_insert_array);
         } elseif ($action == 'save') {
