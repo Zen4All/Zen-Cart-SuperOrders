@@ -46,6 +46,17 @@ if ($checkTablePorchaseOrders->RecordCount() > 0) {
 )");
 }
 
+$checkTablePorchaseOrders = $db->Execute("SELECT table_name
+                                          FROM information_schema.tables
+                                          WHERE table_schema = '" . DB_DATABASE . "'
+                                          AND table_name = '" . DB_PREFIX . "so_refunds'");
+
+if ($checkTablePorchaseOrders->RecordCount() > 0) {
+  /* Update zero dates on very old installations */
+  $db->Execute("ALTER TABLE " . DB_PREFIX . "so_refunds CHANGE date_posted date_posted DATETIME NOT NULL DEFAULT '0001-01-01 00:00:00'");
+  $db->Execute("ALTER TABLE " . DB_PREFIX . "so_refunds CHANGE last_modified last_modified DATETIME NOT NULL DEFAULT '0001-01-01 00:00:00'");
+} else {
+
 $db->Execute("CREATE TABLE IF NOT EXISTS " . DB_PREFIX . "so_refunds (
   refund_id int(11) NOT NULL auto_increment,
   payment_id int(11) NOT NULL default '0',
@@ -59,7 +70,7 @@ $db->Execute("CREATE TABLE IF NOT EXISTS " . DB_PREFIX . "so_refunds (
   PRIMARY KEY (refund_id),
   KEY refund_id (refund_id)
 )");
-//-- --------------------------------------------------------
+}
 
 $db->Execute("CREATE TABLE IF NOT EXISTS " . DB_PREFIX . "so_payment_types (
   payment_type_id int(11) NOT NULL auto_increment,
@@ -186,9 +197,6 @@ $sql = "INSERT IGNORE INTO " . DB_PREFIX . "configuration (configuration_id, con
 $db->Execute($sql);
 /* -- SUPER ORDERS ADMIN FLAGS TO ADD SUPPORT FOR EDIT ORDERS -- */
 $sql = "INSERT IGNORE INTO " . DB_PREFIX . "configuration (configuration_id, configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES (NULL, 'Edit Orders Module Switch', 'SO_EDIT_ORDERS_SWITCH', 'False', 'If you have the Edit Orders v4.0.0 or greater module installed, set this option to TRUE to activate the Edit Orders navigation buttons to work with Super Orders.<br><br><strong><font color=red>YOU MUST HAVE EDIT ORDERS INSTALLED TO USE THIS FEATURE!!</font></strong><br><br>\(Activating this flag without the required mod installed <strong>WILL CAUSE ERRORS IN YOUR STORE!!!!</strong>\)', '" . $configuration_group_id . "', 99, now(), now(), NULL, 'zen_cfg_select_option(array(''True'', ''False''),')";
-$db->Execute($sql);
-/* -- SUPER ORDERS VERSION -- */
-$sql = "INSERT IGNORE INTO " . DB_PREFIX . "configuration (configuration_id, configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function) VALUES (NULL, 'Super Orders Version', 'SO_VERSION', '4.0.10', 'Super Orders version', '" . $configuration_group_id . "', 100, NULL, now(), NULL, NULL)";
 $db->Execute($sql);
 
 // find next sort order in admin_pages table
