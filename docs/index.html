@@ -92,13 +92,27 @@
             <div class="tab-pane fade" id="installation" role="tabpanel" aria-labelledby="installation-tab">
               <h2>Installation</h2>
               <div class="emphasis">
-                <p><strong>*** READ EVERYTHING IN THIS README BEFORE YOU BEGIN ***</strong></p>
-                <p><strong>***** BACKUP YOUR STORE BEFORE YOU BEGIN*****</strong></p>
+                <p><strong>!! READ EVERYTHING IN THIS README BEFORE YOU BEGIN !!</strong></p>
+                <p><strong>!! BACKUP YOUR STORE BEFORE YOU BEGIN !!</strong></p>
               </div>
+              <ul class="nav nav-tabs" id="TabInstallation" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="new-install-tab" data-toggle="tab" href="#new-install" role="tab" aria-controls="new-install" aria-selected="true">New install</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="upgrade-tab" data-toggle="tab" href="#upgrade" role="tab" aria-controls="upgrade" aria-selected="false">Upgrade</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="un-install-tab" data-toggle="tab" href="#un-install" role="tab" aria-controls="un-install" aria-selected="false">Un-install</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="file-list-tab" data-toggle="tab" href="#file-list" role="tab" aria-controls="file-list" aria-selected="false">File List</a>
+                </li>
+              </ul>
               <fieldset>
                 <legend>New Installation or Upgrading your store to Zen Cart v1.5 with an older version of Super Orders installed</legend>
 
-                <p>Here's the BEST part of the new Super Orders.. two words.. AUTO INSTALLER!! No more external SQL files needed to install/upgrade Super Orders.. Yep that's right.. TheSuper Orders install/upgrade is easier than ever!!! Whether you are upgrading from a previous Super Orders install or doing a vanilla Super Orders install, the newauto installer has got you covered. <strong>Please note:</strong> Uninstall is not automated. So to uninstall you will still need to use an external SQL file..</p>
+                <p>Here's the BEST part of the new Super Orders.. two words.. AUTO INSTALLER!! No more external SQL files needed to install/upgrade Super Orders.. Yep that's right.. The Super Orders install/upgrade is easier than ever!!! Whether you are upgrading from a previous Super Orders install or doing a vanilla Super Orders install, the newauto installer has got you covered. <strong>Please note:</strong> Uninstall is not automated. So to uninstall you will still need to use an external SQL file..</p>
                 <p>DO NOT RUN THE UNINSTALL SQL when upgrading..<br><br>Let me repeat..<br><br><strong>DO NOT RUN THE UNINSTALL SQL when upgrading!!!!!!</strong> You will wipe out your payment/refunds/purchase order tables.. (This is IRREVERSIBLE!!) Doing so will cause issues with your Super Orders v4.0 install.</p>
                 <p><strong>DO NOT RUN OLDER VERSIONS OF THE INSTALL/UPGRADE SQL FILES when installing/upgrading!!!!!!</strong> Doing so will cause issues with your Super Orders v4.0 install.<br><br>To install/upgrade Super Orders:</p>
                 <ol>
