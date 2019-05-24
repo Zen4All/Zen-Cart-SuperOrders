@@ -2,7 +2,7 @@
 
 /**
  *
- *  SUPER ORDERS v3.0
+ *  SUPER ORDERS v5.0
  *
  *  Based on Super Order 2.0
  *  By Frank Koehl - PM: BlindSide (original author)

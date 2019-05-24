@@ -1,7 +1,7 @@
 <?php
 /**
  *
- *  SUPER ORDERS - Version 1.0
+ *  SUPER ORDERS - Version 5.0
  *
  *  By Frank Koehl  (fkoehl@gmail.com)
  *
